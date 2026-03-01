@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="tn.esprit.pidev.forum.controllers.AddPostController"
+            prefHeight="700.0" prefWidth="900.0" 
+            style="-fx-background-color: #f1f2f1; -fx-font-family: 'Georgia';">
+    
+    <!-- Header - BLUE -->
+    <top>
+        <HBox style="-fx-background-color: #193764; -fx-padding: 22 30;" alignment="CENTER_LEFT" spacing="20">
+            <Button text="back" onAction="#handleCancel" prefHeight="40" prefWidth="85"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 15px; -fx-font-family: 'Georgia'; -fx-cursor: hand; -fx-border-color: white; -fx-border-radius: 8;"/>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <Label fx:id="dialogTitle" text="Créer un post" textFill="white">
+                <font>
+                    <Font name="Georgia" size="30.0"/>
+                </font>
+            </Label>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </top>
+    
+    <!-- Center Content -->
+    <center>
+        <VBox alignment="TOP_CENTER" style="-fx-background-color: #f1f2f1;">
+            <padding>
+                <Insets top="40" right="50" bottom="40" left="50"/>
+            </padding>
+            
+            <!-- Form Card -->
+            <VBox spacing="22" maxWidth="700" style="-fx-background-color: #e7e6e4; -fx-background-radius: 15; -fx-padding: 35;">
+                
+                <!-- Category -->
+                <VBox spacing="10">
+                    <Label text="catégorie :" style="-fx-font-size: 16px; -fx-text-fill: #364e5b; -fx-font-family: 'Georgia';"/>
+                    <ComboBox fx:id="categorieComboBox" prefWidth="280.0" prefHeight="45"
+                              style="-fx-background-color: #816057; -fx-background-radius: 8; -fx-font-size: 15px; -fx-font-family: 'Georgia';"/>
+                </VBox>
+                
+                <!-- Title -->
+                <VBox spacing="10">
+                    <Label text="titre du post :" style="-fx-font-size: 16px; -fx-text-fill: #364e5b; -fx-font-family: 'Georgia';"/>
+                    <TextField fx:id="titreField" promptText="" prefHeight="48"
+                              style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: transparent; -fx-padding: 0 15; -fx-font-size: 15px; -fx-font-family: 'Georgia';"/>
+                </VBox>
+                
+                <!-- Content -->
+                <VBox spacing="10">
+                    <Label text="continue du post :" style="-fx-font-size: 16px; -fx-text-fill: #364e5b; -fx-font-family: 'Georgia';"/>
+                    <TextArea fx:id="contenuArea" promptText="" 
+                             prefHeight="200.0" wrapText="true"
+                             style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: transparent; -fx-padding: 12; -fx-font-size: 15px; -fx-font-family: 'Georgia';"/>
+                </VBox>
+                
+                <!-- Character Count -->
+                <HBox alignment="CENTER_RIGHT">
+                    <Label fx:id="charCountLabel" text="0 caractères" 
+                           style="-fx-text-fill: #816057; -fx-font-size: 13px; -fx-font-style: italic; -fx-font-family: 'Georgia';"/>
+                </HBox>
+                
+                <!-- Publish Button - BLUE -->
+                <HBox alignment="CENTER">
+                    <Button text="publier" onAction="#handleSave" prefHeight="50" prefWidth="190"
+                            style="-fx-background-color: #193764; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 17px; -fx-font-family: 'Georgia'; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

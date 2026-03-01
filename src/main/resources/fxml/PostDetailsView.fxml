@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="tn.esprit.pidev.forum.controllers.PostDetailsController"
+            prefHeight="800.0" prefWidth="900.0" 
+            style="-fx-background-color: #f1f2f1; -fx-font-family: 'Georgia';">
+    
+    <!-- Header - BLUE -->
+    <top>
+        <HBox style="-fx-background-color: #193764; -fx-padding: 22 30;" alignment="CENTER_LEFT" spacing="20">
+            <Button text="back" onAction="#handleBack" prefHeight="40" prefWidth="85"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 15px; -fx-font-family: 'Georgia'; -fx-cursor: hand; -fx-border-color: white; -fx-border-radius: 8;"/>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <Label fx:id="titleHeaderLabel" text="Détails du Post" textFill="white">
+                <font>
+                    <Font name="Georgia" size="28.0"/>
+                </font>
+            </Label>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </top>
+    
+    <!-- Main Content -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox alignment="TOP_CENTER" spacing="28.0" style="-fx-background-color: #f1f2f1;">
+                <padding>
+                    <Insets top="30.0" right="50.0" bottom="30.0" left="50.0"/>
+                </padding>
+                
+                <!-- Post Card -->
+                <VBox spacing="18.0" maxWidth="700"
+                      style="-fx-background-color: #e7e6e4; -fx-background-radius: 15; -fx-padding: 32;">
+                    
+                    <!-- Category and Date -->
+                    <HBox spacing="12.0" alignment="CENTER_LEFT">
+                        <Label fx:id="categorieLabel" text="Catégorie" 
+                               style="-fx-background-color: #816057; -fx-text-fill: white; -fx-padding: 7 15; -fx-background-radius: 8; -fx-font-size: 14px; -fx-font-family: 'Georgia';"/>
+                        
+                        <Region HBox.hgrow="ALWAYS"/>
+                        
+                        <Label fx:id="dateLabel" text="16/02/2026 20:03" 
+                               style="-fx-text-fill: #364e5b; -fx-font-size: 14px; -fx-font-family: 'Georgia';"/>
+                    </HBox>
+                    
+                    <!-- Title -->
+                    <Label fx:id="titreLabel" text="Titre du post" wrapText="true"
+                           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #364e5b; -fx-font-family: 'Georgia';"/>
+                    
+                    <!-- Author -->
+                    <Label fx:id="auteurLabel" text="Auteur #1" 
+                           style="-fx-text-fill: #816057; -fx-font-size: 15px; -fx-font-family: 'Georgia'; -fx-font-weight: 600;"/>
+                    
+                    <!-- Content -->
+                    <Label fx:id="contenuLabel" text="Contenu du post..." wrapText="true"
+                           style="-fx-text-fill: #364e5b; -fx-font-size: 16px; -fx-line-spacing: 5px; -fx-font-family: 'Georgia';"/>
+                    
+                    <!-- Edited Badge -->
+                    <Label fx:id="editedLabel" text="✏️ Modifié" visible="false"
+                           style="-fx-text-fill: #816057; -fx-font-size: 12px; -fx-font-style: italic; -fx-font-family: 'Georgia';"/>
+                    
+                    <Separator style="-fx-background-color: #c4c8cd;"/>
+                    
+                    <!-- Actions - BLUE BUTTON -->
+                    <HBox spacing="18.0" alignment="CENTER_LEFT">
+                        <Button fx:id="likeButton" text="J'aime" onAction="#handleLikePost" prefHeight="42"
+                                style="-fx-background-color: #193764; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 14px; -fx-font-family: 'Georgia'; -fx-cursor: hand;">
+                            <padding>
+                                <Insets top="0" right="20" bottom="0" left="20"/>
+                            </padding>
+                        </Button>
+                        
+                        <Label fx:id="likesLabel" text="❤️ 2" 
+                               style="-fx-text-fill: #193764; -fx-font-size: 16px; -fx-font-family: 'Georgia'; -fx-font-weight: 600;"/>
+                        
+                        <Region HBox.hgrow="ALWAYS"/>
+                        
+                        <Label fx:id="commentsCountLabel" text="💬 2" 
+                               style="-fx-text-fill: #364e5b; -fx-font-size: 16px; -fx-font-family: 'Georgia';"/>
+                    </HBox>
+                </VBox>
+                
+                <!-- Add Comment Section -->
+                <VBox spacing="18.0" maxWidth="700"
+                      style="-fx-background-color: #e7e6e4; -fx-background-radius: 12; -fx-padding: 28;">
+                    
+                    <Label text="ajouter un commentaire" 
+                           style="-fx-font-size: 18px; -fx-text-fill: #364e5b; -fx-font-family: 'Georgia'; -fx-font-weight: 600;"/>
+                    
+                    <TextArea fx:id="commentArea" promptText="Écrivez votre commentaire..." 
+                             prefHeight="95.0" wrapText="true"
+                             style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: transparent; -fx-padding: 12; -fx-font-size: 15px; -fx-font-family: 'Georgia';"/>
+                    
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button text="publier" onAction="#handleAddComment" prefHeight="42"
+                                style="-fx-background-color: #193764; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 15px; -fx-font-family: 'Georgia'; -fx-font-weight: bold; -fx-cursor: hand;">
+                            <padding>
+                                <Insets top="0" right="28" bottom="0" left="28"/>
+                            </padding>
+                        </Button>
+                    </HBox>
+                </VBox>
+                
+                <!-- Comments List -->
+                <VBox fx:id="commentsContainer" spacing="15.0" maxWidth="700"/>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
