@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -51,6 +50,36 @@ public class ForumController {
         loadPosts();
     }
 
+    /**
+     * ✅ NOUVEAU: Retour à la HomePage
+     */
+    @FXML
+    private void handleReturnHome(ActionEvent event) {
+        try {
+            System.out.println("🏠 Retour à la HomePage...");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
+            Parent root = loader.load();
+
+            Stage homeStage = new Stage();
+            homeStage.setTitle("MindConnect - Plateforme de Santé Mentale");
+            homeStage.setScene(new Scene(root, 1400, 900));
+            homeStage.setMaximized(true);
+
+            Stage currentStage = (Stage) searchField.getScene().getWindow();
+            currentStage.close();
+
+            homeStage.show();
+
+            System.out.println("✅ Retour à l'accueil réussi!");
+
+        } catch (IOException e) {
+            System.err.println("❌ Erreur lors du retour à l'accueil!");
+            e.printStackTrace();
+            showError("Erreur", "Impossible de retourner à l'accueil.\n" + e.getMessage());
+        }
+    }
+
     private void loadCategories() {
         categoryComboBox.getItems().add("Toutes");
         categoryComboBox.getItems().addAll(
@@ -63,6 +92,9 @@ public class ForumController {
         categoryComboBox.getSelectionModel().selectFirst();
     }
 
+    /**
+     * ✅ CORRIGÉ: Catégories avec TEXTE BLANC
+     */
     private void loadCategorySidebar() {
         categoriesContainer.getChildren().clear();
 
@@ -78,7 +110,9 @@ public class ForumController {
             Button catBtn = new Button(category);
             catBtn.setPrefWidth(280);
             catBtn.setPrefHeight(42);
-            catBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: white; " +
+            // ✅ TEXTE BLANC ICI!
+            catBtn.setStyle("-fx-background-color: transparent; " +
+                    "-fx-text-fill: white; " +  // ← BLANC!
                     "-fx-font-size: 14px; -fx-font-family: 'Georgia'; -fx-cursor: hand; " +
                     "-fx-alignment: CENTER-LEFT; -fx-padding: 12 25;");
             catBtn.setOnAction(e -> filterByCategory(category));
@@ -129,7 +163,6 @@ public class ForumController {
         VBox innerCard = new VBox(12);
         innerCard.setStyle("-fx-background-color: #e7e6e4; -fx-background-radius: 10; -fx-padding: 20;");
 
-        // Top row: Category + Menu
         HBox topRow = new HBox(10);
         topRow.setAlignment(Pos.CENTER_LEFT);
 
@@ -152,22 +185,18 @@ public class ForumController {
             topRow.getChildren().add(menuBtn);
         }
 
-        // Title
         Label titleLabel = new Label(post.getTitre());
         titleLabel.setWrapText(true);
         titleLabel.setStyle("-fx-font-size: 19px; -fx-text-fill: #364e5b; -fx-font-family: 'Georgia'; -fx-font-weight: bold;");
 
-        // Content
         String preview = post.getContenu().length() > 150 ?
                 post.getContenu().substring(0, 150) + "..." : post.getContenu();
         Label contentLabel = new Label(preview);
         contentLabel.setWrapText(true);
         contentLabel.setStyle("-fx-text-fill: #364e5b; -fx-font-size: 15px; -fx-font-family: 'Georgia';");
 
-        // Bottom section
         VBox bottomSection = new VBox(10);
 
-        // Actions - BLUE BUTTONS
         HBox actionsBox = new HBox(14);
         actionsBox.setAlignment(Pos.CENTER_LEFT);
 
@@ -184,7 +213,6 @@ public class ForumController {
         Button plusBtn = createActionButton("plus+", "#193764");
         plusBtn.setOnAction(e -> openPostDetails(post));
 
-        // ✅ NEW: Share Button (API #2)
         Button shareBtn = createActionButton("🔗 Partager", "#193764");
         shareBtn.setOnAction(e -> handleSharePost(post));
 
@@ -198,7 +226,6 @@ public class ForumController {
         actionsBox.getChildren().addAll(jaimeBtn, commenterBtn, plusBtn, shareBtn, likeCountLabel, commentCountLabel);
         bottomSection.getChildren().add(actionsBox);
 
-        // Date at bottom right
         HBox dateRow = new HBox();
         dateRow.setAlignment(Pos.CENTER_RIGHT);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -213,77 +240,49 @@ public class ForumController {
         return card;
     }
 
-    /**
-     * ✅ API #2: SHARE BUTTON - Partager un post
-     */
     private void handleSharePost(Post post) {
         try {
-            System.out.println("\n🔗 === SHARE BUTTON API === 🔗");
-            System.out.println("Partage du post: " + post.getTitre());
-
-            // ÉTAPE 1: Générer le lien court via TinyURL API
             String shortUrl = ShareService.generateShareLink(post.getId_post());
-
-            // ÉTAPE 2: Générer le message de partage
             String shareMessage = ShareService.generateShareMessage(post.getTitre(), post.getId_post());
+            ShareService.copyToClipboard(shortUrl);
 
-            // ÉTAPE 3: Copier dans le presse-papier
-            boolean copied = ShareService.copyToClipboard(shortUrl);
-            System.out.println("📋 Copié dans le presse-papier: " + copied);
-
-            // ÉTAPE 4: Afficher une popup avec le lien + QR code
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Partager ce post");
             alert.setHeaderText("✅ Lien de partage généré!");
 
-            // Créer le contenu de la popup
             VBox content = new VBox(15);
             content.setStyle("-fx-padding: 20;");
 
-            // Message "Copié"
             Label copyInfo = new Label("📋 Le lien a été copié dans votre presse-papier!");
             copyInfo.setStyle("-fx-font-weight: bold; -fx-text-fill: #193764; -fx-font-size: 14px;");
 
-            // Zone de texte avec le message de partage
             TextArea textArea = new TextArea(shareMessage);
             textArea.setEditable(false);
             textArea.setWrapText(true);
             textArea.setPrefHeight(120);
-            textArea.setStyle("-fx-font-family: 'Georgia'; -fx-font-size: 13px;");
 
             content.getChildren().addAll(copyInfo, textArea);
 
-            // ÉTAPE 5: Ajouter le QR code
-            Label qrLabel = new Label("📱 Scannez ce QR code pour ouvrir:");
-            qrLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
-
-            String qrUrl = ShareService.generateQRCodeUrl(post.getId_post());
-            System.out.println("🔲 QR Code généré: " + qrUrl);
-
             try {
+                String qrUrl = ShareService.generateQRCodeUrl(post.getId_post());
                 javafx.scene.image.Image qrImage = new javafx.scene.image.Image(qrUrl);
                 javafx.scene.image.ImageView qrView = new javafx.scene.image.ImageView(qrImage);
                 qrView.setFitWidth(200);
                 qrView.setFitHeight(200);
-                qrView.setPreserveRatio(true);
+
+                Label qrLabel = new Label("📱 Scannez ce QR code:");
+                qrLabel.setStyle("-fx-font-weight: bold;");
 
                 content.getChildren().addAll(qrLabel, qrView);
             } catch (Exception e) {
-                System.out.println("⚠️ QR code non disponible");
+                // QR code non disponible
             }
 
             alert.getDialogPane().setContent(content);
-            alert.getDialogPane().setPrefWidth(500);
-
-            System.out.println("✅ Popup de partage affichée!");
-            System.out.println("============================\n");
-
             alert.showAndWait();
 
         } catch (Exception e) {
-            System.err.println("❌ Erreur partage: " + e.getMessage());
-            showError("Erreur", "Impossible de générer le lien de partage");
-            e.printStackTrace();
+            showError("Erreur", "Impossible de générer le lien");
         }
     }
 
@@ -297,8 +296,6 @@ public class ForumController {
         deleteItem.setOnAction(e -> deletePost(post));
 
         contextMenu.getItems().addAll(editItem, deleteItem);
-        contextMenu.setStyle("-fx-font-family: 'Georgia'; -fx-font-size: 14px;");
-
         contextMenu.show(menuBtn, javafx.geometry.Side.BOTTOM, 0, 0);
     }
 
@@ -320,7 +317,6 @@ public class ForumController {
 
         } catch (IOException e) {
             showError("Erreur", "Impossible d'ouvrir le formulaire");
-            e.printStackTrace();
         }
     }
 
@@ -328,12 +324,13 @@ public class ForumController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Supprimer ce post?");
-        alert.setContentText("Êtes-vous sûr de vouloir supprimer \"" + post.getTitre() + "\"?\nCette action est irréversible.");
+        alert.setContentText("Cette action est irréversible.");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             postService.deletePost(post.getId_post());
             loadPosts();
+            loadTopPosts();
         }
     }
 
@@ -352,6 +349,7 @@ public class ForumController {
         }
 
         displayPostCards();
+        loadTopPosts();
     }
 
     private Button createActionButton(String text, String color) {
@@ -380,7 +378,6 @@ public class ForumController {
 
         } catch (IOException e) {
             showError("Erreur", "Impossible d'ouvrir les détails");
-            e.printStackTrace();
         }
     }
 
@@ -402,9 +399,6 @@ public class ForumController {
 
         } catch (IOException e) {
             showError("Erreur", "Impossible d'ouvrir le formulaire");
-            e.printStackTrace();
-        } finally {
-
         }
     }
 
@@ -448,11 +442,9 @@ public class ForumController {
         item.setStyle("-fx-background-color: rgba(255,255,255,0.1); " +
                 "-fx-padding: 10; -fx-background-radius: 6; -fx-cursor: hand;");
 
-        // Rank badge
         Label rankLabel = new Label("#" + rank);
         rankLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #FFD700;");
 
-        // Title (truncated)
         String title = post.getTitre().length() > 40 ?
                 post.getTitre().substring(0, 40) + "..." :
                 post.getTitre();
@@ -460,16 +452,13 @@ public class ForumController {
         titleLabel.setWrapText(true);
         titleLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: white;");
 
-        // Likes
         Label likesLabel = new Label("❤️ " + post.getNb_likes());
         likesLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: #FFD700;");
 
         item.getChildren().addAll(rankLabel, titleLabel, likesLabel);
 
-        // Click to open post details
         item.setOnMouseClicked(e -> openPostDetails(post));
 
-        // Hover effect
         item.setOnMouseEntered(e -> item.setStyle(item.getStyle() + "-fx-background-color: rgba(255,255,255,0.2);"));
         item.setOnMouseExited(e -> item.setStyle(item.getStyle().replace("-fx-background-color: rgba(255,255,255,0.2);", "-fx-background-color: rgba(255,255,255,0.1);")));
 
@@ -479,12 +468,14 @@ public class ForumController {
     @FXML
     private void handleRefresh(ActionEvent event) {
         loadPosts();
+        loadTopPosts();
         searchField.clear();
         categoryComboBox.getSelectionModel().selectFirst();
     }
 
     public void refreshPosts() {
         loadPosts();
+        loadTopPosts();
     }
 
     private void showError(String title, String content) {

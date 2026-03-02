@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.pidev.forum.controllers.HomeController"
+            style="-fx-background-color: #f5f5f5;">
+
+    <!-- SIDEBAR PROPRE - #2e266d -->
+    <left>
+        <VBox prefWidth="270" style="-fx-background-color: #2e266d; -fx-padding: 0;">
+
+            <!-- Logo Section BEAU -->
+            <VBox alignment="CENTER" spacing="20" style="-fx-padding: 40 20 30 20;">
+                <VBox alignment="CENTER" spacing="8">
+                    <Label text="Mind" textFill="white"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 32px; -fx-font-weight: bold;"/>
+                    <Label text="Connect" textFill="#b1cbb4"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 32px; -fx-font-weight: bold;"/>
+                    <Label text="━━━" textFill="rgba(255,255,255,0.3)"
+                           style="-fx-font-size: 20px; -fx-padding: 5 0 0 0;"/>
+                </VBox>
+            </VBox>
+
+            <!-- Menu Items -->
+            <VBox spacing="0" VBox.vgrow="ALWAYS" style="-fx-padding: 0;">
+
+                <Label text="MODULES" textFill="rgba(255,255,255,0.5)"
+                       style="-fx-font-family: 'Georgia'; -fx-font-size: 11px;
+                              -fx-font-weight: bold; -fx-padding: 10 30 15 30; -fx-letter-spacing: 1px;"/>
+
+                <Button fx:id="psychologuesBtn" text="👨‍⚕️  Psychologues"
+                        prefHeight="50" maxWidth="Infinity"
+                        style="-fx-background-color: transparent; -fx-text-fill: white;
+                               -fx-font-family: 'Georgia'; -fx-font-size: 14px;
+                               -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 30;
+                               -fx-cursor: hand; -fx-border-width: 0;"
+                        onMouseEntered="#onMenuHover" onMouseExited="#onMenuExit"
+                        onAction="#handlePsychologues"/>
+
+                <Button fx:id="espaceBienEtreBtn" text="🧘  Bien-être"
+                        prefHeight="50" maxWidth="Infinity"
+                        style="-fx-background-color: transparent; -fx-text-fill: white;
+                               -fx-font-family: 'Georgia'; -fx-font-size: 14px;
+                               -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 30;
+                               -fx-cursor: hand; -fx-border-width: 0;"
+                        onMouseEntered="#onMenuHover" onMouseExited="#onMenuExit"
+                        onAction="#handleEspaceBienEtre"/>
+
+                <Button fx:id="rendezVousBtn" text="📅  Rendez-vous"
+                        prefHeight="50" maxWidth="Infinity"
+                        style="-fx-background-color: transparent; -fx-text-fill: white;
+                               -fx-font-family: 'Georgia'; -fx-font-size: 14px;
+                               -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 30;
+                               -fx-cursor: hand; -fx-border-width: 0;"
+                        onMouseEntered="#onMenuHover" onMouseExited="#onMenuExit"
+                        onAction="#handleRendezVous"/>
+
+                <Button fx:id="messagerieBtn" text="💬  Messagerie"
+                        prefHeight="50" maxWidth="Infinity"
+                        style="-fx-background-color: transparent; -fx-text-fill: white;
+                               -fx-font-family: 'Georgia'; -fx-font-size: 14px;
+                               -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 30;
+                               -fx-cursor: hand; -fx-border-width: 0;"
+                        onMouseEntered="#onMenuHover" onMouseExited="#onMenuExit"
+                        onAction="#handleMessagerie"/>
+
+                <Button fx:id="forumBtn" text="📝  Forum"
+                        prefHeight="50" maxWidth="Infinity"
+                        style="-fx-background-color: rgba(255,255,255,0.1); -fx-text-fill: white;
+                               -fx-font-family: 'Georgia'; -fx-font-size: 14px;
+                               -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 30;
+                               -fx-cursor: hand; -fx-border-width: 0; -fx-font-weight: bold;"
+                        onMouseEntered="#onMenuHover" onMouseExited="#onMenuExit"
+                        onAction="#handleForum"/>
+
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <!-- User Section -->
+                <VBox spacing="15" style="-fx-padding: 20 20 25 20; -fx-background-color: rgba(0,0,0,0.2);">
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <Label text="👤" style="-fx-font-size: 28px;"/>
+                        <VBox>
+                            <Label text="Utilisateur" textFill="white"
+                                   style="-fx-font-family: 'Georgia'; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+                            <Label text="● En ligne" textFill="#b1cbb4"
+                                   style="-fx-font-family: 'Georgia'; -fx-font-size: 11px;"/>
+                        </VBox>
+                    </HBox>
+
+                    <Button fx:id="deconnexionBtn" text="🚪  Déconnexion"
+                            prefHeight="42" maxWidth="Infinity"
+                            style="-fx-background-color: #6257e3; -fx-text-fill: white;
+                                   -fx-font-family: 'Georgia'; -fx-font-size: 13px;
+                                   -fx-background-radius: 8; -fx-cursor: hand;"
+                            onAction="#handleDeconnexion"/>
+                </VBox>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <VBox spacing="0" style="-fx-background-color: #f5f5f5;">
+
+            <!-- Header BEAU -->
+            <VBox style="-fx-background-color: #2e266d; -fx-padding: 45 60 35 60;">
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="10" HBox.hgrow="ALWAYS">
+                        <Label text="Bienvenue sur MindConnect" textFill="white"
+                               style="-fx-font-family: 'Georgia'; -fx-font-size: 38px; -fx-font-weight: bold;"/>
+                        <Label text="Votre espace de santé mentale et bien-être" textFill="rgba(255,255,255,0.85)"
+                               style="-fx-font-family: 'Georgia'; -fx-font-size: 16px;"/>
+                    </VBox>
+
+                    <!-- Actions rapides à droite -->
+                    <HBox spacing="12">
+                        <Button text="🔔" prefWidth="48" prefHeight="48"
+                                style="-fx-background-color: #b1cbb4; -fx-background-radius: 24;
+                                       -fx-font-size: 22px; -fx-cursor: hand;"
+                                onAction="#handleNotifications"/>
+
+                        <Button text="👤" prefWidth="48" prefHeight="48"
+                                style="-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 24;
+                                       -fx-font-size: 22px; -fx-cursor: hand;
+                                       -fx-border-color: rgba(255,255,255,0.3); -fx-border-width: 2; -fx-border-radius: 24;"
+                                onAction="#handleProfile"/>
+                    </HBox>
+                </HBox>
+            </VBox>
+
+            <!-- Content Area -->
+            <VBox alignment="CENTER" style="-fx-padding: 55 70;" spacing="45">
+
+                <!-- Section Title -->
+                <VBox alignment="CENTER" spacing="12">
+                    <Label text="Accès Rapide"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 32px;
+                                  -fx-font-weight: bold; -fx-text-fill: #2e266d;"/>
+                    <Label text="Sélectionnez l'action dont vous avez besoin"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 15px;
+                                  -fx-text-fill: #666;"/>
+                </VBox>
+
+                <!-- Cards -->
+                <HBox spacing="40" alignment="CENTER">
+
+                    <!-- Card Urgence -->
+                    <VBox alignment="CENTER" spacing="0" prefWidth="360" prefHeight="320"
+                          style="-fx-background-color: #ffa47d; -fx-background-radius: 20;
+                                 -fx-padding: 28; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 18, 0, 0, 6);">
+
+                        <VBox alignment="CENTER" spacing="20" VBox.vgrow="ALWAYS"
+                              style="-fx-background-color: white; -fx-background-radius: 16;
+                                     -fx-padding: 35 30;">
+                            <Label text="⚠️" style="-fx-font-size: 48px;"/>
+                            <Label text="Accès d'urgence"
+                                   style="-fx-font-family: 'Georgia'; -fx-font-size: 22px;
+                                          -fx-font-weight: bold; -fx-text-fill: #2e266d;"/>
+
+                            <VBox alignment="CENTER" spacing="8">
+                                <Label text="Besoin d'aide immédiate ?" wrapText="true" textAlignment="CENTER"
+                                       style="-fx-font-family: 'Georgia'; -fx-font-size: 14px; -fx-text-fill: #666;"/>
+                                <Label text="Contactez un professionnel" wrapText="true" textAlignment="CENTER"
+                                       style="-fx-font-family: 'Georgia'; -fx-font-size: 14px; -fx-text-fill: #666;"/>
+                                <Label text="ou accédez aux ressources" wrapText="true" textAlignment="CENTER"
+                                       style="-fx-font-family: 'Georgia'; -fx-font-size: 14px; -fx-text-fill: #666;"/>
+                                <Label text="prioritaires." wrapText="true" textAlignment="CENTER"
+                                       style="-fx-font-family: 'Georgia'; -fx-font-size: 14px; -fx-text-fill: #666;"/>
+                            </VBox>
+
+                            <Button text="Accéder maintenant" prefHeight="45" prefWidth="220"
+                                    style="-fx-background-color: #d97d57; -fx-text-fill: white;
+                                           -fx-font-family: 'Georgia'; -fx-font-size: 14px;
+                                           -fx-background-radius: 10; -fx-cursor: hand;
+                                           -fx-font-weight: bold;"
+                                    onAction="#handleUrgence">
+                                <VBox.margin>
+                                    <Insets top="10"/>
+                                </VBox.margin>
+                            </Button>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Card About -->
+                    <VBox alignment="CENTER" spacing="0" prefWidth="360" prefHeight="320"
+                          style="-fx-background-color: #b1cbb4; -fx-background-radius: 20;
+                                 -fx-padding: 28; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 18, 0, 0, 6);">
+
+                        <VBox alignment="CENTER" spacing="20" VBox.vgrow="ALWAYS"
+                              style="-fx-background-color: white; -fx-background-radius: 16;
+                                     -fx-padding: 35 30;">
+                            <Label text="ℹ️" style="-fx-font-size: 48px;"/>
+                            <Label text="À Propos"
+                                   style="-fx-font-family: 'Georgia'; -fx-font-size: 22px;
+                                          -fx-font-weight: bold; -fx-text-fill: #2e266d;"/>
+
+                            <VBox alignment="CENTER" spacing="8">
+                                <Label text="MindConnect est une" wrapText="true" textAlignment="CENTER"
+                                       style="-fx-font-family: 'Georgia'; -fx-font-size: 14px; -fx-text-fill: #666;"/>
+                                <Label text="plateforme dédiée au" wrapText="true" textAlignment="CENTER"
+                                       style="-fx-font-family: 'Georgia'; -fx-font-size: 14px; -fx-text-fill: #666;"/>
+                                <Label text="bien-être mental." wrapText="true" textAlignment="CENTER"
+                                       style="-fx-font-family: 'Georgia'; -fx-font-size: 14px; -fx-text-fill: #666;"/>
+                                <Label text="Nous facilitons la communication" wrapText="true" textAlignment="CENTER"
+                                       style="-fx-font-family: 'Georgia'; -fx-font-size: 14px; -fx-text-fill: #666;"/>
+                                <Label text="entre patients et psychologues." wrapText="true" textAlignment="CENTER"
+                                       style="-fx-font-family: 'Georgia'; -fx-font-size: 14px; -fx-text-fill: #666;"/>
+                            </VBox>
+
+                            <Button text="Contactez-nous" prefHeight="45" prefWidth="220"
+                                    style="-fx-background-color: #8fa896; -fx-text-fill: white;
+                                           -fx-font-family: 'Georgia'; -fx-font-size: 14px;
+                                           -fx-background-radius: 10; -fx-cursor: hand;
+                                           -fx-font-weight: bold;"
+                                    onAction="#handleContact">
+                                <VBox.margin>
+                                    <Insets top="10"/>
+                                </VBox.margin>
+                            </Button>
+                        </VBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Footer -->
+            <VBox alignment="CENTER" spacing="20"
+                  style="-fx-padding: 40 60; -fx-background-color: #2e266d;">
+
+                <Label text="MindConnect Tunisia" textFill="white"
+                       style="-fx-font-family: 'Georgia'; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+                <HBox spacing="30" alignment="CENTER">
+                    <Label text="📍  Av. Habib Bourguiba, Tunis 1000" textFill="rgba(255,255,255,0.85)"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 13px;"/>
+                    <Label text="•" textFill="rgba(255,255,255,0.4)"/>
+                    <Label text="📧  contact@mindconnect.tn" textFill="rgba(255,255,255,0.85)"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 13px;"/>
+                    <Label text="•" textFill="rgba(255,255,255,0.4)"/>
+                    <Label text="📞  +216 71 123 456" textFill="rgba(255,255,255,0.85)"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 13px;"/>
+                </HBox>
+
+                <HBox spacing="25" alignment="CENTER">
+                    <Label text="Facebook" textFill="#5d9ff8"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 13px; -fx-cursor: hand; -fx-underline: true;"/>
+                    <Label text="Instagram" textFill="#ff6ba7"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 13px; -fx-cursor: hand; -fx-underline: true;"/>
+                    <Label text="LinkedIn" textFill="#5d9ff8"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 13px; -fx-cursor: hand; -fx-underline: true;"/>
+                </HBox>
+
+                <Label text="© 2025 MindConnect - Tous droits réservés" textFill="rgba(255,255,255,0.5)"
+                       style="-fx-font-family: 'Georgia'; -fx-font-size: 11px; -fx-padding: 10 0 0 0;"/>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>
