@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychoapp.controller.UtilisateurController"
+      spacing="0" styleClass="root-pane">
+
+    <!-- Top nav bar -->
+    <HBox alignment="CENTER_LEFT" spacing="10"
+          style="-fx-background-color: #2d3748; -fx-padding: 10 15;">
+        <Label text="🧠 PsychoApp"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="labelCurrentUser"
+               style="-fx-text-fill: #a0aec0; -fx-font-size: 13px;"/>
+        <Button text="🚪 Déconnexion" onAction="#handleLogout"
+                style="-fx-background-color: #e53e3e; -fx-text-fill: white;
+                       -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 5 12;"/>
+    </HBox>
+
+    <!-- Tab pane -->
+    <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+
+        <!-- Tab 1: Users -->
+        <Tab text="👥  Utilisateurs">
+            <VBox spacing="10" style="-fx-padding: 12;">
+
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="Gestion des Utilisateurs"
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2d3748;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <TextField fx:id="searchField" promptText="🔍  Rechercher..."
+                               prefWidth="220" styleClass="search-field"/>
+                </HBox>
+
+                <HBox spacing="8">
+                    <Button text="➕  Ajouter"       onAction="#handleAdd"        styleClass="btn-primary"/>
+                    <Button text="✏️  Modifier"      onAction="#handleEdit"       styleClass="btn-secondary"/>
+                    <Button text="🗑  Supprimer"     onAction="#handleDelete"     styleClass="btn-danger"/>
+                    <Button text="⚡  Actif/Inactif" onAction="#handleToggleActif" styleClass="btn-warning"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="🔄  Rafraîchir"   onAction="#handleRefresh"    styleClass="btn-secondary"/>
+                </HBox>
+
+                <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="colId"     text="ID"          prefWidth="50"/>
+                        <TableColumn fx:id="colNom"    text="Nom"         prefWidth="120"/>
+                        <TableColumn fx:id="colPrenom" text="Prénom"      prefWidth="120"/>
+                        <TableColumn fx:id="colEmail"  text="Email"       prefWidth="190"/>
+                        <TableColumn fx:id="colRole"   text="Rôle"        prefWidth="110"/>
+                        <TableColumn fx:id="colActif"  text="Actif"       prefWidth="60"/>
+                        <TableColumn fx:id="colDate"   text="Inscription" prefWidth="110"/>
+                    </columns>
+                    <placeholder><Label text="Aucun utilisateur trouvé"/></placeholder>
+                </TableView>
+
+                <HBox>
+                    <Label fx:id="statusLabel" text="Prêt" styleClass="status-label"/>
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- Tab 2: Validation (Admin only, shown programmatically) -->
+        <Tab fx:id="tabValidation" text="✅  Validation Psychologues">
+            <fx:include source="Validation.fxml"/>
+        </Tab>
+
+    </TabPane>
+</VBox>

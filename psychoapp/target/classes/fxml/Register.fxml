@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychoapp.controller.RegisterController"
+      alignment="CENTER" spacing="0"
+      style="-fx-background-color: #f0f4f8;">
+
+    <!-- Card -->
+    <VBox alignment="CENTER" spacing="14" maxWidth="340"
+          style="-fx-background-color: white; -fx-background-radius: 16;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 20, 0, 0, 4);">
+        <padding><Insets top="32" right="36" bottom="32" left="36"/></padding>
+
+        <Label text="🧠" style="-fx-font-size: 36px;"/>
+        <Label text="Créer un compte" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d3748;"/>
+
+        <Separator/>
+
+        <!-- Nom -->
+        <VBox spacing="4">
+            <Label text="Nom *" style="-fx-font-weight: bold; -fx-text-fill: #4a5568;"/>
+            <TextField fx:id="fieldNom" promptText="Nom de famille" maxWidth="268"/>
+        </VBox>
+
+        <!-- Prénom -->
+        <VBox spacing="4">
+            <Label text="Prénom *" style="-fx-font-weight: bold; -fx-text-fill: #4a5568;"/>
+            <TextField fx:id="fieldPrenom" promptText="Prénom" maxWidth="268"/>
+        </VBox>
+
+        <!-- Email -->
+        <VBox spacing="4">
+            <Label text="Email *" style="-fx-font-weight: bold; -fx-text-fill: #4a5568;"/>
+            <TextField fx:id="fieldEmail" promptText="vous@exemple.com" maxWidth="268"/>
+        </VBox>
+
+        <!-- Password -->
+        <VBox spacing="4">
+            <Label text="Mot de passe *" style="-fx-font-weight: bold; -fx-text-fill: #4a5568;"/>
+            <PasswordField fx:id="fieldPassword" promptText="Min. 6 caractères" maxWidth="268"/>
+        </VBox>
+
+        <!-- Confirm -->
+        <VBox spacing="4">
+            <Label text="Confirmer le mot de passe *" style="-fx-font-weight: bold; -fx-text-fill: #4a5568;"/>
+            <PasswordField fx:id="fieldConfirm" promptText="Répétez le mot de passe" maxWidth="268"/>
+        </VBox>
+
+        <!-- Role -->
+        <VBox spacing="4">
+            <Label text="Je suis *" style="-fx-font-weight: bold; -fx-text-fill: #4a5568;"/>
+            <ComboBox fx:id="comboRole" maxWidth="Infinity"/>
+        </VBox>
+
+        <!-- Info label (shown for Psy) -->
+        <Label fx:id="infoLabel" text="" wrapText="true" maxWidth="268"
+               style="-fx-text-fill: #d69e2e; -fx-font-size: 11px;
+                      -fx-background-color: #fefcbf; -fx-background-radius: 4;
+                      -fx-padding: 6;"/>
+
+        <!-- Error -->
+        <Label fx:id="errorLabel" text="" wrapText="true" maxWidth="268"
+               style="-fx-text-fill: #e53e3e; -fx-font-size: 12px;"/>
+
+        <!-- Register Button -->
+        <Button text="Créer mon compte" onAction="#handleRegister"
+                maxWidth="Infinity" styleClass="btn-primary"
+                style="-fx-pref-height: 40px; -fx-font-size: 14px;"/>
+
+        <Separator/>
+
+        <HBox alignment="CENTER" spacing="6">
+            <Label text="Déjà un compte ?"
+                   style="-fx-text-fill: #718096; -fx-font-size: 13px;"/>
+            <Hyperlink text="Se connecter" onAction="#handleGoLogin"
+                       style="-fx-text-fill: #4299e1; -fx-font-size: 13px;"/>
+        </HBox>
+    </VBox>
+</VBox>

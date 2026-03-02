@@ -1,0 +1,105 @@
+/* ── Root ──────────────────────────────────────────────────── */
+.root-pane {
+    -fx-background-color: #f4f6f9;
+}
+
+.form-pane {
+    -fx-background-color: white;
+}
+
+/* ── Typography ────────────────────────────────────────────── */
+.page-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3748;
+}
+
+.form-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3748;
+}
+
+.form-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #4a5568;
+}
+
+.error-label {
+    -fx-text-fill: #e53e3e;
+    -fx-font-size: 12px;
+}
+
+.status-label {
+    -fx-text-fill: #718096;
+    -fx-font-size: 12px;
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.button {
+    -fx-cursor: hand;
+    -fx-padding: 7 14;
+    -fx-background-radius: 6;
+    -fx-font-size: 13px;
+}
+
+.btn-primary {
+    -fx-background-color: #4299e1;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.btn-primary:hover { -fx-background-color: #3182ce; }
+
+.btn-secondary {
+    -fx-background-color: #e2e8f0;
+    -fx-text-fill: #2d3748;
+}
+.btn-secondary:hover { -fx-background-color: #cbd5e0; }
+
+.btn-danger {
+    -fx-background-color: #fc8181;
+    -fx-text-fill: white;
+}
+.btn-danger:hover { -fx-background-color: #e53e3e; }
+
+.btn-warning {
+    -fx-background-color: #f6ad55;
+    -fx-text-fill: white;
+}
+.btn-warning:hover { -fx-background-color: #ed8936; }
+
+/* ── Search field ──────────────────────────────────────────── */
+.search-field {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #cbd5e0;
+    -fx-padding: 5 12;
+}
+
+/* ── Table ─────────────────────────────────────────────────── */
+.data-table {
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+}
+
+.table-view .column-header {
+    -fx-background-color: #edf2f7;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #bee3f8;
+    -fx-text-fill: #2d3748;
+}
+
+/* ── Text fields ───────────────────────────────────────────── */
+.text-field, .password-field, .combo-box {
+    -fx-border-color: #cbd5e0;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 6;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #4299e1;
+}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychoapp.controller.UtilisateurController"
+      spacing="14" prefWidth="420" styleClass="form-pane">
+
+    <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+
+    <!-- Title -->
+    <Label fx:id="formTitle" text="Utilisateur" styleClass="form-title"/>
+
+    <Separator/>
+
+    <!-- Grid of fields -->
+    <GridPane hgap="12" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints minWidth="110" maxWidth="110"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <!-- Nom -->
+        <Label text="Nom *" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextField fx:id="fieldNom" promptText="Nom de famille"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <!-- Prénom -->
+        <Label text="Prénom *" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextField fx:id="fieldPrenom" promptText="Prénom"
+                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Email -->
+        <Label text="Email *" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextField fx:id="fieldEmail" promptText="exemple@mail.com"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <!-- Password -->
+        <Label text="Mot de passe" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label"/>
+        <PasswordField fx:id="fieldPassword" promptText="Laisser vide pour ne pas changer"
+                       GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <!-- Rôle -->
+        <Label text="Rôle *" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label"/>
+        <ComboBox fx:id="comboRole" maxWidth="Infinity"
+                  GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <!-- Checkboxes -->
+        <Label text="Options" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="form-label"/>
+        <HBox spacing="20" GridPane.rowIndex="5" GridPane.columnIndex="1">
+            <CheckBox fx:id="checkActif"        text="Compte actif"/>
+            <CheckBox fx:id="checkEmailVerifie" text="Email vérifié"/>
+        </HBox>
+    </GridPane>
+
+    <!-- Error message -->
+    <Label fx:id="errorLabel" text="" styleClass="error-label" wrapText="true"/>
+
+    <Separator/>
+
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Annuler" onAction="#handleCancel" styleClass="btn-secondary"/>
+        <Button text="💾  Enregistrer" onAction="#handleSave" styleClass="btn-primary"/>
+    </HBox>
+</VBox>

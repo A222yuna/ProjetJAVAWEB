@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychoapp.controller.ValidationController"
+      spacing="10" styleClass="root-pane">
+
+    <padding><Insets top="15" right="15" bottom="10" left="15"/></padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="✅ Validation des Psychologues"
+               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2d3748;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Filtrer : " style="-fx-text-fill: #4a5568;"/>
+        <ComboBox fx:id="filterCombo" prefWidth="140"/>
+        <Button text="🔄 Rafraîchir" onAction="#handleRefresh" styleClass="btn-secondary"/>
+    </HBox>
+
+    <!-- Table -->
+    <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="data-table">
+        <columns>
+            <TableColumn fx:id="colId"     text="ID"          prefWidth="50"/>
+            <TableColumn fx:id="colNom"    text="Nom"         prefWidth="130"/>
+            <TableColumn fx:id="colPrenom" text="Prénom"      prefWidth="130"/>
+            <TableColumn fx:id="colEmail"  text="Email"       prefWidth="200"/>
+            <TableColumn fx:id="colDate"   text="Inscription" prefWidth="120"/>
+            <TableColumn fx:id="colStatut" text="Statut"      prefWidth="140"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucun psychologue trouvé"/>
+        </placeholder>
+    </TableView>
+
+    <!-- Action buttons -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="✔  Approuver"  onAction="#handleApprove" styleClass="btn-primary"
+                style="-fx-background-color: #38a169;"/>
+        <Button text="✘  Rejeter"    onAction="#handleReject"  styleClass="btn-danger"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="statusLabel" styleClass="status-label"/>
+    </HBox>
+</VBox>

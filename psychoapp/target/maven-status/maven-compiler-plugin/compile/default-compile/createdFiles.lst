@@ -1,0 +1,11 @@
+com\psychoapp\controller\RegisterController.class
+com\psychoapp\model\Utilisateur.class
+com\psychoapp\controller\UtilisateurController$1.class
+com\psychoapp\model\Utilisateur$Role.class
+com\psychoapp\util\DatabaseConnection.class
+com\psychoapp\controller\UtilisateurController.class
+com\psychoapp\controller\ValidationController.class
+com\psychoapp\util\Session.class
+com\psychoapp\controller\ValidationController$1.class
+com\psychoapp\controller\LoginController.class
+com\psychoapp\view\MainApp.class
