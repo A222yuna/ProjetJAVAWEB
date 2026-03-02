@@ -30,10 +30,11 @@ public class RegisterController implements Initializable {
                 Utilisateur.Role.Patient, Utilisateur.Role.Psychologue));
         comboRole.setValue(Utilisateur.Role.Patient);
         comboRole.valueProperty().addListener((obs, old, newVal) -> {
-            if (newVal == Utilisateur.Role.Psychologue)
-                infoLabel.setText("ℹ️  Votre compte sera soumis à validation par l'administrateur.");
-            else
+            if (newVal == Utilisateur.Role.Psychologue) {
+                infoLabel.setText("Info : votre compte sera soumis à validation par l'administrateur.");
+            } else {
                 infoLabel.setText("");
+            }
         });
     }
 

@@ -31,7 +31,7 @@ public class ValidationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setupTable();
-        filterCombo.setItems(FXCollections.observableArrayList("en_attente","approuve","rejete","Tous"));
+        filterCombo.setItems(FXCollections.observableArrayList("en_attente","approuve","rejete"));
         filterCombo.setValue("en_attente");
         filterCombo.valueProperty().addListener((obs, o, n) -> loadUsers(n));
         loadUsers("en_attente");
@@ -60,9 +60,7 @@ public class ValidationController implements Initializable {
 
     private void loadUsers(String filtre) {
         list.clear();
-        String sql = "Tous".equals(filtre)
-                ? "SELECT * FROM users WHERE role='Psychologue' ORDER BY date_inscription DESC"
-                : "SELECT * FROM users WHERE role='Psychologue' AND statut_validation=? ORDER BY date_inscription DESC";
+        String sql = "SELECT * FROM users WHERE role='Psychologue' AND statut_validation=? ORDER BY date_inscription DESC";
         try (Connection conn = DatabaseConnection.getConnection()) {
             // Check if column exists first
             ResultSet check = conn.getMetaData().getColumns(null, null, "users", "statut_validation");
@@ -70,10 +68,8 @@ public class ValidationController implements Initializable {
                 statusLabel.setText("⚠️  Colonne statut_validation manquante. Exécutez le SQL de setup.");
                 return;
             }
-            PreparedStatement ps = "Tous".equals(filtre)
-                    ? conn.prepareStatement(sql)
-                    : conn.prepareStatement(sql);
-            if (!"Tous".equals(filtre)) ps.setString(1, filtre);
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, filtre);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Utilisateur u = new Utilisateur();

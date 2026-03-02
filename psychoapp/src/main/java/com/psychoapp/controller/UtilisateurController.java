@@ -166,16 +166,28 @@ public class UtilisateurController implements Initializable {
     }
 
     private void insertUser() {
-        String sql = "INSERT INTO users (nom,prenom,email,mot_de_passe,role,date_inscription,est_actif,email_verifie) VALUES (?,?,?,?,?,CURDATE(),?,?)";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        Role role = comboRole.getValue();
+        String statut = (role == Role.Psychologue) ? "en_attente" : "approuve";
+
+        String sql = "INSERT INTO users (nom,prenom,email,mot_de_passe,role,date_inscription,est_actif,email_verifie) " +
+                     "VALUES (?,?,?,?,?,CURDATE(),?,?)";
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            boolean hasStatut = columnExists(conn, "statut_validation");
+            if (hasStatut) {
+                sql = "INSERT INTO users (nom,prenom,email,mot_de_passe,role,date_inscription,est_actif,email_verifie,statut_validation) " +
+                      "VALUES (?,?,?,?,?,CURDATE(),?,?,?)";
+            }
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, fieldNom.getText().trim());
             ps.setString(2, fieldPrenom.getText().trim());
             ps.setString(3, fieldEmail.getText().trim());
             ps.setString(4, BCrypt.hashpw(fieldPassword.getText(), BCrypt.gensalt()));
-            ps.setString(5, comboRole.getValue().name());
+            ps.setString(5, role.name());
             ps.setBoolean(6, checkActif.isSelected());
             ps.setBoolean(7, checkEmailVerifie.isSelected());
+            if (hasStatut) {
+                ps.setString(8, statut);
+            }
             ps.executeUpdate();
             closeForm();
         } catch (SQLException e) { errorLabel.setText("Erreur : " + e.getMessage()); }
@@ -280,5 +292,14 @@ public class UtilisateurController implements Initializable {
     private void showError(String m) { if (statusLabel != null) statusLabel.setText("❌ " + m); }
     private void showAlert(String m) {
         Alert a = new Alert(Alert.AlertType.WARNING); a.setHeaderText(null); a.setContentText(m); a.showAndWait();
+    }
+
+    private boolean columnExists(Connection conn, String columnName) {
+        try {
+            ResultSet rs = conn.getMetaData().getColumns(null, null, "users", columnName);
+            return rs.next();
+        } catch (SQLException e) {
+            return false;
+        }
     }
 }

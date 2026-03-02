@@ -1,12 +1,16 @@
 -- Run this in phpMyAdmin on the psychologie_app database
 USE psychologie_app;
 
--- Add the missing column to your existing 'users' table (safe to run even if it already exists)
 ALTER TABLE users 
-  ADD COLUMN IF NOT EXISTS statut_validation ENUM('en_attente','approuve','rejete') DEFAULT 'approuve';
+  ADD COLUMN IF NOT EXISTS statut_validation ENUM('en_attente','approuve','rejete') DEFAULT 'en_attente';
 
--- Set all existing users to 'approuve' so they can log in
-UPDATE users SET statut_validation = 'approuve' WHERE statut_validation IS NULL;
+-- Set psychologues to 'en_attente' by default, others to 'approuve'
+UPDATE users 
+SET statut_validation = CASE 
+    WHEN role = 'Psychologue' THEN 'en_attente'
+    ELSE 'approuve'
+END
+WHERE statut_validation IS NULL;
 
 -- IMPORTANT: Your current passwords are plain text (pass123).
 -- The app uses BCrypt hashing. You have two options:
