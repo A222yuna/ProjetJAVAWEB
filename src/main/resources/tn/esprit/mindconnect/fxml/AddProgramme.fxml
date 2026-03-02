@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.mindconnect.gui.AddProgrammeController"
+      spacing="0" styleClass="modal-container"
+      prefWidth="750.0">
+    
+    <VBox spacing="5">
+        <Label fx:id="lblTitle" text="Configuration du Programme" styleClass="modal-header"/>
+        <Label text="Créez ou modifiez un parcours bien-être pour vos patients." styleClass="modal-subtitle"/>
+    </VBox>
+
+    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;" prefHeight="400">
+        <VBox spacing="20">
+            <!-- Image Section -->
+            <VBox spacing="10">
+                <Label text="Image de couverture" styleClass="form-label"/>
+                <StackPane fx:id="imageUploadArea" onMouseClicked="#handleUploadImage" styleClass="image-preview-container" prefHeight="120">
+                    <VBox alignment="CENTER" spacing="8" fx:id="placeholderArea">
+                        <Label text="✨" style="-fx-font-size: 28px;"/>
+                        <Label text="Cliquez pour choisir une image" style="-fx-text-fill: #8B8680; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+                        <Label text="PNG, JPG (320x180)" style="-fx-text-fill: #B0ADA7; -fx-font-size: 10px;"/>
+                    </VBox>
+                    <ImageView fx:id="imgPreview" fitWidth="320" fitHeight="120" preserveRatio="true" visible="false"/>
+                </StackPane>
+                <Label fx:id="lblErrorImage" styleClass="error-label" visible="false" managed="false"/>
+            </VBox>
+
+            <Separator style="-fx-opacity: 0.2;"/>
+
+            <!-- Name and Duration Row -->
+            <HBox spacing="20">
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Nom du programme *" styleClass="form-label"/>
+                    <TextField fx:id="txtNom" promptText="Ex: Sérénité Totale" styleClass="text-input, glass-field"/>
+                    <Label fx:id="lblErrorNom" text="Le nom est requis" styleClass="error-label" visible="false" managed="false"/>
+                </VBox>
+                <VBox spacing="8" prefWidth="180">
+                    <Label text="Durée (jours) *" styleClass="form-label"/>
+                    <TextField fx:id="txtDuree" promptText="Ex: 30" styleClass="text-input, glass-field"/>
+                    <Label fx:id="lblErrorDuree" text="Durée invalide (1-90)" styleClass="error-label" visible="false" managed="false"/>
+                </VBox>
+            </HBox>
+
+            <!-- Description -->
+            <VBox spacing="8">
+                <Label text="Objectif &amp; Description *" styleClass="form-label"/>
+                <TextArea fx:id="txtObjectif" promptText="Décrivez l'impact positif de ce programme..." 
+                          styleClass="text-input, glass-field" prefHeight="90.0" wrapText="true"/>
+                <Label fx:id="lblErrorObjectif" text="L'objectif est requis" styleClass="error-label" visible="false" managed="false"/>
+            </VBox>
+
+            <!-- Niveau and Statut Row -->
+            <HBox spacing="20">
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Niveau de difficulté *" styleClass="form-label"/>
+                    <ComboBox fx:id="comboNiveau" maxWidth="Infinity" styleClass="text-input"/>
+                </VBox>
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Visibilité du catalogue *" styleClass="form-label"/>
+                    <ComboBox fx:id="comboStatut" maxWidth="Infinity" styleClass="text-input"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </ScrollPane>
+
+    <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 25 0 0 0;">
+        <Button text="Annuler" styleClass="button-secondary" onAction="#handleCancel" prefWidth="120"/>
+        <Button text="Sauvegarder" styleClass="button-primary" onAction="#handleSave" prefWidth="150"/>
+    </HBox>
+
+</VBox>

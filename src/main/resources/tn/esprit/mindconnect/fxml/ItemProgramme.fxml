@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.mindconnect.gui.ItemProgrammeController"
+      styleClass="card" prefWidth="320.0" spacing="10" alignment="TOP_CENTER">
+
+    <StackPane alignment="TOP_CENTER" VBox.vgrow="NEVER">
+        <ImageView fx:id="imgProgramme" fitHeight="180.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="false">
+            <clip>
+                <javafx.scene.shape.Rectangle width="320" height="180" arcWidth="40" arcHeight="40" />
+            </clip>
+        </ImageView>
+    </StackPane>
+
+    <VBox spacing="8" style="-fx-padding: 0 20 20 20;">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label fx:id="lblStatut" text="Actif" styleClass="badge-sage"/>
+            <Label fx:id="lblNiveau" text="Facile" styleClass="badge-blush"/>
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblDuree" text="7 jours" styleClass="badge-gold"/>
+        </HBox>
+
+        <Label fx:id="lblNom" text="Programme Zen" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+        <Label fx:id="lblObjectif" text="Réduisez votre stress quotidien..." style="-fx-text-fill: #8B8680; -fx-font-size: 13px;" wrapText="true"/>
+        
+        <HBox spacing="2" alignment="CENTER_LEFT">
+            <!-- Simple Rating display -->
+            <Label text="★ ★ ★ ★ ☆" style="-fx-text-fill: #C9A96E; -fx-font-size: 16px;"/>
+            <Label text="(12 avis)" style="-fx-text-fill: #8B8680; -fx-font-size: 11px; -fx-padding: 0 0 0 5;"/>
+        </HBox>
+
+        <Separator style="-fx-padding: 5 0 5 0;"/>
+
+        <HBox spacing="8" alignment="CENTER">
+            <Button fx:id="btnEdit" text="✏️" styleClass="button-secondary" onAction="#handleEdit" style="-fx-font-size: 10px; -fx-padding: 4 6; -fx-min-width: 25px; -fx-min-height: 25px;"/>
+            <Button fx:id="btnDelete" text="🗑️" styleClass="button-secondary" onAction="#handleDelete" style="-fx-text-fill: #D4A5A0; -fx-font-size: 10px; -fx-padding: 4 6; -fx-min-width: 25px; -fx-min-height: 25px;"/>
+            <Button fx:id="btnViewActivities" text="👁️ Activités" styleClass="button-primary" onAction="#handleViewActivities" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-font-size: 11px; -fx-padding: 6 10; -fx-min-width: 100px; -fx-min-height: 30px;"/>
+            <Button fx:id="btnDownloadPDF" text="📄" styleClass="button-primary" onAction="#handleDownloadPDF" style="-fx-background-color: #C9A96E; -fx-text-fill: white; -fx-font-size: 10px; -fx-padding: 4 6; -fx-min-width: 25px; -fx-min-height: 25px;"/>
+            <Button fx:id="btnDonnerAvis" text="💬 Avis" styleClass="button-secondary" onAction="#handleGiveAvis" managed="false" visible="false" style="-fx-font-size: 11px; -fx-padding: 6 10; -fx-min-width: 60px; -fx-min-height: 30px;"/>
+        </HBox>
+    </VBox>
+
+</VBox>

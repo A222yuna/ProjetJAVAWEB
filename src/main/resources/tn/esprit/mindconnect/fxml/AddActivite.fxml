@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.mindconnect.gui.AddActiviteController"
+      spacing="0" styleClass="modal-container" 
+      prefWidth="500.0">
+
+    <VBox spacing="5" style="-fx-padding: 0 0 30 0;">
+        <Label fx:id="lblHeader" text="Planifier une Activité" styleClass="modal-header"/>
+        <Label text="Ajoutez une étape clé au parcours bien-être de vos patients." styleClass="modal-subtitle"/>
+    </VBox>
+    
+    <VBox spacing="20">
+        <HBox spacing="20">
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Jour du programme" styleClass="form-label"/>
+                <Spinner fx:id="spinnerJour" editable="true" maxWidth="Infinity" styleClass="glass-field"/>
+            </VBox>
+
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Durée estimée (min)" styleClass="form-label"/>
+                <Spinner fx:id="spinnerDuree" editable="true" maxWidth="Infinity" styleClass="glass-field"/>
+            </VBox>
+        </HBox>
+
+        <VBox spacing="8">
+            <Label text="Titre de l'activité *" styleClass="form-label"/>
+            <TextField fx:id="txtTitre" promptText="Ex: Méditation de pleine conscience" styleClass="text-input, glass-field"/>
+            <Label fx:id="lblErrorTitre" text="Le titre est requis" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <HBox spacing="20">
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Heure de début *" styleClass="form-label"/>
+                <TextField fx:id="txtHeure" promptText="HH:mm" styleClass="text-input, glass-field"/>
+                <Label fx:id="lblErrorHeure" text="L'heure est requise" styleClass="error-label" visible="false" managed="false"/>
+            </VBox>
+
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Catégorie *" styleClass="form-label"/>
+                <ComboBox fx:id="comboType" promptText="Choisir..." maxWidth="Infinity" styleClass="text-input, glass-field"/>
+            </VBox>
+        </HBox>
+
+        <VBox spacing="8">
+            <Label text="Instructions &amp; Détails" styleClass="form-label"/>
+            <TextArea fx:id="txtDescription" promptText="Instructions pour le patient..." 
+                      styleClass="text-input, glass-field" prefHeight="100.0" wrapText="true"/>
+        </VBox>
+    </VBox>
+
+    <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 35 0 0 0;">
+        <Button text="Annuler" styleClass="button-secondary" onAction="#handleCancel" prefWidth="120"/>
+        <Button text="Enregistrer l'activité" styleClass="button-primary" onAction="#handleSave" style="-fx-padding: 12 35 12 35;"/>
+    </HBox>
+
+</VBox>

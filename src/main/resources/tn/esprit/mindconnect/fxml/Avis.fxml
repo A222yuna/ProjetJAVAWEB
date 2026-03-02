@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.mindconnect.gui.AvisController"
+      spacing="20" style="-fx-background-color: transparent;">
+
+    <Label text="Avis et Témoignages" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+
+    <!-- Search and Filter Section -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);">
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField" promptText="Rechercher un avis..." prefWidth="300" 
+                       style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #E8E4DC; -fx-padding: 10 15;"/>
+            <ComboBox fx:id="ratingFilter" promptText="Note" prefWidth="120" 
+                      style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #E8E4DC;"/>
+            <ComboBox fx:id="programFilter" promptText="Programme" prefWidth="180" 
+                      style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #E8E4DC;"/>
+            <Button fx:id="clearFiltersBtn" text="Effacer" styleClass="button-secondary" 
+                    style="-fx-background-radius: 10; -fx-padding: 10 20;"/>
+        </HBox>
+    </VBox>
+
+    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+        <FlowPane fx:id="avisContainer" hgap="20" vgap="20">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <!-- Avis cards will be added here -->
+            <Label text="Aucun avis pour le moment." style="-fx-text-fill: #8B8680;"/>
+        </FlowPane>
+    </ScrollPane>
+
+</VBox>

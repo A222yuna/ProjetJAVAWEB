@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.mindconnect.gui.ProgrammeController"
+      spacing="20" style="-fx-background-color: transparent;">
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <TextField fx:id="searchField" promptText="Rechercher un programme..." prefWidth="300.0" styleClass="text-input"/>
+        <ComboBox fx:id="filterStatut" promptText="Tous les statuts" styleClass="text-input" prefWidth="150.0"/>
+        <Button fx:id="clearFiltersBtn" text="Effacer" styleClass="button-secondary" prefWidth="80.0"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="btnAddProgramme" text="+ Nouveau Programme" styleClass="button-primary" onAction="#handleAddProgramme"/>
+    </HBox>
+
+    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+        <GridPane fx:id="programmesGrid" hgap="25" vgap="25">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </GridPane>
+    </ScrollPane>
+
+</VBox>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.mindconnect.gui.StatsController"
+      spacing="20" style="-fx-background-color: transparent;">
+
+    <Label text="Statistiques" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+
+    <!-- Charts Grid -->
+    <VBox spacing="20">
+        <!-- First Row: Pie Chart and Bar Chart -->
+        <HBox spacing="20" VBox.vgrow="ALWAYS">
+            <!-- Pie Chart Card -->
+            <VBox HBox.hgrow="ALWAYS" spacing="15" style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
+                <Label text="Répartition des Programmes" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+                <StackPane fx:id="pieChartContainer" prefHeight="250" style="-fx-background-color: #F7F4EE; -fx-background-radius: 10;">
+                    <Label text="Chart en cours de chargement..." style="-fx-text-fill: #8B8680;"/>
+                </StackPane>
+            </VBox>
+
+            <!-- Bar Chart Card -->
+            <VBox HBox.hgrow="ALWAYS" spacing="15" style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
+                <Label text="Activités par Jour" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+                <StackPane fx:id="barChartContainer" prefHeight="250" style="-fx-background-color: #F7F4EE; -fx-background-radius: 10;">
+                    <Label text="Chart en cours de chargement..." style="-fx-text-fill: #8B8680;"/>
+                </StackPane>
+            </VBox>
+        </HBox>
+
+        <!-- Second Row: Line Chart -->
+        <HBox spacing="20" VBox.vgrow="ALWAYS">
+            <!-- Line Chart Card -->
+            <VBox HBox.hgrow="ALWAYS" spacing="15" style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
+                <Label text="Évolution des Avis" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+                <StackPane fx:id="lineChartContainer" prefHeight="250" style="-fx-background-color: #F7F4EE; -fx-background-radius: 10;">
+                    <Label text="Chart en cours de chargement..." style="-fx-text-fill: #8B8680;"/>
+                </StackPane>
+            </VBox>
+
+            <!-- Stats Summary Card -->
+            <VBox prefWidth="350" spacing="15" style="-fx-background-color: #7C9A85; -fx-background-radius: 20; -fx-padding: 25;">
+                <Label text="Résumé" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                
+                <VBox spacing="10">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Total Programmes:" style="-fx-text-fill: rgba(255,255,255,0.8);"/>
+                        <Label fx:id="totalProgrammesLabel" text="0" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                    </HBox>
+                    
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Total Activités:" style="-fx-text-fill: rgba(255,255,255,0.8);"/>
+                        <Label fx:id="totalActivitesLabel" text="0" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                    </HBox>
+                    
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Total Avis:" style="-fx-text-fill: rgba(255,255,255,0.8);"/>
+                        <Label fx:id="totalAvisLabel" text="0" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                    </HBox>
+                    
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Note Moyenne:" style="-fx-text-fill: rgba(255,255,255,0.8);"/>
+                        <Label fx:id="noteMoyenneLabel" text="0.0" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </HBox>
+    </VBox>
+
+</VBox>

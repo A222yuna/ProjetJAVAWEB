@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.mindconnect.gui.ActiviteController"
+      spacing="20" style="-fx-background-color: transparent;">
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Button text="←" styleClass="button-secondary" onAction="#handleBack"/>
+        <Label fx:id="lblBreadcrumb" text="Mes Programmes > Programme Zen" style="-fx-text-fill: #8B8680; -fx-font-size: 14px;"/>
+    </HBox>
+
+    <Label text="Planning d'activités" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+
+    <!-- Search and Filter Section -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);">
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField" promptText="Rechercher une activité..." prefWidth="300" 
+                       style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #E8E4DC; -fx-padding: 10 15;"/>
+            <ComboBox fx:id="dayFilter" promptText="Filtrer par jour" prefWidth="150" 
+                      style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #E8E4DC;"/>
+            <ComboBox fx:id="durationFilter" promptText="Durée" prefWidth="120" 
+                      style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #E8E4DC;"/>
+            <Button fx:id="clearFiltersBtn" text="Effacer" styleClass="button-secondary" 
+                    style="-fx-background-radius: 10; -fx-padding: 10 20;"/>
+        </HBox>
+    </VBox>
+
+    <ScrollPane fitToHeight="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+        <HBox fx:id="timelineContainer" spacing="30">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="10"/>
+            </padding>
+            <!-- Columns for Jour 1, Jour 2... will be added here -->
+        </HBox>
+    </ScrollPane>
+
+    <StackPane>
+        <Button fx:id="btnAdd" text="+" styleClass="button-primary" style="-fx-background-radius: 50; -fx-font-size: 24px; -fx-padding: 0 15 5 15;" 
+                StackPane.alignment="BOTTOM_RIGHT" onAction="#handleAddActivity">
+             <tooltip><Tooltip text="Ajouter une activité"/></tooltip>
+        </Button>
+    </StackPane>
+
+</VBox>

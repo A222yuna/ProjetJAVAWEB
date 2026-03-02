@@ -1,0 +1,298 @@
+/* Global Styles for MindConnect - Ultra Premium Edition */
+
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #F7F4EE;
+}
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: #2A2A2A;
+    -fx-padding: 30 15 30 15;
+}
+
+.sidebar-item {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-padding: 12 20 12 20;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.sidebar-item:hover {
+    -fx-background-color: #3A3A3A;
+}
+
+.sidebar-item-active {
+    -fx-background-color: #7C9A85;
+    -fx-text-fill: white;
+}
+
+.sidebar-item-special {
+    -fx-background-color: rgba(201, 169, 110, 0.1);
+    -fx-text-fill: #C9A96E;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 20 12 20;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.sidebar-item-special:hover {
+    -fx-background-color: rgba(201, 169, 110, 0.2);
+}
+
+/* Header */
+.header {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 15 30 15 30;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 10, 0, 0, 5);
+}
+
+.header-title {
+    -fx-font-family: "Playfair Display", serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2A2A2A;
+}
+
+/* Cards */
+.card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20;
+    -fx-padding: 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.08), 15, 0, 0, 8);
+}
+
+.card-image {
+    -fx-background-radius: 20 20 0 0;
+}
+
+/* Premium Buttons */
+.button {
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.button-primary {
+    -fx-background-color: linear-gradient(to bottom, #7C9A85, #6A8572);
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 15;
+    -fx-padding: 12 30 12 30;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(124, 154, 133, 0.3), 8, 0, 0, 4);
+}
+
+.button-primary:hover {
+    -fx-background-color: linear-gradient(to bottom, #6A8572, #5A7562);
+    -fx-effect: dropshadow(three-pass-box, rgba(124, 154, 133, 0.5), 12, 0, 0, 6);
+    -fx-scale-y: 1.02;
+}
+
+.button-primary:pressed {
+    -fx-background-color: #5A7562;
+    -fx-effect: dropshadow(three-pass-box, rgba(124, 154, 133, 0.2), 4, 0, 0, 2);
+}
+
+.button-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: #E8E4DC;
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-text-fill: #8B8680;
+    -fx-padding: 12 30 12 30;
+    -fx-cursor: hand;
+}
+
+.button-secondary:hover {
+    -fx-border-color: #7C9A85;
+    -fx-text-fill: #7C9A85;
+    -fx-background-color: rgba(124, 154, 133, 0.05);
+}
+
+/* Badges */
+.badge-gold {
+    -fx-background-color: #C9A96E;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-padding: 3 10 3 10;
+    -fx-font-size: 11px;
+}
+
+.badge-sage {
+    -fx-background-color: #7C9A85;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-padding: 3 10 3 10;
+    -fx-font-size: 11px;
+}
+
+.badge-blush {
+    -fx-background-color: #D4A5A0;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-padding: 3 10 3 10;
+    -fx-font-size: 11px;
+}
+
+/* Ultra Premium Inputs */
+.text-field,
+.text-area {
+    -fx-background-color: rgba(247, 244, 238, 0.6);
+    -fx-border-color: #E8E4DC;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 12 15;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2A2A2A;
+}
+
+.combo-box,
+.spinner {
+    -fx-background-color: white;
+    -fx-border-color: #E8E4DC;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.text-field:focused,
+.text-area:focused {
+    -fx-background-color: white;
+    -fx-border-color: #7C9A85;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(124, 154, 133, 0.15), 10, 0, 0, 0);
+}
+
+.combo-box:focused,
+.spinner:focused {
+    -fx-border-color: #7C9A85;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(124, 154, 133, 0.15), 10, 0, 0, 0);
+}
+
+.text-input {
+    -fx-background-color: rgba(247, 244, 238, 0.6);
+    -fx-border-color: #E8E4DC;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 12 15;
+    -fx-font-size: 14px;
+}
+
+.text-input:focused {
+    -fx-background-color: white;
+    -fx-border-color: #7C9A85;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(124, 154, 133, 0.15), 10, 0, 0, 0);
+}
+
+/* Validation */
+.text-input-error {
+    -fx-border-color: #D4A5A0 !important;
+    -fx-border-width: 2 !important;
+}
+
+.error-label {
+    -fx-text-fill: #D4A5A0;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* Modal Container */
+.modal-container {
+    -fx-background-color: white;
+    -fx-padding: 40;
+    -fx-background-radius: 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 40, 0, 0, 20);
+    -fx-border-color: #7C9A85;
+    -fx-border-width: 5 0 0 0;
+}
+
+.modal-header {
+    -fx-font-family: "Playfair Display", serif;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2A2A2A;
+}
+
+.modal-subtitle {
+    -fx-text-fill: #8B8680;
+    -fx-font-size: 14px;
+    -fx-padding: 5 0 30 0;
+}
+
+.form-label {
+    -fx-text-fill: #5C5C5C;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 0 0 8 0;
+}
+
+.glass-field {
+    -fx-background-color: rgba(247, 244, 238, 0.6);
+    -fx-border-color: #E8E4DC;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 12 15;
+}
+
+.glass-field:focused {
+    -fx-background-color: white;
+    -fx-border-color: #7C9A85;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(124, 154, 133, 0.15), 10, 0, 0, 0);
+}
+
+.image-preview-container {
+    -fx-background-color: #F7F4EE;
+    -fx-background-radius: 18;
+    -fx-border-color: #E8E4DC;
+    -fx-border-radius: 18;
+    -fx-border-width: 2;
+    -fx-border-style: dashed;
+    -fx-alignment: CENTER;
+    -fx-min-height: 180;
+    -fx-cursor: hand;
+}
+
+.image-preview-container:hover {
+    -fx-background-color: #F0EDE6;
+    -fx-border-color: #7C9A85;
+    -fx-border-width: 3;
+}
+
+/* ComboBox specific overrides */
+.combo-box .list-cell {
+    -fx-background-color: white;
+    -fx-text-fill: #2A2A2A;
+    -fx-padding: 8 12;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: rgba(124, 154, 133, 0.1);
+}
+
+.combo-box .list-cell:selected {
+    -fx-background-color: #7C9A85;
+    -fx-text-fill: white;
+}
+
+/* Spinner overrides */
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: rgba(124, 154, 133, 0.1);
+    -fx-background-radius: 8;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: rgba(124, 154, 133, 0.2);
+}

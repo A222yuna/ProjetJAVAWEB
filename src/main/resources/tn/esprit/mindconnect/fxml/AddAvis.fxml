@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import org.controlsfx.control.Rating?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.mindconnect.gui.AddAvisController"
+      spacing="0" styleClass="modal-container" 
+      prefWidth="500.0">
+
+    <VBox spacing="5" style="-fx-padding: 0 0 30 0;">
+        <Label text="Votre Expérience" styleClass="modal-header"/>
+        <Label text="Partagez votre ressenti sur ce programme pour aider les autres." styleClass="modal-subtitle"/>
+    </VBox>
+    
+    <VBox spacing="20">
+        <VBox spacing="12">
+            <Label text="Note globale *" styleClass="form-label"/>
+            <Rating fx:id="rating" max="5" rating="0" styleClass="rating-control"/>
+            <Label fx:id="lblErrorNote" text="Veuillez sélectionner une note" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <VBox spacing="8">
+            <Label text="Votre témoignage" styleClass="form-label"/>
+            <TextArea fx:id="txtCommentaire" promptText="Comment ce programme vous a-t-il aidé ?" 
+                      styleClass="text-input, glass-field" prefHeight="150.0" wrapText="true"/>
+            <Label fx:id="lblErrorCommentaire" text="Le commentaire est requis" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+    </VBox>
+
+    <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 35 0 0 0;">
+        <Button text="Annuler" styleClass="button-secondary" onAction="#handleCancel" prefWidth="120"/>
+        <Button text="Publier mon avis" styleClass="button-primary" onAction="#handleSave" style="-fx-padding: 12 35 12 35;"/>
+    </HBox>
+
+</VBox>

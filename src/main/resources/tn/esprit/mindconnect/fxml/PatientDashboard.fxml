@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="tn.esprit.mindconnect.gui.PatientDashboardController"
+           fitToWidth="true" 
+           style="-fx-background-color: transparent;">
+    <content>
+        <VBox spacing="30" style="-fx-background-color: transparent;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <!-- Welcome Section -->
+            <VBox spacing="10" style="-fx-background-color: #7C9A85; -fx-background-radius: 20; -fx-padding: 30;">
+                <Label fx:id="welcomeLabel" text="Bonjour, Maissa" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label text="Comment vous sentez-vous aujourd'hui ? Prenez un moment pour vous." style="-fx-font-size: 16px; -fx-text-fill: rgba(255,255,255,0.8);"/>
+            </VBox>
+
+            <!-- User Statistics Section -->
+            <VBox spacing="20" style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
+                <Label text="Vos Statistiques" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+                
+                <HBox spacing="20">
+                    <!-- Stat Cards -->
+                    <VBox HBox.hgrow="ALWAYS" spacing="10" style="-fx-background-color: #F7F4EE; -fx-background-radius: 15; -fx-padding: 20;">
+                        <Label text="Programmes Actifs" style="-fx-font-size: 14px; -fx-text-fill: #8B8680;"/>
+                        <Label fx:id="activeProgramsLabel" text="3" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #7C9A85;"/>
+                    </VBox>
+                    
+                    <VBox HBox.hgrow="ALWAYS" spacing="10" style="-fx-background-color: #F7F4EE; -fx-background-radius: 15; -fx-padding: 20;">
+                        <Label text="Activités Complétées" style="-fx-font-size: 14px; -fx-text-fill: #8B8680;"/>
+                        <Label fx:id="completedActivitiesLabel" text="24" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #D4A5A0;"/>
+                    </VBox>
+                    
+                    <VBox HBox.hgrow="ALWAYS" spacing="10" style="-fx-background-color: #F7F4EE; -fx-background-radius: 15; -fx-padding: 20;">
+                        <Label text="Jours Consécutifs" style="-fx-font-size: 14px; -fx-text-fill: #8B8680;"/>
+                        <Label fx:id="streakLabel" text="7" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #C9A96E;"/>
+                    </VBox>
+                    
+                    <VBox HBox.hgrow="ALWAYS" spacing="10" style="-fx-background-color: #F7F4EE; -fx-background-radius: 15; -fx-padding: 20;">
+                        <Label text="Moyenne de Satisfaction" style="-fx-font-size: 14px; -fx-text-fill: #8B8680;"/>
+                        <Label fx:id="satisfactionLabel" text="4.8/5" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #7C9A85;"/>
+                    </VBox>
+                </HBox>
+                
+                <!-- Additional Stats Row -->
+                <HBox spacing="20">
+                    <VBox HBox.hgrow="ALWAYS" spacing="10" style="-fx-background-color: #F7F4EE; -fx-background-radius: 15; -fx-padding: 20;">
+                        <Label text="Temps Total" style="-fx-font-size: 14px; -fx-text-fill: #8B8680;"/>
+                        <Label fx:id="totalTimeLabel" text="12h" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #C9A96E;"/>
+                    </VBox>
+                    
+                    <VBox HBox.hgrow="ALWAYS" spacing="10" style="-fx-background-color: #F7F4EE; -fx-background-radius: 15; -fx-padding: 20;">
+                        <Label text="Meilleure Série" style="-fx-font-size: 14px; -fx-text-fill: #8B8680;"/>
+                        <Label fx:id="bestStreakLabel" text="15 jours" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #7C9A85;"/>
+                    </VBox>
+                    
+                    <VBox HBox.hgrow="ALWAYS" spacing="10" style="-fx-background-color: #F7F4EE; -fx-background-radius: 15; -fx-padding: 20;">
+                        <Label text="Niveau Actuel" style="-fx-font-size: 14px; -fx-text-fill: #8B8680;"/>
+                        <Label fx:id="currentLevelLabel" text="Avancé" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #D4A5A0;"/>
+                    </VBox>
+                    
+                    <VBox HBox.hgrow="ALWAYS" spacing="10" style="-fx-background-color: #F7F4EE; -fx-background-radius: 15; -fx-padding: 20;">
+                        <Label text="Prochain Objectif" style="-fx-font-size: 14px; -fx-text-fill: #8B8680;"/>
+                        <Label fx:id="nextGoalLabel" text="10 jours" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #7C9A85;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- AI Wellness Section -->
+            <HBox spacing="30">
+                <!-- AI Mood & Advice -->
+                <VBox HBox.hgrow="ALWAYS" spacing="25" style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
+                    <Label text="🧠 Conseils Personnalisés IA" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+                    
+                    <!-- Input Section -->
+                    <VBox spacing="15" style="-fx-background-color: #F7F4EE; -fx-background-radius: 15; -fx-padding: 20;">
+                        <Label text="Comment vous sentez-vous aujourd'hui ?" style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #7C9A85;"/>
+                        <ComboBox fx:id="moodComboBox" prefWidth="250" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #E8E4DC; -fx-padding: 10 15;"/>
+                        
+                        <Label text="Quel temps avez-vous disponible ?" style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #7C9A85;"/>
+                        <ComboBox fx:id="timeComboBox" prefWidth="250" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #E8E4DC; -fx-padding: 10 15;"/>
+                    </VBox>
+                    
+                    <!-- Action Button -->
+                    <HBox alignment="CENTER">
+                        <Button fx:id="getAdviceBtn" text="🌟 Obtenir mes conseils personnalisés" styleClass="button-primary" style="-fx-background-radius: 15; -fx-padding: 15 30; -fx-font-size: 16px; -fx-font-weight: 600;"/>
+                    </HBox>
+                    
+                    <!-- Results Section -->
+                    <VBox spacing="10" style="-fx-background-color: linear-gradient(to bottom right, #F7F4EE, #E8E4DC); -fx-background-radius: 15; -fx-padding: 25; -fx-border-color: #7C9A85; -fx-border-width: 2; -fx-border-radius: 15;">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label text="💭" style="-fx-font-size: 18px;"/>
+                            <Label text="Vos conseils personnalisés" style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #7C9A85;"/>
+                        </HBox>
+                        <Text fx:id="adviceText" text="Sélectionnez votre humeur et temps disponible pour recevoir des conseils personnalisés par notre IA..." 
+                              wrappingWidth="400" style="-fx-font-size: 14px; -fx-fill: #2A2A2A; -fx-line-spacing: 1.5;"/>
+                    </VBox>
+                </VBox>
+
+                <!-- AI-Powered Quote of the day -->
+                <VBox prefWidth="350.0" spacing="15" style="-fx-background-color: #F7F4EE; -fx-background-radius: 20; -fx-padding: 25; -fx-border-color: #E8E4DC; -fx-border-radius: 20;">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Pensée du jour IA" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #C9A96E;"/>
+                        <Button fx:id="refreshQuoteBtn" text="↻" style="-fx-background-color: transparent; -fx-text-fill: #C9A96E; -fx-border-color: #C9A96E; -fx-border-radius: 50; -fx-pref-width: 25; -fx-pref-height: 25;"/>
+                    </HBox>
+                    <Text fx:id="quoteText" text="Chargement de votre inspiration personnalisée..." 
+                          wrappingWidth="300" style="-fx-font-size: 18px; -fx-font-style: italic; -fx-fill: #2A2A2A;"/>
+                    <Label fx:id="quoteAuthor" text="- MindConnect AI" style="-fx-font-size: 12px; -fx-text-fill: #8B8680;"/>
+                </VBox>
+            </HBox>
+
+            <!-- Progress Analysis Section -->
+            <VBox spacing="20" style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="📊 Analyse de Progrès IA" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+                    <Button fx:id="analyzeProgressBtn" text="Analyser mes progrès" styleClass="button-secondary" style="-fx-background-radius: 10; -fx-padding: 8 16;"/>
+                </HBox>
+                
+                <Text fx:id="progressAnalysisText" text="Cliquez sur 'Analyser mes progrès' pour obtenir des insights personnalisés sur votre parcours bien-être..." 
+                      wrappingWidth="800" style="-fx-font-size: 14px; -fx-fill: #2A2A2A;"/>
+            </VBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="15">
+                <Button fx:id="addToCalendarBtn" text="📅 Ajouter au calendrier Google" styleClass="button-secondary" style="-fx-background-radius: 10; -fx-padding: 12 24;"/>
+            </HBox>
+
+            <!-- Content for Patient also should show available programs as discovery -->
+            <VBox spacing="15">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Programmes recommandés" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Hyperlink text="Voir tout" style="-fx-text-fill: #7C9A85;"/>
+                </HBox>
+                <!-- This would eventually be a smaller version of the grid -->
+                <Label text="Découvrez des programmes personnalisés pour votre bien-être." style="-fx-text-fill: #8B8680;"/>
+            </VBox>
+
+        </VBox>
+    </content>
+</ScrollPane>
