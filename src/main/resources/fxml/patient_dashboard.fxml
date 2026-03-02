@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.psy.gestioncabinet.controller.PatientDashboardController"
+            styleClass="dashboard-root">
+    
+    <!-- Sidebar -->
+    <left>
+        <VBox styleClass="sidebar" spacing="24">
+            <VBox styleClass="sidebar-header">
+                <Label text="MindConnect" styleClass="sidebar-app-name"/>
+                <Label text="Patient" styleClass="sidebar-role"/>
+            </VBox>
+
+            <VBox styleClass="sidebar-footer">
+                <VBox styleClass="sidebar-user-box">
+                    <Label fx:id="lblWelcome" text="Patient" styleClass="sidebar-user-name"/>
+                    <Label text="Patient" styleClass="sidebar-user-role-text"/>
+                </VBox>
+                <Button fx:id="btnDeconnexion" text="Déconnexion" styleClass="btn-logout"/>
+            </VBox>
+        </VBox>
+    </left>
+    
+    <!-- Main Content -->
+    <center>
+        <VBox fx:id="rootContent" styleClass="main-content" spacing="18">
+            <!-- Header -->
+            <VBox styleClass="content-header" spacing="5">
+                <Label text="Rechercher un cabinet" styleClass="content-title"/>
+                <Label text="Trouvez facilement un cabinet qui vous convient." styleClass="content-subtitle"/>
+            </VBox>
+
+            <!-- Welcome Card -->
+            <VBox styleClass="welcome-card" spacing="4">
+                <Label fx:id="lblWelcomeCard" text="Bonjour !" styleClass="welcome-title"/>
+                <Label text="Comment vous sentez-vous aujourd'hui ? Explorez les cabinets disponibles." styleClass="welcome-subtitle"/>
+            </VBox>
+
+            <!-- Search Card -->
+            <VBox styleClass="card" spacing="10">
+                <Label text="Recherche" styleClass="card-title"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="tfRecherche" promptText="Ville, adresse ou description..." styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnRechercher" text="Rechercher" styleClass="btn-edit"/>
+                    <Button fx:id="btnDetails" text="Voir détails" styleClass="btn-add"/>
+                </HBox>
+            </VBox>
+
+            <!-- Stats -->
+            <GridPane styleClass="stats-grid" hgap="16" vgap="16">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
+                </columnConstraints>
+
+                <VBox styleClass="stat-card" spacing="4" GridPane.columnIndex="0">
+                    <Label text="Cabinets disponibles" styleClass="stat-label"/>
+                    <Label fx:id="lblCabinetsDisponibles" text="0" styleClass="stat-value"/>
+                </VBox>
+
+                <VBox styleClass="stat-card" spacing="4" GridPane.columnIndex="1">
+                    <Label text="Résultats de recherche" styleClass="stat-label"/>
+                    <Label fx:id="lblResultatsRecherche" text="0" styleClass="stat-value"/>
+                </VBox>
+            </GridPane>
+
+            <!-- Cards: cabinets -->
+            <VBox spacing="6" styleClass="table-container">
+                <Label text="Liste des cabinets disponibles" styleClass="subsection-title"/>
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                    <content>
+                        <FlowPane fx:id="flowCabinets" hgap="16" vgap="16" prefWrapLength="800"
+                                  style="-fx-padding: 4 2 4 2;">
+                        </FlowPane>
+                    </content>
+                </ScrollPane>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,6 @@
+tn\psy\gestioncabinet\service\RatingService.class
+tn\psy\gestioncabinet\controller\MapViewController.class
+tn\psy\gestioncabinet\controller\PatientDashboardController.class
+tn\psy\gestioncabinet\service\PsyCabinetService.class
+tn\psy\gestioncabinet\gui\MainApp.class
+tn\psy\gestioncabinet\controller\CabinetCardController.class
