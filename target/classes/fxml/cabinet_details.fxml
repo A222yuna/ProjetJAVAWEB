@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.psy.gestioncabinet.controller.CabinetDetailsController"
+      spacing="15" styleClass="details-dialog">
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <Label text="Détails du cabinet" styleClass="dialog-title"/>
+
+    <VBox spacing="10">
+        <HBox spacing="10">
+            <Label text="Adresse :" styleClass="detail-label" minWidth="100"/>
+            <Label fx:id="lblAdresse" styleClass="detail-value" wrapText="true" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Ville :" styleClass="detail-label" minWidth="100"/>
+            <Label fx:id="lblVille" styleClass="detail-value"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Horaires :" styleClass="detail-label" minWidth="100"/>
+            <Label fx:id="lblHoraires" styleClass="detail-value"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Statut :" styleClass="detail-label" minWidth="100"/>
+            <Label fx:id="lblStatut" styleClass="detail-value"/>
+        </HBox>
+        <HBox fx:id="boxRating" spacing="10" visible="false" managed="false">
+            <Label text="Note :" styleClass="detail-label" minWidth="100"/>
+            <Label fx:id="lblRating" styleClass="detail-value"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Description :" styleClass="detail-label" minWidth="100"/>
+            <Label fx:id="lblDescription" styleClass="detail-value" wrapText="true" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <Label text="Psychologues :" styleClass="detail-label"/>
+        <TextArea fx:id="taPsychologues" editable="false" wrapText="true" prefRowCount="4" styleClass="detail-text"/>
+    </VBox>
+
+    <HBox spacing="10">
+        <Button fx:id="btnCarte" text="Voir sur carte"/>
+        <Button fx:id="btnFermer" text="Fermer" styleClass="btn-primary"/>
+    </HBox>
+</VBox>

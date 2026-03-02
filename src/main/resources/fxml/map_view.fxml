@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.web.WebView?>
+
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="tn.psy.gestioncabinet.controller.MapViewController"
+           prefWidth="800" prefHeight="600" minWidth="500" minHeight="400">
+    <!-- WebView occupe toute la fenêtre -->
+    <WebView fx:id="webView" StackPane.alignment="CENTER" minWidth="500" minHeight="400"/>
+    <!-- Bouton Fermer en overlay en bas à droite -->
+    <Button fx:id="btnFermer" text="Fermer" styleClass="btn-primary"
+            StackPane.alignment="BOTTOM_RIGHT"
+            translateX="-15" translateY="-15"/>
+</StackPane>

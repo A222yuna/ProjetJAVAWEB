@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MainApp" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="tn.psy.gestioncabinet.gui.MainApp" />
+    <module name="GestionCabinet" />
+    <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\maram\.m2\repository\org\openjfx\javafx-controls\21.0.1;C:\Users\maram\.m2\repository\org\openjfx\javafx-fxml\21.0.1;C:\Users\maram\.m2\repository\org\openjfx\javafx-graphics\21.0.1;C:\Users\maram\.m2\repository\org\openjfx\javafx-base\21.0.1&quot; --add-modules javafx.controls,javafx.fxml,javafx.graphics" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

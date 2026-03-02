@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.psy.gestioncabinet.controller.AddDisponibiliteController"
+      spacing="12" styleClass="form-dialog">
+    <padding>
+        <Insets top="20" right="25" bottom="20" left="25"/>
+    </padding>
+    <Label text="Définir une plage horaire récurrente" styleClass="dialog-title"/>
+    <Label fx:id="lblCabinet" text="Cabinet : —" styleClass="field-label"/>
+    <Label text="Jour (1=Lundi … 7=Dimanche)" styleClass="field-label"/>
+    <TextField fx:id="tfJour" promptText="1" styleClass="input-field"/>
+    <Label text="Heure début (HH:mm)" styleClass="field-label"/>
+    <TextField fx:id="tfHeureDebut" promptText="08:00" styleClass="input-field"/>
+    <Label text="Heure fin (HH:mm)" styleClass="field-label"/>
+    <TextField fx:id="tfHeureFin" promptText="18:00" styleClass="input-field"/>
+    <Label text="Durée consultation (minutes)" styleClass="field-label"/>
+    <TextField fx:id="tfDuree" promptText="30" styleClass="input-field"/>
+    <Label fx:id="lblError" styleClass="error-label" visible="false" wrapText="true"/>
+    <HBox spacing="10">
+        <Button fx:id="btnGenerer" text="Ajouter et générer les créneaux" styleClass="btn-primary"/>
+        <Button fx:id="btnFermer" text="Fermer" styleClass="btn-secondary"/>
+    </HBox>
+</VBox>

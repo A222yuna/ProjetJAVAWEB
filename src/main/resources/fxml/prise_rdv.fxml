@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.psy.gestioncabinet.controller.PriseRdvController"
+      spacing="15" styleClass="form-dialog">
+    <padding>
+        <Insets top="20" right="25" bottom="20" left="25"/>
+    </padding>
+    <Label fx:id="lblTitre" text="Choisir un créneau" styleClass="dialog-title"/>
+    <Label text="Créneaux disponibles (2 semaines à venir) :" styleClass="field-label"/>
+    <ListView fx:id="listCreneaux" VBox.vgrow="ALWAYS" minHeight="200" maxHeight="300"/>
+    <Label fx:id="lblMessage" styleClass="error-label" visible="false" wrapText="true"/>
+    <HBox spacing="10">
+        <Button fx:id="btnReserver" text="Réserver ce créneau" styleClass="btn-primary" disable="true"/>
+        <Button fx:id="btnAnnuler" text="Annuler" styleClass="btn-secondary"/>
+    </HBox>
+</VBox>

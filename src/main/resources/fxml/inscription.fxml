@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.psy.gestioncabinet.controller.InscriptionController"
+      alignment="CENTER" spacing="20" styleClass="login-container">
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <Label text="MindConnect" styleClass="login-title"/>
+    <Label text="Créer un compte patient ou psychologue" styleClass="login-subtitle"/>
+
+    <VBox spacing="12" alignment="CENTER" styleClass="form-box">
+        <Label text="Inscription" styleClass="form-label"/>
+
+        <Label text="Nom complet *" styleClass="field-label-small"/>
+        <TextField fx:id="tfNomComplet" promptText="Votre nom complet" styleClass="input-field" prefWidth="300"/>
+
+        <Label text="Email *" styleClass="field-label-small"/>
+        <TextField fx:id="tfEmail" promptText="exemple@email.com" styleClass="input-field" prefWidth="300"/>
+
+        <Label text="Mot de passe *" styleClass="field-label-small"/>
+        <PasswordField fx:id="pfMotDePasse" promptText="Mot de passe" styleClass="input-field" prefWidth="300"/>
+
+        <Label text="Confirmer le mot de passe *" styleClass="field-label-small"/>
+        <PasswordField fx:id="pfConfirmerMotDePasse" promptText="Confirmer le mot de passe" styleClass="input-field" prefWidth="300"/>
+
+        <Label text="Rôle *" styleClass="field-label-small"/>
+        <ComboBox fx:id="cbRole" promptText="Patient ou Psychologue" styleClass="input-field" prefWidth="300"/>
+
+        <Label fx:id="lblError" styleClass="error-label" visible="false" wrapText="true" maxWidth="300"/>
+
+        <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="btnInscrire" text="S'inscrire" styleClass="btn-primary"/>
+            <Button fx:id="btnRetour" text="Retour" styleClass="btn-secondary"/>
+        </HBox>
+    </VBox>
+</VBox>

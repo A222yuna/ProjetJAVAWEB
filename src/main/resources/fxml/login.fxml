@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.psy.gestioncabinet.controller.LoginController"
+      alignment="CENTER" spacing="20" styleClass="login-container">
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <Label text="MindConnect" styleClass="login-title"/>
+    <Label text="Plateforme de bien-être psychologique" styleClass="login-subtitle"/>
+
+    <VBox spacing="15" alignment="CENTER" styleClass="form-box">
+        <Label text="Connexion" styleClass="form-label"/>
+
+        <ComboBox fx:id="cbRole" styleClass="input-field" prefWidth="300"/>
+
+        <TextField fx:id="tfEmail" promptText="Email" styleClass="input-field" prefWidth="300"/>
+
+        <PasswordField fx:id="pfPassword" promptText="Mot de passe" styleClass="input-field" prefWidth="300"/>
+
+        <Label fx:id="lblError" styleClass="error-label" visible="false" wrapText="true" maxWidth="300"/>
+
+        <Button fx:id="btnLogin" text="Se connecter" styleClass="btn-primary"/>
+
+        <HBox alignment="CENTER" spacing="5">
+            <Label text="Pas encore de compte ?" styleClass="link-label"/>
+            <Button fx:id="btnInscription" text="Créer un compte" styleClass="btn-link"/>
+        </HBox>
+    </VBox>
+</VBox>

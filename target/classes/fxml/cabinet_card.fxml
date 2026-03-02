@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.psy.gestioncabinet.controller.CabinetCardController"
+      styleClass="card" spacing="10">
+
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <Label fx:id="lblTitre" styleClass="card-title" text="Cabinet"/>
+        <Label fx:id="lblBadge" text="Validé"
+               style="-fx-background-radius: 999; -fx-padding: 2 8; -fx-font-size: 11px; -fx-text-fill: white;"/>
+    </HBox>
+
+    <Label fx:id="lblDescription" styleClass="card-subtitle" wrapText="true"
+           text="Description du cabinet"/>
+
+    <VBox spacing="2">
+        <Label fx:id="lblVille" styleClass="card-subtitle" text="Ville"/>
+        <Label fx:id="lblAdresse" styleClass="card-subtitle" text="Adresse"/>
+        <Label fx:id="lblHoraires" styleClass="card-subtitle" text="Horaires"/>
+    </VBox>
+
+    <HBox spacing="4" alignment="CENTER_LEFT">
+        <Label fx:id="lblRating" styleClass="card-subtitle" text="— ★ (0 avis)"/>
+        <HBox fx:id="boxEtoiles" spacing="2"/>
+    </HBox>
+
+    <HBox spacing="8">
+        <Button fx:id="btnDetails" text="Voir détails" styleClass="btn-edit"/>
+        <Button fx:id="btnCarte" text="Voir sur carte" styleClass="btn-edit"/>
+        <Button fx:id="btnRdv" text="Prendre rendez-vous" styleClass="btn-add"/>
+    </HBox>
+
+</VBox>
+

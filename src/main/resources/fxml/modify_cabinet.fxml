@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.psy.gestioncabinet.controller.ModifyCabinetController"
+      spacing="15" styleClass="form-dialog">
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <Label text="Modifier le cabinet" styleClass="dialog-title"/>
+
+    <Label text="Adresse *" styleClass="field-label"/>
+    <TextField fx:id="tfAdresse" styleClass="input-field"/>
+
+    <Label text="Ville *" styleClass="field-label"/>
+    <TextField fx:id="tfVille" styleClass="input-field"/>
+
+    <Label text="Horaires" styleClass="field-label"/>
+    <TextField fx:id="tfHoraires" styleClass="input-field"/>
+
+    <Label text="Description" styleClass="field-label"/>
+    <TextArea fx:id="taDescription" wrapText="true" prefRowCount="3" styleClass="input-area"/>
+
+    <Label fx:id="lblError" styleClass="error-label" visible="false" wrapText="true"/>
+
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Button fx:id="btnValider" text="Valider" styleClass="btn-primary"/>
+        <Button fx:id="btnAnnuler" text="Annuler" styleClass="btn-secondary"/>
+    </HBox>
+</VBox>
