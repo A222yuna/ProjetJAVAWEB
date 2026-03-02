@@ -91,6 +91,7 @@ public class CabinetDetailsController {
             return;
         }
         String adresse = cabinet.getAdresse().trim();
+<<<<<<< HEAD
 
         // Adresse plus complète pour le géocodage : adresse + ville (meilleure précision pour Nominatim)
         StringBuilder sbAdresseComplete = new StringBuilder();
@@ -106,6 +107,9 @@ public class CabinetDetailsController {
         String adresseComplete = sbAdresseComplete.length() > 0 ? sbAdresseComplete.toString() : adresse;
 
         java.util.Optional<double[]> coords = MapService.getCoordinatesFromAddress(adresseComplete);
+=======
+        java.util.Optional<double[]> coords = MapService.getCoordinatesFromAddress(adresse);
+>>>>>>> origin/gestion-cabinet
         boolean useLeaflet = coords.isPresent();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map_view.fxml"));
@@ -114,10 +118,17 @@ public class CabinetDetailsController {
             if (ctrl != null) {
                 if (useLeaflet) {
                     ctrl.setCoordinates(coords.get()[0], coords.get()[1]);
+<<<<<<< HEAD
                     ctrl.setAdresse(adresseComplete);
                     ctrl.loadMap();
                 } else {
                     ctrl.loadMapFromUrl(MapService.getOsmSearchUrl(adresseComplete));
+=======
+                    ctrl.setAdresse(adresse);
+                    ctrl.loadMap();
+                } else {
+                    ctrl.loadMapFromUrl(MapService.getOsmSearchUrl(adresse));
+>>>>>>> origin/gestion-cabinet
                 }
             }
             Stage stage = new Stage();

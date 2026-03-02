@@ -38,7 +38,11 @@ public class DbInitializer {
         Connection conn = Connexion.getConnection();
         if (conn == null) {
             System.err.println("Impossible de se connecter à la base de données.");
+<<<<<<< HEAD
             System.err.println(">>> Créez la base 'gestion_cabinet_db' en exécutant database/schema.sql dans phpMyAdmin <<<");
+=======
+            System.err.println(">>> Vérifiez l'existence de la base 'pschologie_app' et de son schéma dans votre SGBD <<<");
+>>>>>>> origin/gestion-cabinet
             connectionOk = false;
             return;
         }
@@ -104,7 +108,11 @@ public class DbInitializer {
         System.out.println("Base de données initialisée avec les données de test.");
         } catch (Exception e) {
             System.err.println("Erreur lors de l'initialisation de la base de données : " + e.getMessage());
+<<<<<<< HEAD
             System.err.println(">>> Assurez-vous d'avoir exécuté database/schema.sql dans phpMyAdmin pour créer la base 'gestion_cabinet_db' <<<");
+=======
+            System.err.println(">>> Assurez-vous que la base 'pschologie_app' et les tables nécessaires existent déjà <<<");
+>>>>>>> origin/gestion-cabinet
         }
     }
 
@@ -143,6 +151,7 @@ public class DbInitializer {
     }
 
     /**
+<<<<<<< HEAD
      * Crée les tables rating, disponibilite, creneau si elles n'existent pas.
      */
     private static void ensureRatingAndPlanningTables(Connection conn) {
@@ -184,6 +193,30 @@ public class DbInitializer {
                 ") ENGINE=InnoDB");
         } catch (Exception e) {
             System.err.println("Migration rating/planning : " + e.getMessage());
+=======
+     * Vérifie la présence logique des tables rating, disponibilite, creneau.
+     * IMPORTANT : la base 'pschologie_app' et ces tables doivent être créées
+     * manuellement (ou via un script SQL dédié). Aucune création/modification
+     * de structure n'est effectuée ici pour respecter le schéma unifié.
+     */
+    private static void ensureRatingAndPlanningTables(Connection conn) {
+        if (conn == null) return;
+        try {
+            DatabaseMetaData meta = conn.getMetaData();
+            String catalog = conn.getCatalog();
+            if (catalog == null) return;
+            String[] tables = {"rating", "disponibilite", "creneau"};
+            for (String table : tables) {
+                try (ResultSet rs = meta.getTables(catalog, null, table, null)) {
+                    if (!rs.next()) {
+                        System.err.println("ATTENTION: la table '" + table + "' est absente de la base '"
+                                + catalog + "'. Créez-la via votre script SQL (schéma pschologie_app).");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Vérification rating/planning : " + e.getMessage());
+>>>>>>> origin/gestion-cabinet
         }
     }
 }

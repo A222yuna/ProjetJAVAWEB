@@ -15,10 +15,17 @@ import java.util.Optional;
 public class PsyCabinetDAO {
 
     public boolean ajouter(PsyCabinet pc) {
+<<<<<<< HEAD
         String sql = "INSERT INTO psy_cabinet (id_psy, id_cabinet, date_debut, date_fin) VALUES (?, ?, ?, ?)";
         try (Connection conn = Connexion.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, pc.getIdPsy());
+=======
+        String sql = "INSERT INTO psy_cabinet (psychologue_id_user, id_cabinet, date_debut, date_fin) VALUES (?, ?, ?, ?)";
+        try (Connection conn = Connexion.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, pc.getPsychologueIdUser());
+>>>>>>> origin/gestion-cabinet
             ps.setInt(2, pc.getIdCabinet());
             ps.setDate(3, Date.valueOf(pc.getDateDebut()));
             ps.setObject(4, pc.getDateFin() != null ? Date.valueOf(pc.getDateFin()) : null);
@@ -31,10 +38,17 @@ public class PsyCabinetDAO {
 
     public List<PsyCabinet> findAll() {
         List<PsyCabinet> liste = new ArrayList<>();
+<<<<<<< HEAD
         String sql = "SELECT pc.id_psy, pc.id_cabinet, pc.date_debut, pc.date_fin, " +
                 "p.nom AS nom_psy, c.adresse, c.ville " +
                 "FROM psy_cabinet pc " +
                 "JOIN psychologue p ON pc.id_psy = p.id_psy " +
+=======
+        String sql = "SELECT pc.psychologue_id_user, pc.id_cabinet, pc.date_debut, pc.date_fin, " +
+                "u.nom AS nom_psy, c.adresse, c.ville " +
+                "FROM psy_cabinet pc " +
+                "JOIN users u ON pc.psychologue_id_user = u.id_user " +
+>>>>>>> origin/gestion-cabinet
                 "JOIN cabinet c ON pc.id_cabinet = c.id_cabinet " +
                 "ORDER BY pc.date_debut DESC";
         try (Connection conn = Connexion.getConnection();
@@ -49,6 +63,7 @@ public class PsyCabinetDAO {
         return liste;
     }
 
+<<<<<<< HEAD
     public List<PsyCabinet> findByPsychologue(int idPsy) {
         List<PsyCabinet> liste = new ArrayList<>();
         String sql = "SELECT pc.id_psy, pc.id_cabinet, pc.date_debut, pc.date_fin, " +
@@ -61,6 +76,20 @@ public class PsyCabinetDAO {
         try (Connection conn = Connexion.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idPsy);
+=======
+    public List<PsyCabinet> findByPsychologue(int idPsyUser) {
+        List<PsyCabinet> liste = new ArrayList<>();
+        String sql = "SELECT pc.psychologue_id_user, pc.id_cabinet, pc.date_debut, pc.date_fin, " +
+                "u.nom AS nom_psy, c.adresse, c.ville " +
+                "FROM psy_cabinet pc " +
+                "JOIN users u ON pc.psychologue_id_user = u.id_user " +
+                "JOIN cabinet c ON pc.id_cabinet = c.id_cabinet " +
+                "WHERE pc.psychologue_id_user = ? AND (pc.date_fin IS NULL OR pc.date_fin >= CURDATE()) " +
+                "ORDER BY pc.date_debut DESC";
+        try (Connection conn = Connexion.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, idPsyUser);
+>>>>>>> origin/gestion-cabinet
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 liste.add(mapResultSetWithDetails(rs));
@@ -73,10 +102,17 @@ public class PsyCabinetDAO {
 
     public List<PsyCabinet> findByCabinet(int idCabinet) {
         List<PsyCabinet> liste = new ArrayList<>();
+<<<<<<< HEAD
         String sql = "SELECT pc.id_psy, pc.id_cabinet, pc.date_debut, pc.date_fin, " +
                 "p.nom AS nom_psy, c.adresse, c.ville " +
                 "FROM psy_cabinet pc " +
                 "JOIN psychologue p ON pc.id_psy = p.id_psy " +
+=======
+        String sql = "SELECT pc.psychologue_id_user, pc.id_cabinet, pc.date_debut, pc.date_fin, " +
+                "u.nom AS nom_psy, c.adresse, c.ville " +
+                "FROM psy_cabinet pc " +
+                "JOIN users u ON pc.psychologue_id_user = u.id_user " +
+>>>>>>> origin/gestion-cabinet
                 "JOIN cabinet c ON pc.id_cabinet = c.id_cabinet " +
                 "WHERE pc.id_cabinet = ? AND (pc.date_fin IS NULL OR pc.date_fin >= CURDATE()) " +
                 "ORDER BY p.nom";
@@ -93,11 +129,19 @@ public class PsyCabinetDAO {
         return liste;
     }
 
+<<<<<<< HEAD
     public Optional<PsyCabinet> findById(int idPsy, int idCabinet) {
         String sql = "SELECT id_psy, id_cabinet, date_debut, date_fin FROM psy_cabinet WHERE id_psy = ? AND id_cabinet = ?";
         try (Connection conn = Connexion.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idPsy);
+=======
+    public Optional<PsyCabinet> findById(int idPsyUser, int idCabinet) {
+        String sql = "SELECT psychologue_id_user, id_cabinet, date_debut, date_fin FROM psy_cabinet WHERE psychologue_id_user = ? AND id_cabinet = ?";
+        try (Connection conn = Connexion.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, idPsyUser);
+>>>>>>> origin/gestion-cabinet
             ps.setInt(2, idCabinet);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -109,17 +153,30 @@ public class PsyCabinetDAO {
         return Optional.empty();
     }
 
+<<<<<<< HEAD
     public boolean existeLiaison(int idPsy, int idCabinet) {
         return findById(idPsy, idCabinet).isPresent();
     }
 
     public boolean modifier(PsyCabinet pc) {
         String sql = "UPDATE psy_cabinet SET date_debut = ?, date_fin = ? WHERE id_psy = ? AND id_cabinet = ?";
+=======
+    public boolean existeLiaison(int idPsyUser, int idCabinet) {
+        return findById(idPsyUser, idCabinet).isPresent();
+    }
+
+    public boolean modifier(PsyCabinet pc) {
+        String sql = "UPDATE psy_cabinet SET date_debut = ?, date_fin = ? WHERE psychologue_id_user = ? AND id_cabinet = ?";
+>>>>>>> origin/gestion-cabinet
         try (Connection conn = Connexion.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDate(1, Date.valueOf(pc.getDateDebut()));
             ps.setObject(2, pc.getDateFin() != null ? Date.valueOf(pc.getDateFin()) : null);
+<<<<<<< HEAD
             ps.setInt(3, pc.getIdPsy());
+=======
+            ps.setInt(3, pc.getPsychologueIdUser());
+>>>>>>> origin/gestion-cabinet
             ps.setInt(4, pc.getIdCabinet());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -129,7 +186,11 @@ public class PsyCabinetDAO {
     }
 
     public boolean supprimer(int idPsy, int idCabinet) {
+<<<<<<< HEAD
         String sql = "DELETE FROM psy_cabinet WHERE id_psy = ? AND id_cabinet = ?";
+=======
+        String sql = "DELETE FROM psy_cabinet WHERE psychologue_id_user = ? AND id_cabinet = ?";
+>>>>>>> origin/gestion-cabinet
         try (Connection conn = Connexion.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idPsy);
@@ -155,7 +216,11 @@ public class PsyCabinetDAO {
 
     private PsyCabinet mapResultSet(ResultSet rs) throws SQLException {
         PsyCabinet pc = new PsyCabinet();
+<<<<<<< HEAD
         pc.setIdPsy(rs.getInt("id_psy"));
+=======
+        pc.setPsychologueIdUser(rs.getInt("psychologue_id_user"));
+>>>>>>> origin/gestion-cabinet
         pc.setIdCabinet(rs.getInt("id_cabinet"));
         Date d = rs.getDate("date_debut");
         pc.setDateDebut(d != null ? d.toLocalDate() : null);

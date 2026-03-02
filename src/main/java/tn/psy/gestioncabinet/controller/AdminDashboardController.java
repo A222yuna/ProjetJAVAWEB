@@ -15,13 +15,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+<<<<<<< HEAD
 import tn.psy.gestioncabinet.model.Administrateur;
+=======
+>>>>>>> origin/gestion-cabinet
 import tn.psy.gestioncabinet.model.Cabinet;
 import tn.psy.gestioncabinet.service.CabinetService;
 import tn.psy.gestioncabinet.service.EmailService;
 import tn.psy.gestioncabinet.util.CabinetEventBus;
+<<<<<<< HEAD
 import tn.psy.gestioncabinet.util.SceneManager;
 import tn.psy.gestioncabinet.util.SessionManager;
+=======
+import tn.psy.gestioncabinet.util.SessionManager;
+import tn.psy.gestioncabinet.util.AuthGuard;
+>>>>>>> origin/gestion-cabinet
 
 import java.io.IOException;
 import java.net.URL;
@@ -52,6 +60,7 @@ public class AdminDashboardController implements Initializable {
     private final CabinetService cabinetService = new CabinetService();
     private final EmailService emailService = new EmailService();
     private final ObservableList<Cabinet> cabinetsList = FXCollections.observableArrayList();
+<<<<<<< HEAD
     private Administrateur admin;
 
     @Override
@@ -59,6 +68,21 @@ public class AdminDashboardController implements Initializable {
         admin = (Administrateur) SessionManager.getInstance().getUser();
         if (admin != null) {
             lblWelcome.setText(admin.getNom());
+=======
+    private Object admin;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Contrôle d'accès : uniquement Admin
+        if (!AuthGuard.check(AuthGuard.RequiredRole.ADMIN)) {
+            new Alert(Alert.AlertType.ERROR, "Accès non autorisé pour ce rôle.", ButtonType.OK).showAndWait();
+            return;
+        }
+
+        admin = SessionManager.getInstance().getUser();
+        if (admin != null) {
+            lblWelcome.setText("Admin");
+>>>>>>> origin/gestion-cabinet
         }
 
         // Lier la TableView principale à l'ObservableList
@@ -94,7 +118,11 @@ public class AdminDashboardController implements Initializable {
         if (btnRafraichir != null) {
             btnRafraichir.setOnAction(e -> chargerCabinets());
         }
+<<<<<<< HEAD
         btnDeconnexion.setOnAction(e -> deconnexion());
+=======
+        btnDeconnexion.setOnAction(e -> SessionManager.getInstance().clearSession());
+>>>>>>> origin/gestion-cabinet
 
         // Gestion des états des boutons selon la sélection
         tableCabinets.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> updateButtonsState(newSel));
@@ -286,10 +314,13 @@ public class AdminDashboardController implements Initializable {
         // Se désabonner de l'EventBus avant de quitter
         CabinetEventBus.getInstance().unsubscribe(this::chargerCabinets);
         SessionManager.getInstance().clearSession();
+<<<<<<< HEAD
         try {
             SceneManager.loadScene("/fxml/login.fxml", "Connexion - Gestion Cabinet");
         } catch (IOException ex) {
             new Alert(Alert.AlertType.ERROR, "Impossible de se déconnecter.", ButtonType.OK).showAndWait();
         }
+=======
+>>>>>>> origin/gestion-cabinet
     }
 }

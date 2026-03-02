@@ -15,10 +15,17 @@ public class PsyCabinetService {
     private final PsyCabinetDAO psyCabinetDAO = new PsyCabinetDAO();
 
     public boolean ajouter(PsyCabinet pc) {
+<<<<<<< HEAD
         if (pc == null || pc.getIdPsy() <= 0 || pc.getIdCabinet() <= 0 || pc.getDateDebut() == null) {
             return false;
         }
         if (psyCabinetDAO.existeLiaison(pc.getIdPsy(), pc.getIdCabinet())) {
+=======
+        if (pc == null || pc.getPsychologueIdUser() <= 0 || pc.getIdCabinet() <= 0 || pc.getDateDebut() == null) {
+            return false;
+        }
+        if (psyCabinetDAO.existeLiaison(pc.getPsychologueIdUser(), pc.getIdCabinet())) {
+>>>>>>> origin/gestion-cabinet
             return false; // Liaison déjà existante
         }
         return psyCabinetDAO.ajouter(pc);

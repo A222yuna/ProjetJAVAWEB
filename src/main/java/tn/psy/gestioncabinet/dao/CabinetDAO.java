@@ -205,6 +205,24 @@ public class CabinetDAO {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Suppression sans condition de validation (utilisée par l'administrateur).
+     */
+    public boolean supprimerAdmin(int id) {
+        String sql = "DELETE FROM cabinet WHERE id_cabinet = ?";
+        try (Connection conn = Connexion.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Erreur suppression cabinet (admin) : " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+>>>>>>> origin/gestion-cabinet
      * Cabinets non archivés (actifs), quel que soit leur statut de validation.
      */
     public List<Cabinet> findAllNonArchives() {

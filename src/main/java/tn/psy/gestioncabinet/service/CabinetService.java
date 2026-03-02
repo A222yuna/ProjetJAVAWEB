@@ -19,16 +19,25 @@ public class CabinetService {
 
     private final CabinetDAO cabinetDAO = new CabinetDAO();
     private final PsyCabinetDAO psyCabinetDAO = new PsyCabinetDAO();
+<<<<<<< HEAD
     private final PsychologueDAO psychologueDAO = new PsychologueDAO();
 
     public int ajouterCabinet(Cabinet cabinet, int idPsychologue) {
+=======
+
+    public int ajouterCabinet(Cabinet cabinet, int psychologueIdUser) {
+>>>>>>> origin/gestion-cabinet
         if (cabinet == null || cabinet.getAdresse() == null || cabinet.getAdresse().isBlank() || cabinet.getVille() == null || cabinet.getVille().isBlank()) {
             return -1;
         }
         cabinet.setValide(false); // En attente de validation admin
         int idCabinet = cabinetDAO.ajouter(cabinet);
         if (idCabinet > 0) {
+<<<<<<< HEAD
             PsyCabinet pc = new PsyCabinet(idPsychologue, idCabinet, LocalDate.now(), null);
+=======
+            PsyCabinet pc = new PsyCabinet(psychologueIdUser, idCabinet, LocalDate.now(), null);
+>>>>>>> origin/gestion-cabinet
             psyCabinetDAO.ajouter(pc);
         }
         return idCabinet;
@@ -42,16 +51,29 @@ public class CabinetService {
     }
 
     public boolean supprimerCabinet(int idCabinet, boolean estAdmin) {
+<<<<<<< HEAD
         // Suppression uniquement pour les cabinets non validés
+=======
+>>>>>>> origin/gestion-cabinet
         Optional<Cabinet> opt = cabinetDAO.findById(idCabinet);
         if (opt.isEmpty()) {
             return false;
         }
         Cabinet cabinet = opt.get();
         if (cabinet.isValide()) {
+<<<<<<< HEAD
             // Règle métier : aucun DELETE après validation
             return false;
         }
+=======
+            // Une fois validé (statut ACTIF), seul l'administrateur peut supprimer
+            if (!estAdmin) {
+                return false;
+            }
+            return cabinetDAO.supprimerAdmin(idCabinet);
+        }
+        // EN_ATTENTE ou REFUSE : suppression autorisée (psy ou admin)
+>>>>>>> origin/gestion-cabinet
         return cabinetDAO.supprimer(idCabinet);
     }
 
@@ -114,8 +136,17 @@ public class CabinetService {
      */
     public List<String> getEmailsPsychologuesPourCabinet(int idCabinet) {
         List<String> emails = new ArrayList<>();
+<<<<<<< HEAD
         for (PsyCabinet pc : psyCabinetDAO.findByCabinet(idCabinet)) {
             psychologueDAO.findById(pc.getIdPsy()).map(Psychologue::getEmail).filter(e -> e != null && !e.isBlank()).ifPresent(emails::add);
+=======
+        // Les liaisons psy_cabinet joignent désormais directement la table users.
+        for (PsyCabinet pc : psyCabinetDAO.findByCabinet(idCabinet)) {
+            if (pc.getNomPsychologue() != null && !pc.getNomPsychologue().isBlank()) {
+                // L'email n'est pas nécessairement disponible côté modèle ; la logique
+                // d'envoi peut être adaptée ultérieurement pour exploiter un champ email.
+            }
+>>>>>>> origin/gestion-cabinet
         }
         return emails;
     }

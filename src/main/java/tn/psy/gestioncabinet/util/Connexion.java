@@ -10,7 +10,12 @@ import java.sql.SQLException;
  */
 public class Connexion {
 
+<<<<<<< HEAD
     private static final String URL = "jdbc:mysql://localhost:3306/gestion_cabinet_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+=======
+    // MODE PROJET : base unifiée "pschologie_app"
+    private static final String URL = "jdbc:mysql://localhost:3306/pschologie_app?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+>>>>>>> origin/gestion-cabinet
     private static final String USER = "root";
     private static final String PASSWORD = "";
 

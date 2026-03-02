@@ -16,14 +16,22 @@ import java.util.Optional;
 public class CreneauDAO {
 
     public int ajouter(Creneau c) {
+<<<<<<< HEAD
         String sql = "INSERT INTO creneau (disponibilite_id, date_creneau, heure, statut, patient_id) VALUES (?, ?, ?, ?, ?)";
+=======
+        String sql = "INSERT INTO creneau (disponibilite_id, date_creneau, heure, statut, patient_id_user) VALUES (?, ?, ?, ?, ?)";
+>>>>>>> origin/gestion-cabinet
         try (Connection conn = Connexion.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, c.getDisponibiliteId());
             ps.setDate(2, Date.valueOf(c.getDateCreneau()));
             ps.setTime(3, Time.valueOf(c.getHeure()));
             ps.setString(4, c.getStatut() != null ? c.getStatut() : "LIBRE");
+<<<<<<< HEAD
             ps.setObject(5, c.getPatientId());
+=======
+            ps.setObject(5, c.getPatientIdUser());
+>>>>>>> origin/gestion-cabinet
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -40,7 +48,11 @@ public class CreneauDAO {
      */
     public List<Creneau> findLibresByCabinetAndDateRange(int cabinetId, LocalDate dateDebut, LocalDate dateFin) {
         List<Creneau> liste = new ArrayList<>();
+<<<<<<< HEAD
         String sql = "SELECT c.id, c.disponibilite_id, c.date_creneau, c.heure, c.statut, c.patient_id " +
+=======
+        String sql = "SELECT c.id, c.disponibilite_id, c.date_creneau, c.heure, c.statut, c.patient_id_user " +
+>>>>>>> origin/gestion-cabinet
                 "FROM creneau c JOIN disponibilite d ON c.disponibilite_id = d.id " +
                 "WHERE d.cabinet_id = ? AND c.date_creneau >= ? AND c.date_creneau <= ? AND c.statut = 'LIBRE' " +
                 "ORDER BY c.date_creneau, c.heure";
@@ -60,7 +72,11 @@ public class CreneauDAO {
     }
 
     public Optional<Creneau> findById(int id) {
+<<<<<<< HEAD
         String sql = "SELECT id, disponibilite_id, date_creneau, heure, statut, patient_id FROM creneau WHERE id = ?";
+=======
+        String sql = "SELECT id, disponibilite_id, date_creneau, heure, statut, patient_id_user FROM creneau WHERE id = ?";
+>>>>>>> origin/gestion-cabinet
         try (Connection conn = Connexion.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
@@ -79,7 +95,11 @@ public class CreneauDAO {
      * Retourne true si le créneau était LIBRE et a été réservé.
      */
     public boolean reserver(int creneauId, int patientId) {
+<<<<<<< HEAD
         String sql = "UPDATE creneau SET statut = 'RESERVE', patient_id = ? WHERE id = ? AND statut = 'LIBRE'";
+=======
+        String sql = "UPDATE creneau SET statut = 'RESERVE', patient_id_user = ? WHERE id = ? AND statut = 'LIBRE'";
+>>>>>>> origin/gestion-cabinet
         try (Connection conn = Connexion.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, patientId);
@@ -124,8 +144,13 @@ public class CreneauDAO {
         Time t = rs.getTime("heure");
         c.setHeure(t != null ? t.toLocalTime() : null);
         c.setStatut(rs.getString("statut"));
+<<<<<<< HEAD
         int pid = rs.getInt("patient_id");
         c.setPatientId(rs.wasNull() ? null : pid);
+=======
+        int pid = rs.getInt("patient_id_user");
+        c.setPatientIdUser(rs.wasNull() ? null : pid);
+>>>>>>> origin/gestion-cabinet
         return c;
     }
 }

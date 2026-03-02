@@ -18,6 +18,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+<<<<<<< HEAD
         // Initialiser les données de test
         DbInitializer.initialize();
 
@@ -38,13 +39,24 @@ public class MainApp extends Application {
         }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+=======
+        SceneManager.setPrimaryStage(primaryStage);
+        // L'initialisation de la base et la gestion des comptes sont assurées
+        // par le module central (pschologie_app). Ici, on démarre sur la Home.
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));
+>>>>>>> origin/gestion-cabinet
         Parent root = loader.load();
 
         Scene scene = new Scene(root, 500, 500);
         scene.getStylesheets().clear();
         scene.getStylesheets().add(getClass().getResource("/css/modern-theme.css").toExternalForm());
 
+<<<<<<< HEAD
         primaryStage.setTitle("Gestion Cabinet - Connexion");
+=======
+        primaryStage.setTitle("Plateforme Psychologie - Accueil");
+>>>>>>> origin/gestion-cabinet
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(500);

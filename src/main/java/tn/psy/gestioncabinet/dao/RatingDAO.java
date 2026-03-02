@@ -19,11 +19,19 @@ public class RatingDAO {
         if (rating == null || rating.getNote() < 1 || rating.getNote() > 5) {
             return false;
         }
+<<<<<<< HEAD
         String sql = "INSERT INTO rating (patient_id, cabinet_id, note) VALUES (?, ?, ?) "
                 + "ON DUPLICATE KEY UPDATE note = VALUES(note)";
         try (Connection conn = Connexion.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, rating.getPatientId());
+=======
+        String sql = "INSERT INTO rating (patient_id_user, cabinet_id, note) VALUES (?, ?, ?) "
+                + "ON DUPLICATE KEY UPDATE note = VALUES(note)";
+        try (Connection conn = Connexion.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, rating.getPatientIdUser());
+>>>>>>> origin/gestion-cabinet
             ps.setInt(2, rating.getCabinetId());
             ps.setInt(3, rating.getNote());
             return ps.executeUpdate() > 0;
@@ -37,7 +45,11 @@ public class RatingDAO {
      * Récupère la note du patient pour le cabinet, s'il en a déjà donné une.
      */
     public Optional<Rating> findByPatientEtCabinet(int patientId, int cabinetId) {
+<<<<<<< HEAD
         String sql = "SELECT id, patient_id, cabinet_id, note FROM rating WHERE patient_id = ? AND cabinet_id = ?";
+=======
+        String sql = "SELECT id, patient_id_user, cabinet_id, note FROM rating WHERE patient_id_user = ? AND cabinet_id = ?";
+>>>>>>> origin/gestion-cabinet
         try (Connection conn = Connexion.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, patientId);
@@ -92,7 +104,11 @@ public class RatingDAO {
     private Rating mapResultSet(ResultSet rs) throws SQLException {
         Rating r = new Rating();
         r.setId(rs.getInt("id"));
+<<<<<<< HEAD
         r.setPatientId(rs.getInt("patient_id"));
+=======
+        r.setPatientIdUser(rs.getInt("patient_id_user"));
+>>>>>>> origin/gestion-cabinet
         r.setCabinetId(rs.getInt("cabinet_id"));
         r.setNote(rs.getInt("note"));
         return r;

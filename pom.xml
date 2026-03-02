@@ -89,11 +89,14 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>tn.psy.gestioncabinet.gui.MainApp</mainClass>
+<<<<<<< HEAD
                     <!-- Correction WebView / IllegalAccessError :
                          on exporte le package interne com.sun.javafx.sg.prism vers le module non nommé -->
                     <jvmArgs>
                         <arg>--add-exports=javafx.graphics/com.sun.javafx.sg.prism=ALL-UNNAMED</arg>
                     </jvmArgs>
+=======
+>>>>>>> origin/gestion-cabinet
                 </configuration>
             </plugin>
             <plugin>

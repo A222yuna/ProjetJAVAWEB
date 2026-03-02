@@ -121,7 +121,15 @@ public class AddCabinetController {
 
         int id = cabinetService.ajouterCabinet(cabinet, idPsychologue);
         if (id > 0) {
+<<<<<<< HEAD
             new Alert(Alert.AlertType.INFORMATION, "Cabinet ajouté avec succès. Il sera visible après validation par l'administrateur.", ButtonType.OK).showAndWait();
+=======
+            new Alert(Alert.AlertType.INFORMATION,
+                    "Cabinet ajouté avec succès.\n"
+                            + "- Il apparaît immédiatement dans votre tableau (statut : En attente).\n"
+                            + "- Il sera visible par les patients après validation par l'administrateur.",
+                    ButtonType.OK).showAndWait();
+>>>>>>> origin/gestion-cabinet
             CabinetEventBus.getInstance().notifyCabinetChanged();
             fermer();
         } else {

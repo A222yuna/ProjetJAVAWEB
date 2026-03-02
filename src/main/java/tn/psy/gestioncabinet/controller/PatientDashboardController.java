@@ -20,12 +20,19 @@ import javafx.util.Duration;
 import tn.psy.gestioncabinet.controller.MapViewController;
 import tn.psy.gestioncabinet.controller.PriseRdvController;
 import tn.psy.gestioncabinet.model.Cabinet;
+<<<<<<< HEAD
 import tn.psy.gestioncabinet.model.Patient;
+=======
+>>>>>>> origin/gestion-cabinet
 import tn.psy.gestioncabinet.service.CabinetService;
 import tn.psy.gestioncabinet.service.MapService;
 import tn.psy.gestioncabinet.util.CabinetEventBus;
 import tn.psy.gestioncabinet.util.SceneManager;
 import tn.psy.gestioncabinet.util.SessionManager;
+<<<<<<< HEAD
+=======
+import tn.psy.gestioncabinet.util.AuthGuard;
+>>>>>>> origin/gestion-cabinet
 
 import java.io.IOException;
 import java.net.URL;
@@ -48,6 +55,7 @@ public class PatientDashboardController implements Initializable {
     @FXML private Button btnDeconnexion;
 
     private final CabinetService cabinetService = new CabinetService();
+<<<<<<< HEAD
     private Patient patient;
 
     @Override
@@ -56,6 +64,22 @@ public class PatientDashboardController implements Initializable {
         if (patient != null) {
             lblWelcome.setText(patient.getNom());
             lblWelcomeCard.setText("Bonjour, " + patient.getNom() + " !");
+=======
+    private int userId;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Contrôle d'accès : uniquement Patient
+        if (!AuthGuard.check(AuthGuard.RequiredRole.PATIENT)) {
+            new Alert(Alert.AlertType.ERROR, "Accès non autorisé pour ce rôle.", ButtonType.OK).showAndWait();
+            return;
+        }
+
+        userId = SessionManager.getInstance().getUserId();
+        if (userId > 0) {
+            lblWelcome.setText("Espace Patient");
+            lblWelcomeCard.setText("Bonjour !");
+>>>>>>> origin/gestion-cabinet
         }
 
         tfRecherche.setOnKeyPressed(e -> {
@@ -103,10 +127,17 @@ public class PatientDashboardController implements Initializable {
     }
 
     /**
+<<<<<<< HEAD
      * Retourne le patient connecté (pour la notation des cabinets).
      */
     public Patient getPatient() {
         return patient;
+=======
+     * Retourne l'id utilisateur du patient connecté (users.id_user).
+     */
+    public int getCurrentUserId() {
+        return userId;
+>>>>>>> origin/gestion-cabinet
     }
 
     private void rechercher() {
@@ -239,7 +270,11 @@ public class PatientDashboardController implements Initializable {
      * Ouvre le dialogue de prise de rendez-vous : créneaux libres et réservation.
      */
     public void prendreRendezVous(Cabinet cabinet) {
+<<<<<<< HEAD
         if (cabinet == null || patient == null) {
+=======
+        if (cabinet == null || userId <= 0) {
+>>>>>>> origin/gestion-cabinet
             new Alert(Alert.AlertType.WARNING, "Impossible d'ouvrir la réservation.", ButtonType.OK).showAndWait();
             return;
         }
@@ -247,7 +282,11 @@ public class PatientDashboardController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/prise_rdv.fxml"));
             Parent root = loader.load();
             PriseRdvController ctrl = loader.getController();
+<<<<<<< HEAD
             ctrl.setData(cabinet, patient, this::refresh);
+=======
+            ctrl.setData(cabinet, userId, this::refresh);
+>>>>>>> origin/gestion-cabinet
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -289,10 +328,13 @@ public class PatientDashboardController implements Initializable {
         // Se désabonner de l'EventBus avant de quitter
         CabinetEventBus.getInstance().unsubscribe(this::chargerCabinets);
         SessionManager.getInstance().clearSession();
+<<<<<<< HEAD
         try {
             SceneManager.loadScene("/fxml/login.fxml", "Connexion - Gestion Cabinet");
         } catch (IOException ex) {
             new Alert(Alert.AlertType.ERROR, "Impossible de se déconnecter.", ButtonType.OK).showAndWait();
         }
+=======
+>>>>>>> origin/gestion-cabinet
     }
 }

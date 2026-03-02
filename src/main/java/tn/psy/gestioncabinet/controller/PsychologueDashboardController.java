@@ -15,11 +15,18 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import tn.psy.gestioncabinet.model.Cabinet;
 import tn.psy.gestioncabinet.model.PsyCabinet;
+<<<<<<< HEAD
 import tn.psy.gestioncabinet.model.Psychologue;
+=======
+>>>>>>> origin/gestion-cabinet
 import tn.psy.gestioncabinet.service.CabinetService;
 import tn.psy.gestioncabinet.controller.AddDisponibiliteController;
 import tn.psy.gestioncabinet.util.SceneManager;
 import tn.psy.gestioncabinet.util.SessionManager;
+<<<<<<< HEAD
+=======
+import tn.psy.gestioncabinet.util.AuthGuard;
+>>>>>>> origin/gestion-cabinet
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,6 +56,7 @@ public class PsychologueDashboardController implements Initializable {
     @FXML private Button btnDeconnexion;
 
     private final CabinetService cabinetService = new CabinetService();
+<<<<<<< HEAD
     private Psychologue psychologue;
 
     @Override
@@ -57,6 +65,22 @@ public class PsychologueDashboardController implements Initializable {
         if (psychologue != null) {
             lblWelcome.setText("Dr. " + psychologue.getNom());
             lblWelcomeCard.setText("Bonjour, Dr. " + psychologue.getNom() + " !");
+=======
+    private int userId;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Contrôle d'accès : uniquement Psychologue
+        if (!AuthGuard.check(AuthGuard.RequiredRole.PSYCHOLOGUE)) {
+            showAlert(Alert.AlertType.ERROR, "Accès refusé", "Accès non autorisé pour ce rôle.");
+            return;
+        }
+
+        userId = SessionManager.getInstance().getUserId();
+        if (userId > 0) {
+            lblWelcome.setText("Espace Psychologue");
+            lblWelcomeCard.setText("Bonjour !");
+>>>>>>> origin/gestion-cabinet
         }
 
         colId.setCellValueFactory(new PropertyValueFactory<>("idCabinet"));
@@ -92,8 +116,13 @@ public class PsychologueDashboardController implements Initializable {
     }
 
     private void chargerCabinets() {
+<<<<<<< HEAD
         if (psychologue == null) return;
         List<PsyCabinet> cabinets = cabinetService.getCabinetsByPsychologue(psychologue.getIdPsy());
+=======
+        if (userId <= 0) return;
+        List<PsyCabinet> cabinets = cabinetService.getCabinetsByPsychologue(userId);
+>>>>>>> origin/gestion-cabinet
         tableCabinets.getItems().clear();
         tableCabinets.getItems().addAll(cabinets);
         
@@ -117,7 +146,11 @@ public class PsychologueDashboardController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add_cabinet.fxml"));
             Parent root = loader.load();
             AddCabinetController ctrl = loader.getController();
+<<<<<<< HEAD
             ctrl.setIdPsychologue(psychologue.getIdPsy());
+=======
+            ctrl.setIdPsychologue(userId);
+>>>>>>> origin/gestion-cabinet
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -226,11 +259,14 @@ public class PsychologueDashboardController implements Initializable {
     @FXML
     private void deconnexion() {
         SessionManager.getInstance().clearSession();
+<<<<<<< HEAD
         try {
             SceneManager.loadScene("/fxml/login.fxml", "Connexion - Gestion Cabinet");
         } catch (IOException ex) {
             showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible de se déconnecter.");
         }
+=======
+>>>>>>> origin/gestion-cabinet
     }
 
     private void showAlert(Alert.AlertType type, String title, String message) {

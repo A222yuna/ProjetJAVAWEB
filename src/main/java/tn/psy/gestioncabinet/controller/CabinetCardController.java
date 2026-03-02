@@ -5,7 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import tn.psy.gestioncabinet.model.Cabinet;
+<<<<<<< HEAD
 import tn.psy.gestioncabinet.model.Patient;
+=======
+>>>>>>> origin/gestion-cabinet
 import tn.psy.gestioncabinet.service.RatingService;
 
 /**
@@ -87,23 +90,38 @@ public class CabinetCardController {
         }
         if (boxEtoiles != null) {
             boxEtoiles.getChildren().clear();
+<<<<<<< HEAD
             Patient patient = parent != null ? parent.getPatient() : null;
             boolean dejaNote = patient != null && ratingService.aDejaNote(patient.getIdPatient(), cabinetId);
             if (patient != null && !dejaNote) {
+=======
+            int idUser = parent != null ? parent.getCurrentUserId() : 0;
+            boolean dejaNote = idUser > 0 && ratingService.aDejaNote(idUser, cabinetId);
+            if (idUser > 0 && !dejaNote) {
+>>>>>>> origin/gestion-cabinet
                 for (int note = 1; note <= 5; note++) {
                     Button star = new Button(STAR_EMPTY);
                     star.setStyle("-fx-background-color: transparent; -fx-font-size: 18px; -fx-cursor: hand;");
                     int n = note;
                     star.setOnAction(e -> {
+<<<<<<< HEAD
                         ratingService.noter(patient.getIdPatient(), cabinetId, n);
+=======
+                        ratingService.noter(idUser, cabinetId, n);
+>>>>>>> origin/gestion-cabinet
                         if (parent != null) {
                             parent.refresh();
                         }
                     });
                     boxEtoiles.getChildren().add(star);
                 }
+<<<<<<< HEAD
             } else if (patient != null && dejaNote) {
                 int notePatient = ratingService.getNotePatient(patient.getIdPatient(), cabinetId).orElse(0);
+=======
+            } else if (idUser > 0 && dejaNote) {
+                int notePatient = ratingService.getNotePatient(idUser, cabinetId).orElse(0);
+>>>>>>> origin/gestion-cabinet
                 Label vousAvezNote = new Label("Vous avez noté : " + notePatient + " " + STAR);
                 vousAvezNote.setStyle("-fx-font-size: 12px;");
                 boxEtoiles.getChildren().add(vousAvezNote);

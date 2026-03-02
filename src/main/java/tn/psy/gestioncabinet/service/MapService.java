@@ -83,6 +83,7 @@ public class MapService {
      */
     public static String buildLeafletMapHtml(double lat, double lon, String markerLabel) {
         String label = escapeHtml(markerLabel != null ? markerLabel : "Cabinet");
+<<<<<<< HEAD
         String latStr = Double.toString(lat);
         String lonStr = Double.toString(lon);
 
@@ -114,6 +115,33 @@ public class MapService {
                 .append("</html>\n");
 
         return sb.toString();
+=======
+        return """
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <meta charset="utf-8"/>
+              <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+              <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+              <style>
+                body { margin: 0; padding: 0; height: 100vh; }
+                #map { width: 100%; height: 100%; }
+              </style>
+            </head>
+            <body>
+              <div id="map"></div>
+              <script>
+                var map = L.map('map').setView([%s, %s], 16);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+                var marker = L.marker([%s, %s]).addTo(map);
+                marker.bindPopup("%s").openPopup();
+              </script>
+            </body>
+            </html>
+            """.formatted(lat, lon, lat, lon, label);
+>>>>>>> origin/gestion-cabinet
     }
 
     private static String escapeHtml(String s) {

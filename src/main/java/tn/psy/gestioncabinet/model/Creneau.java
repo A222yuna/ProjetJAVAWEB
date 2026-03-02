@@ -14,7 +14,14 @@ public class Creneau {
     private LocalDate dateCreneau;
     private LocalTime heure;
     private String statut; // LIBRE, RESERVE
+<<<<<<< HEAD
     private Integer patientId;
+=======
+    /**
+     * Identifiant de l'utilisateur patient (users.id_user), nullable si créneau libre.
+     */
+    private Integer patientIdUser;
+>>>>>>> origin/gestion-cabinet
 
     public Creneau() {
     }
@@ -59,12 +66,30 @@ public class Creneau {
         this.statut = statut;
     }
 
+<<<<<<< HEAD
     public Integer getPatientId() {
         return patientId;
     }
 
     public void setPatientId(Integer patientId) {
         this.patientId = patientId;
+=======
+    public Integer getPatientIdUser() {
+        return patientIdUser;
+    }
+
+    public void setPatientIdUser(Integer patientIdUser) {
+        this.patientIdUser = patientIdUser;
+    }
+
+    // Méthodes de compatibilité avec l'ancien nom getPatientId/setPatientId
+    public Integer getPatientId() {
+        return patientIdUser;
+    }
+
+    public void setPatientId(Integer patientId) {
+        this.patientIdUser = patientId;
+>>>>>>> origin/gestion-cabinet
     }
 
     public boolean isLibre() {

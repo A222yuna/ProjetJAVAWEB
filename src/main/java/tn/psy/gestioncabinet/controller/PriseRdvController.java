@@ -9,7 +9,10 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import tn.psy.gestioncabinet.model.Cabinet;
 import tn.psy.gestioncabinet.model.Creneau;
+<<<<<<< HEAD
 import tn.psy.gestioncabinet.model.Patient;
+=======
+>>>>>>> origin/gestion-cabinet
 import tn.psy.gestioncabinet.service.PlanningService;
 
 import java.time.LocalDate;
@@ -32,6 +35,7 @@ public class PriseRdvController {
 
     private final PlanningService planningService = new PlanningService();
     private Cabinet cabinet;
+<<<<<<< HEAD
     private Patient patient;
     private List<Creneau> creneaux;
     private Runnable onReserve;
@@ -39,6 +43,18 @@ public class PriseRdvController {
     public void setData(Cabinet cabinet, Patient patient, Runnable onReserve) {
         this.cabinet = cabinet;
         this.patient = patient;
+=======
+    /**
+     * Identifiant utilisateur du patient (users.id_user).
+     */
+    private int patientUserId;
+    private List<Creneau> creneaux;
+    private Runnable onReserve;
+
+    public void setData(Cabinet cabinet, int patientUserId, Runnable onReserve) {
+        this.cabinet = cabinet;
+        this.patientUserId = patientUserId;
+>>>>>>> origin/gestion-cabinet
         this.onReserve = onReserve;
         if (lblTitre != null && cabinet != null) {
             lblTitre.setText("Rendez-vous : " + (cabinet.getAdresse() != null ? cabinet.getAdresse() : "Cabinet"));
@@ -79,7 +95,11 @@ public class PriseRdvController {
 
     private void reserver() {
         int idx = listCreneaux.getSelectionModel().getSelectedIndex();
+<<<<<<< HEAD
         if (patient == null || cabinet == null || idx < 0 || creneaux == null || idx >= creneaux.size()) {
+=======
+        if (patientUserId <= 0 || cabinet == null || idx < 0 || creneaux == null || idx >= creneaux.size()) {
+>>>>>>> origin/gestion-cabinet
             return;
         }
         Creneau c = creneaux.get(idx);
@@ -87,7 +107,11 @@ public class PriseRdvController {
             afficherMessage("Ce créneau n'est plus disponible.");
             return;
         }
+<<<<<<< HEAD
         if (planningService.reserverCreneau(c.getId(), patient.getIdPatient())) {
+=======
+        if (planningService.reserverCreneau(c.getId(), patientUserId)) {
+>>>>>>> origin/gestion-cabinet
             new Alert(Alert.AlertType.INFORMATION, "Créneau réservé avec succès.", ButtonType.OK).showAndWait();
             if (onReserve != null) {
                 onReserve.run();

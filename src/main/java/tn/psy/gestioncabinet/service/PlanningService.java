@@ -67,8 +67,13 @@ public class PlanningService {
     /**
      * Réserve un créneau pour un patient. Retourne false si déjà réservé ou inexistant.
      */
+<<<<<<< HEAD
     public boolean reserverCreneau(int creneauId, int patientId) {
         return creneauDAO.reserver(creneauId, patientId);
+=======
+    public boolean reserverCreneau(int creneauId, int patientIdUser) {
+        return creneauDAO.reserver(creneauId, patientIdUser);
+>>>>>>> origin/gestion-cabinet
     }
 
     /**

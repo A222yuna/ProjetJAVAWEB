@@ -104,6 +104,7 @@ public class Cabinet {
     }
 
     public String getStatutTexte() {
+<<<<<<< HEAD
         if (archive) {
             return "Archivé";
         }
@@ -115,5 +116,29 @@ public class Cabinet {
      */
     public String getStatutArchiveTexte() {
         return archive ? "Archivé" : "Actif";
+=======
+        // Mapping combiné des deux flags vers un statut lisible :
+        // - valide = false, archive = false  -> EN_ATTENTE
+        // - valide = true,  archive = false  -> ACTIF
+        // - valide = false, archive = true   -> REFUSE
+        // - valide = true,  archive = true   -> ARCHIVE (cas administratif)
+        if (!valide && !archive) {
+            return "En attente";
+        }
+        if (valide && !archive) {
+            return "Actif";
+        }
+        if (!valide && archive) {
+            return "Refusé";
+        }
+        return "Archivé";
+    }
+
+    /**
+     * Texte pour la colonne Statut dans les tableaux d'administration.
+     */
+    public String getStatutArchiveTexte() {
+        return getStatutTexte();
+>>>>>>> origin/gestion-cabinet
     }
 }

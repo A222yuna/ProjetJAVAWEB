@@ -16,11 +16,19 @@ public class RatingService {
      * Enregistre ou met à jour la note d'un patient pour un cabinet (1 à 5).
      * Un patient ne peut noter qu'une fois par cabinet.
      */
+<<<<<<< HEAD
     public boolean noter(int patientId, int cabinetId, int note) {
         if (note < 1 || note > 5) {
             return false;
         }
         Rating r = new Rating(patientId, cabinetId, note);
+=======
+    public boolean noter(int patientIdUser, int cabinetId, int note) {
+        if (note < 1 || note > 5) {
+            return false;
+        }
+        Rating r = new Rating(patientIdUser, cabinetId, note);
+>>>>>>> origin/gestion-cabinet
         return ratingDAO.ajouterOuModifier(r);
     }
 
@@ -41,14 +49,24 @@ public class RatingService {
     /**
      * Indique si le patient a déjà noté ce cabinet.
      */
+<<<<<<< HEAD
     public boolean aDejaNote(int patientId, int cabinetId) {
         return ratingDAO.findByPatientEtCabinet(patientId, cabinetId).isPresent();
+=======
+    public boolean aDejaNote(int patientIdUser, int cabinetId) {
+        return ratingDAO.findByPatientEtCabinet(patientIdUser, cabinetId).isPresent();
+>>>>>>> origin/gestion-cabinet
     }
 
     /**
      * Note actuelle du patient pour ce cabinet (1-5), vide si pas encore noté.
      */
+<<<<<<< HEAD
     public Optional<Integer> getNotePatient(int patientId, int cabinetId) {
         return ratingDAO.findByPatientEtCabinet(patientId, cabinetId).map(Rating::getNote);
+=======
+    public Optional<Integer> getNotePatient(int patientIdUser, int cabinetId) {
+        return ratingDAO.findByPatientEtCabinet(patientIdUser, cabinetId).map(Rating::getNote);
+>>>>>>> origin/gestion-cabinet
     }
 }
