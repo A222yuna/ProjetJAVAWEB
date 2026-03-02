@@ -13,23 +13,26 @@ public class CommentaireDAO {
      * CREATE - Ajouter un nouveau commentaire (avec support threading)
      */
     public void addCommentaire(Commentaire commentaire) {
-        // ✅ UPDATED: Inclut parent_comment_id
-        String query = "INSERT INTO Commentaire (id_post, id_auteur, contenu, nb_likes, date, parent_comment_id) VALUES (?, ?, ?, ?, ?, ?)";
+        // ✅ UPDATED: Inclut auteur_id_user, auteur_role et parent_comment_id
+        String query = "INSERT INTO commentaire (id_post, auteur_id_user, auteur_role, contenu, nb_likes, date, parent_comment_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setInt(1, commentaire.getId_post());
+            // auteur_id_user
             pstmt.setInt(2, commentaire.getId_auteur());
-            pstmt.setString(3, commentaire.getContenu());
-            pstmt.setInt(4, commentaire.getNb_likes());
-            pstmt.setTimestamp(5, Timestamp.valueOf(commentaire.getDate()));
+            // auteur_role - par défaut Patient pour le forum
+            pstmt.setString(3, "Patient");
+            pstmt.setString(4, commentaire.getContenu());
+            pstmt.setInt(5, commentaire.getNb_likes());
+            pstmt.setTimestamp(6, Timestamp.valueOf(commentaire.getDate()));
 
             // ✅ NEW: parent_comment_id (peut être NULL pour top-level comments)
             if (commentaire.getParent_comment_id() == null) {
-                pstmt.setNull(6, Types.INTEGER);
+                pstmt.setNull(7, Types.INTEGER);
             } else {
-                pstmt.setInt(6, commentaire.getParent_comment_id());
+                pstmt.setInt(7, commentaire.getParent_comment_id());
             }
 
             int rowsAffected = pstmt.executeUpdate();
@@ -53,7 +56,7 @@ public class CommentaireDAO {
      */
     public List<Commentaire> getCommentairesByPost(int id_post) {
         List<Commentaire> commentaires = new ArrayList<>();
-        String query = "SELECT * FROM Commentaire WHERE id_post = ? ORDER BY date ASC";
+        String query = "SELECT id_comment, id_post, auteur_id_user, contenu, nb_likes, date, parent_comment_id FROM commentaire WHERE id_post = ? ORDER BY date ASC";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -65,7 +68,7 @@ public class CommentaireDAO {
                 Commentaire comment = new Commentaire();
                 comment.setId_comment(rs.getInt("id_comment"));
                 comment.setId_post(rs.getInt("id_post"));
-                comment.setId_auteur(rs.getInt("id_auteur"));
+                comment.setId_auteur(rs.getInt("auteur_id_user"));
                 comment.setContenu(rs.getString("contenu"));
                 comment.setDate(rs.getTimestamp("date").toLocalDateTime());
                 comment.setNb_likes(rs.getInt("nb_likes"));
@@ -91,7 +94,7 @@ public class CommentaireDAO {
      * READ - Récupérer un commentaire par ID
      */
     public Commentaire getCommentaireById(int id) {
-        String query = "SELECT * FROM Commentaire WHERE id_comment = ?";
+        String query = "SELECT id_comment, id_post, auteur_id_user, contenu, nb_likes, date, parent_comment_id FROM commentaire WHERE id_comment = ?";
         Commentaire commentaire = null;
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -104,7 +107,7 @@ public class CommentaireDAO {
                 commentaire = new Commentaire();
                 commentaire.setId_comment(rs.getInt("id_comment"));
                 commentaire.setId_post(rs.getInt("id_post"));
-                commentaire.setId_auteur(rs.getInt("id_auteur"));
+                commentaire.setId_auteur(rs.getInt("auteur_id_user"));
                 commentaire.setContenu(rs.getString("contenu"));
                 commentaire.setNb_likes(rs.getInt("nb_likes"));
                 commentaire.setDate(rs.getTimestamp("date").toLocalDateTime());
@@ -130,7 +133,7 @@ public class CommentaireDAO {
      * UPDATE - Modifier un commentaire
      */
     public void updateCommentaire(Commentaire commentaire) {
-        String query = "UPDATE Commentaire SET contenu = ?, nb_likes = ? WHERE id_comment = ?";
+        String query = "UPDATE commentaire SET contenu = ?, nb_likes = ? WHERE id_comment = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -157,7 +160,7 @@ public class CommentaireDAO {
      * DELETE - Supprimer un commentaire
      */
     public void deleteCommentaire(int id) {
-        String query = "DELETE FROM Commentaire WHERE id_comment = ?";
+        String query = "DELETE FROM commentaire WHERE id_comment = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -181,7 +184,7 @@ public class CommentaireDAO {
      * Incrémenter les likes d'un commentaire
      */
     public void incrementLikes(int id_comment) {
-        String query = "UPDATE Commentaire SET nb_likes = nb_likes + 1 WHERE id_comment = ?";
+        String query = "UPDATE commentaire SET nb_likes = nb_likes + 1 WHERE id_comment = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -203,7 +206,7 @@ public class CommentaireDAO {
      * Compter le nombre de commentaires d'un post
      */
     public int countCommentsByPost(int id_post) {
-        String query = "SELECT COUNT(*) as total FROM Commentaire WHERE id_post = ?";
+        String query = "SELECT COUNT(*) as total FROM commentaire WHERE id_post = ?";
         int count = 0;
 
         try (Connection conn = DatabaseConnection.getConnection();

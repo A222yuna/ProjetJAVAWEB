@@ -174,14 +174,16 @@ public class AddPostController {
             return false;
         }
 
-        if (titreField.getText().trim().length() < 3) {
-            showError("Validation", "Le titre doit contenir au moins 3 caractères.");
+        // Nouveau: au moins 10 lettres (A‑Z, a‑z, accents inclus) et pas d'autres caractères obligatoires
+        String title = titreField.getText().trim();
+        if (title.length() < 10) {
+            showError("Validation", "Le titre doit contenir au moins 10 lettres.");
             return false;
         }
 
-        // ✅ Titre doit contenir au moins 1 chiffre
-        if (!titreField.getText().matches(".*\\d.*")) {
-            showError("Validation", "Le titre doit contenir au moins un chiffre (0-9).");
+        // Autoriser uniquement les lettres et espaces
+        if (!title.matches("[\\p{L} ]+")) {
+            showError("Validation", "Le titre ne doit contenir que des lettres et des espaces.");
             return false;
         }
 

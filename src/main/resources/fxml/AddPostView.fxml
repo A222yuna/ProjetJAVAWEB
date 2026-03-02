@@ -12,7 +12,7 @@
     
     <!-- Header - BLUE -->
     <top>
-        <HBox style="-fx-background-color: #193764; -fx-padding: 22 30;" alignment="CENTER_LEFT" spacing="20">
+        <HBox style="-fx-background-color: #2e266d; -fx-padding: 22 30;" alignment="CENTER_LEFT" spacing="20">
             <Button text="back" onAction="#handleCancel" prefHeight="40" prefWidth="85"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-background-radius: 8; -fx-font-size: 15px; -fx-font-family: 'Georgia'; -fx-cursor: hand; -fx-border-color: white; -fx-border-radius: 8;"/>
             
@@ -69,7 +69,7 @@
                 <!-- Publish Button - BLUE -->
                 <HBox alignment="CENTER">
                     <Button text="publier" onAction="#handleSave" prefHeight="50" prefWidth="190"
-                            style="-fx-background-color: #193764; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 17px; -fx-font-family: 'Georgia'; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                        style="-fx-background-color: #2e266d; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 17px; -fx-font-family: 'Georgia'; -fx-font-weight: bold; -fx-cursor: hand;"/>
                 </HBox>
             </VBox>
         </VBox>

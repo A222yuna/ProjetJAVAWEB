@@ -14,17 +14,20 @@ public class PostDAO {
      * CREATE - Ajouter un nouveau post
      */
     public void addPost(Post post) {
-        String query = "INSERT INTO Post (id_auteur, titre, contenu, categorie, nb_likes, date) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO post (auteur_id_user, auteur_role, titre, contenu, categorie, nb_likes, date) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
+            // auteur_id_user
             pstmt.setInt(1, post.getId_auteur());
-            pstmt.setString(2, post.getTitre());
-            pstmt.setString(3, post.getContenu());
-            pstmt.setString(4, post.getCategorie());
-            pstmt.setInt(5, post.getNb_likes());
-            pstmt.setTimestamp(6, Timestamp.valueOf(post.getDate()));
+            // auteur_role - par défaut Patient pour le forum
+            pstmt.setString(2, "Patient");
+            pstmt.setString(3, post.getTitre());
+            pstmt.setString(4, post.getContenu());
+            pstmt.setString(5, post.getCategorie());
+            pstmt.setInt(6, post.getNb_likes());
+            pstmt.setTimestamp(7, Timestamp.valueOf(post.getDate()));
 
             int rowsAffected = pstmt.executeUpdate();
 
@@ -48,7 +51,7 @@ public class PostDAO {
      */
     public List<Post> getAllPosts() {
         List<Post> posts = new ArrayList<>();
-        String query = "SELECT * FROM Post ORDER BY date DESC";
+        String query = "SELECT id_post, auteur_id_user, titre, contenu, categorie, nb_likes, date FROM post ORDER BY date DESC";
 
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -57,7 +60,7 @@ public class PostDAO {
             while (rs.next()) {
                 Post post = new Post(
                         rs.getInt("id_post"),
-                        rs.getInt("id_auteur"),
+                        rs.getInt("auteur_id_user"),
                         rs.getString("titre"),
                         rs.getString("contenu"),
                         rs.getString("categorie"),
@@ -81,7 +84,7 @@ public class PostDAO {
      * READ - Récupérer un post par ID
      */
     public Post getPostById(int id) {
-        String query = "SELECT * FROM Post WHERE id_post = ?";
+        String query = "SELECT id_post, auteur_id_user, titre, contenu, categorie, nb_likes, date FROM post WHERE id_post = ?";
         Post post = null;
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -93,7 +96,7 @@ public class PostDAO {
             if (rs.next()) {
                 post = new Post(
                         rs.getInt("id_post"),
-                        rs.getInt("id_auteur"),
+                        rs.getInt("auteur_id_user"),
                         rs.getString("titre"),
                         rs.getString("contenu"),
                         rs.getString("categorie"),
@@ -118,7 +121,7 @@ public class PostDAO {
      */
     public List<Post> getPostsByCategory(String categorie) {
         List<Post> posts = new ArrayList<>();
-        String query = "SELECT * FROM Post WHERE categorie = ? ORDER BY date DESC";
+        String query = "SELECT id_post, auteur_id_user, titre, contenu, categorie, nb_likes, date FROM post WHERE categorie = ? ORDER BY date DESC";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -129,7 +132,7 @@ public class PostDAO {
             while (rs.next()) {
                 Post post = new Post(
                         rs.getInt("id_post"),
-                        rs.getInt("id_auteur"),
+                        rs.getInt("auteur_id_user"),
                         rs.getString("titre"),
                         rs.getString("contenu"),
                         rs.getString("categorie"),
@@ -153,7 +156,7 @@ public class PostDAO {
      * UPDATE - Modifier un post
      */
     public void updatePost(Post post) {
-        String query = "UPDATE Post SET titre = ?, contenu = ?, categorie = ? WHERE id_post = ?";
+        String query = "UPDATE post SET titre = ?, contenu = ?, categorie = ? WHERE id_post = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -181,7 +184,7 @@ public class PostDAO {
      * DELETE - Supprimer un post
      */
     public void deletePost(int id) {
-        String query = "DELETE FROM Post WHERE id_post = ?";
+        String query = "DELETE FROM post WHERE id_post = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -205,7 +208,7 @@ public class PostDAO {
      * Incrémenter les likes d'un post
      */
     public void incrementLikes(int id_post) {
-        String query = "UPDATE Post SET nb_likes = nb_likes + 1 WHERE id_post = ?";
+        String query = "UPDATE post SET nb_likes = nb_likes + 1 WHERE id_post = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -228,7 +231,7 @@ public class PostDAO {
      */
     public List<String> getAllCategories() {
         List<String> categories = new ArrayList<>();
-        String query = "SELECT DISTINCT categorie FROM Post ORDER BY categorie";
+        String query = "SELECT DISTINCT categorie FROM post ORDER BY categorie";
 
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();

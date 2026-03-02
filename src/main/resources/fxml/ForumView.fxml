@@ -10,21 +10,22 @@
             prefHeight="900.0" prefWidth="1400.0"
             style="-fx-background-color: #f1f2f1; -fx-font-family: 'Georgia';">
 
-    <!-- Header - BLUE avec bouton Accueil BIEN PLACÉ -->
+    <!-- Header - BLUE avec bouton Accueil un peu plus bas -->
     <top>
-        <VBox style="-fx-background-color: #193764;">
+        <VBox style="-fx-background-color: #2e266d;">
             <!-- Top bar avec bouton Accueil -->
-            <HBox alignment="CENTER_RIGHT" style="-fx-padding: 15 30 0 30;">
+            <!-- Augmenter le padding top pour descendre le bouton -->
+            <HBox alignment="CENTER_RIGHT" style="-fx-padding: 25 30 10 30;">
                 <Button text="🏠  Accueil" onAction="#handleReturnHome"
                         prefHeight="40" prefWidth="130"
-                        style="-fx-background-color: white; -fx-text-fill: #193764;
+                        style="-fx-background-color: white; -fx-text-fill: #2e266d;
                                -fx-font-family: 'Georgia'; -fx-font-size: 13px;
                                -fx-font-weight: bold; -fx-background-radius: 8;
                                -fx-cursor: hand;"/>
             </HBox>
 
             <!-- Titre et sous-titre -->
-            <VBox style="-fx-padding: 15 40 35 40;">
+            <VBox style="-fx-padding: 10 40 35 40;">
                 <Label text="forum de discussion" textFill="white">
                     <font>
                         <Font name="Georgia" size="44.0"/>
@@ -47,7 +48,7 @@
         <HBox spacing="0" style="-fx-background-color: #f1f2f1;">
 
             <!-- BLUE Sidebar -->
-            <VBox prefWidth="280" style="-fx-background-color: #193764; -fx-padding: 30 0;">
+            <VBox prefWidth="280" style="-fx-background-color: #2e266d; -fx-padding: 30 0;">
 
                 <Label text="Catégories" textFill="white"
                        style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-font-family: 'Georgia'; -fx-padding: 0 25;">
