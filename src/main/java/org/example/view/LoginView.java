@@ -20,17 +20,18 @@ public class LoginView {
         VBox root = new VBox(20);
         root.setPadding(new Insets(40));
         root.setAlignment(Pos.CENTER);
-        root.setStyle("-fx-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);");
+        // use angle-free gradient syntax to avoid parser warnings
+        root.setStyle("-fx-background: linear-gradient(from 0% 0% to 100% 100%, #667eea 0%, #764ba2 100%);");
 
         VBox cardBox = new VBox(20);
         cardBox.setPadding(new Insets(40));
         cardBox.setStyle("-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;");
         cardBox.setPrefWidth(400);
         cardBox.setMaxWidth(400);
-        cardBox.setStyle("-fx-background-color: white; " +
-                "-fx-border-radius: 10; " +
-                "-fx-background-radius: 10; " +
-                "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 15, 0, 0, 5);");
+        cardBox.setStyle("-fx-background-color: white; "
+                + "-fx-border-radius: 10; "
+                + "-fx-background-radius: 10; "
+                + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 15, 0, 0, 5);");
 
         // Title
         Label titleLabel = new Label("Appointment System");
@@ -67,16 +68,16 @@ public class LoginView {
         Button loginButton = new Button("Login");
         loginButton.setPrefWidth(150);
         loginButton.setPrefHeight(45);
-        loginButton.setStyle("-fx-font-size: 14; -fx-font-weight: bold; " +
-                "-fx-background-color: #667eea; -fx-text-fill: white; " +
-                "-fx-border-radius: 5; -fx-padding: 10;");
+        loginButton.setStyle("-fx-font-size: 14; -fx-font-weight: bold; "
+                + "-fx-background-color: #667eea; -fx-text-fill: white; "
+                + "-fx-border-radius: 5; -fx-padding: 10;");
 
         Button registerButton = new Button("Register");
         registerButton.setPrefWidth(150);
         registerButton.setPrefHeight(45);
-        registerButton.setStyle("-fx-font-size: 14; -fx-font-weight: bold; " +
-                "-fx-background-color: #f0f0f0; -fx-text-fill: #333; " +
-                "-fx-border-radius: 5; -fx-padding: 10;");
+        registerButton.setStyle("-fx-font-size: 14; -fx-font-weight: bold; "
+                + "-fx-background-color: #f0f0f0; -fx-text-fill: #333; "
+                + "-fx-border-radius: 5; -fx-padding: 10;");
 
         // Login button action
         loginButton.setOnAction(e -> {

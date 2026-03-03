@@ -9,6 +9,7 @@ import org.example.dao.UserDAO;
 import org.example.model.Appointment;
 import org.example.model.PsychologuePlan;
 import org.example.model.User;
+import org.example.util.NotificationService;
 import org.example.util.ValidationUtil;
 import org.example.util.session.SessionManager;
 
@@ -219,6 +220,13 @@ public class PsychologueDashboard {
                     confirm.showAndWait().ifPresent(r -> {
                         if (r == ButtonType.OK) {
                             if (AppointmentDAO.updateAppointmentStatus(appt.getId(), "CANCELLED")) {
+                                // Notify patient
+                                org.example.model.User patientUser = org.example.dao.UserDAO.getUserById(appt.getPatientId());
+                                if (patientUser != null) {
+                                    NotificationService.notifyAppointmentCancelled(
+                                            patientUser.getFullName(), patientUser.getEmail(), patientUser.getPhone(),
+                                            appt.getDayOfWeek(), appt.getPeriod(), SessionManager.getCurrentUser().getFullName());
+                                }
                                 appt.setStatus("CANCELLED");
                                 getTableView().refresh();
                             } else {

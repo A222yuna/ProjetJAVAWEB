@@ -68,19 +68,49 @@ public class RegisterView {
         nameField.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         Label nameError = makeErrorLabel();
 
-        Label emailLabel = new Label("Email (optional)");
+        // ── Contact info hint ─────────────────────────────────────────────────
+        Label contactHint = new Label("⚠ At least one contact (email or phone) is required for appointment notifications.");
+        contactHint.setWrapText(true);
+        contactHint.setStyle("-fx-font-size: 10; -fx-text-fill: #e67e22; "
+                + "-fx-background-color: #fff3cd; -fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;");
+
+        Label emailLabel = new Label("Email");
         emailLabel.setStyle("-fx-font-size: 11; -fx-font-weight: bold;");
         TextField emailField = new TextField();
         emailField.setPromptText("name@example.com");
         emailField.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         Label emailError = makeErrorLabel();
 
-        Label phoneLabel = new Label("Phone (optional)");
+        Label phoneLabel = new Label("Phone");
         phoneLabel.setStyle("-fx-font-size: 11; -fx-font-weight: bold;");
         TextField phoneField = new TextField();
         phoneField.setPromptText("+216 50 123 456");
         phoneField.setStyle("-fx-padding: 8; -fx-font-size: 12;");
         Label phoneError = makeErrorLabel();
+
+        // Live update: clear the "at least one" error when user types in either field
+        emailField.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.trim().isEmpty() || !phoneField.getText().trim().isEmpty()) {
+                contactHint.setStyle("-fx-font-size: 10; -fx-text-fill: #2e7d32; "
+                        + "-fx-background-color: #e8f5e9; -fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;");
+                contactHint.setText("✓ Contact info provided – you will receive appointment notifications.");
+            } else {
+                contactHint.setStyle("-fx-font-size: 10; -fx-text-fill: #e67e22; "
+                        + "-fx-background-color: #fff3cd; -fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;");
+                contactHint.setText("⚠ At least one contact (email or phone) is required for appointment notifications.");
+            }
+        });
+        phoneField.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.trim().isEmpty() || !emailField.getText().trim().isEmpty()) {
+                contactHint.setStyle("-fx-font-size: 10; -fx-text-fill: #2e7d32; "
+                        + "-fx-background-color: #e8f5e9; -fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;");
+                contactHint.setText("✓ Contact info provided – you will receive appointment notifications.");
+            } else {
+                contactHint.setStyle("-fx-font-size: 10; -fx-text-fill: #e67e22; "
+                        + "-fx-background-color: #fff3cd; -fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;");
+                contactHint.setText("⚠ At least one contact (email or phone) is required for appointment notifications.");
+            }
+        });
 
         Label roleLabel = new Label("Role *");
         roleLabel.setStyle("-fx-font-size: 11; -fx-font-weight: bold;");
@@ -188,6 +218,14 @@ public class RegisterView {
                 hasError = true;
             }
 
+            // ── At least one contact required ────────────────────────────────
+            if (email.isEmpty() && phone.isEmpty()) {
+                contactHint.setStyle("-fx-font-size: 10; -fx-text-fill: white; "
+                        + "-fx-background-color: #e74c3c; -fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;");
+                contactHint.setText("\u274C You must provide at least an email or a phone number.");
+                hasError = true;
+            }
+
             if (hasError) {
                 statusLabel.setTextFill(Color.RED);
                 statusLabel.setText("Please fix the errors above before registering.");
@@ -232,6 +270,7 @@ public class RegisterView {
                 usernameLabel, usernameField, usernameError,
                 passwordLabel, passwordField, passwordError,
                 nameLabel, nameField, nameError,
+                contactHint,
                 emailLabel, emailField, emailError,
                 phoneLabel, phoneField, phoneError,
                 roleLabel, roleCombo,

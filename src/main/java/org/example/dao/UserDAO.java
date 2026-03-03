@@ -128,4 +128,27 @@ public class UserDAO {
         }
         return patients;
     }
+
+    /**
+     * Updates the optional contact information (email/phone) for the given user.
+     * Either parameter may be null to clear that field.
+     *
+     * @param userId the id of the user to update
+     * @param email  new email or null
+     * @param phone  new phone or null
+     * @return true if the update succeeded
+     */
+    public static boolean updateContactInfo(int userId, String email, String phone) {
+        String query = "UPDATE users SET email = ?, phone = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, email);
+            ps.setString(2, phone);
+            ps.setInt(3, userId);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
