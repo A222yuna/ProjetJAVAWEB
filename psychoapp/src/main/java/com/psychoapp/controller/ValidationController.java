@@ -2,13 +2,24 @@ package com.psychoapp.controller;
 
 import com.psychoapp.model.Utilisateur;
 import com.psychoapp.util.DatabaseConnection;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.awt.Color;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -105,4 +116,59 @@ public class ValidationController implements Initializable {
     }
 
     @FXML private void handleRefresh() { loadUsers(filterCombo.getValue()); }
+
+    @FXML
+    private void handleExportPdf() {
+        if (list.isEmpty()) {
+            new Alert(Alert.AlertType.INFORMATION, "Aucune donnee a exporter. Choisissez un filtre (ex: approuve) et rafraichissez.").showAndWait();
+            return;
+        }
+        String filtre = filterCombo.getValue();
+        String defaultName = "psychologues_" + filtre + ".pdf";
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Enregistrer la liste en PDF");
+        fc.setInitialFileName(defaultName);
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
+        java.io.File file = fc.showSaveDialog(tableView.getScene().getWindow());
+        if (file == null) return;
+        String path = file.getAbsolutePath();
+        if (!path.toLowerCase().endsWith(".pdf")) path += ".pdf";
+
+        try (FileOutputStream fos = new FileOutputStream(path)) {
+            Document document = new Document(PageSize.A4.rotate());
+            PdfWriter.getInstance(document, fos);
+            document.open();
+
+            PdfPTable table = new PdfPTable(6);
+            table.setWidthPercentage(100f);
+            table.setSpacingBefore(12f);
+            table.setSpacingAfter(12f);
+            float[] widths = {0.8f, 1.5f, 1.5f, 2.2f, 1.5f, 1.2f};
+            table.setWidths(widths);
+
+            String[] headers = {"ID", "Nom", "Prenom", "Email", "Inscription", "Statut"};
+            for (String h : headers) {
+                PdfPCell cell = new PdfPCell(new Phrase(h));
+                cell.setBackgroundColor(new Color(220, 220, 220));
+                table.addCell(cell);
+            }
+            for (Utilisateur u : list) {
+                table.addCell(String.valueOf(u.getIdUser()));
+                table.addCell(u.getNom() != null ? u.getNom() : "");
+                table.addCell(u.getPrenom() != null ? u.getPrenom() : "");
+                table.addCell(u.getEmail() != null ? u.getEmail() : "");
+                table.addCell(u.getDateInscription() != null ? u.getDateInscription().toString() : "");
+                table.addCell(u.getStatutValidation() != null ? u.getStatutValidation() : "");
+            }
+            document.add(new Phrase("Liste des psychologues - filtre: " + filtre + " (" + list.size() + ")\n\n"));
+            document.add(table);
+            document.close();
+
+            if (statusLabel != null) statusLabel.setText("PDF enregistre: " + path);
+            new Alert(Alert.AlertType.INFORMATION, "PDF enregistre:\n" + path).showAndWait();
+        } catch (DocumentException | IOException e) {
+            if (statusLabel != null) statusLabel.setText("Erreur export: " + e.getMessage());
+            new Alert(Alert.AlertType.ERROR, "Erreur lors de l'export PDF: " + e.getMessage()).showAndWait();
+        }
+    }
 }
