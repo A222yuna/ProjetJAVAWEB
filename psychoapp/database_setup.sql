@@ -23,3 +23,4 @@ UPDATE users SET mot_de_passe = '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad
 
 -- Check result:
 SELECT id_user, nom, prenom, email, role, statut_validation FROM users;
+

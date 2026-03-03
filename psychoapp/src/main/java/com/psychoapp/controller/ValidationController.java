@@ -51,7 +51,7 @@ public class ValidationController implements Initializable {
                 switch (item) {
                     case "approuve" -> { setText("✔ Approuvé");  setStyle("-fx-text-fill:#38a169;-fx-font-weight:bold;"); }
                     case "rejete"   -> { setText("✘ Rejeté");    setStyle("-fx-text-fill:#e53e3e;-fx-font-weight:bold;"); }
-                    default         -> { setText("⏳ En attente"); setStyle("-fx-text-fill:#d69e2e;-fx-font-weight:bold;"); }
+                    default         -> { setText(" En attente"); setStyle("-fx-text-fill:#d69e2e;-fx-font-weight:bold;"); }
                 }
             }
         });
@@ -65,7 +65,7 @@ public class ValidationController implements Initializable {
             // Check if column exists first
             ResultSet check = conn.getMetaData().getColumns(null, null, "users", "statut_validation");
             if (!check.next()) {
-                statusLabel.setText("⚠️  Colonne statut_validation manquante. Exécutez le SQL de setup.");
+                statusLabel.setText("⚠  Colonne statut_validation manquante. Exécutez le SQL de setup.");
                 return;
             }
             PreparedStatement ps = conn.prepareStatement(sql);

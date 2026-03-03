@@ -14,6 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.chart.PieChart;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
@@ -39,6 +41,7 @@ public class UtilisateurController implements Initializable {
     @FXML private Label                               statusLabel;
     @FXML private Label                               labelCurrentUser;
     @FXML private Tab                                 tabValidation;
+    @FXML private Tab                                 tabLoginHistory;
 
     // Form fields
     @FXML private TextField      fieldNom;
@@ -61,11 +64,18 @@ public class UtilisateurController implements Initializable {
             loadAllUsers();
             Utilisateur current = Session.getCurrentUser();
             if (labelCurrentUser != null && current != null) {
-                labelCurrentUser.setText("👤 " + current.getPrenom() + " " + current.getNom()
-                        + "  |  " + current.getRole());
+                labelCurrentUser.setText(
+                        "Utilisateur : " + current.getPrenom() + " " + current.getNom()
+                                + "  |  " + current.getRole()
+                );
             }
-            if (tabValidation != null && !Session.isAdmin()) {
-                tabValidation.getTabPane().getTabs().remove(tabValidation);
+            if (!Session.isAdmin()) {
+                if (tabValidation != null) {
+                    tabValidation.getTabPane().getTabs().remove(tabValidation);
+                }
+                if (tabLoginHistory != null) {
+                    tabLoginHistory.getTabPane().getTabs().remove(tabLoginHistory);
+                }
             }
         }
         if (comboRole != null) {
@@ -109,6 +119,35 @@ public class UtilisateurController implements Initializable {
     }
 
     @FXML private void handleRefresh() { loadAllUsers(); }
+
+    @FXML private void handleShowStats() {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Statistiques des utilisateurs par role");
+
+        PieChart chart = new PieChart();
+        chart.setTitle("Utilisateurs par role");
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(
+                     "SELECT role, COUNT(*) AS total FROM users GROUP BY role");
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                String role = rs.getString("role");
+                int count   = rs.getInt("total");
+                String label = role + " (" + count + ")";
+                chart.getData().add(new PieChart.Data(label, count));
+            }
+        } catch (SQLException e) {
+            showError("Erreur statistiques : " + e.getMessage());
+        }
+
+        BorderPane root = new BorderPane(chart);
+        root.setPrefSize(500, 400);
+
+        stage.setScene(new Scene(root, 500, 400));
+        stage.showAndWait();
+    }
 
     private void filterTable(String kw) {
         if (kw == null || kw.isBlank()) { tableView.setItems(utilisateurs); return; }
@@ -277,8 +316,13 @@ public class UtilisateurController implements Initializable {
         if (fieldNom.getText().isBlank() || fieldPrenom.getText().isBlank() || fieldEmail.getText().isBlank()) {
             errorLabel.setText("Nom, prénom et email sont obligatoires."); return false;
         }
+        // Création : mot de passe obligatoire
         if (selectedUser == null && fieldPassword.getText().isBlank()) {
             errorLabel.setText("Mot de passe obligatoire."); return false;
+        }
+        // Création ou modification : si un mot de passe est saisi, il doit avoir au moins 6 caractères
+        if (!fieldPassword.getText().isBlank() && fieldPassword.getText().length() < 6) {
+            errorLabel.setText("Mot de passe : minimum 6 caractères."); return false;
         }
         if (!fieldEmail.getText().matches("^[\\w.+-]+@[\\w-]+\\.[a-zA-Z]{2,}$")) {
             errorLabel.setText("Format email invalide."); return false;
@@ -289,7 +333,7 @@ public class UtilisateurController implements Initializable {
     @FXML private void handleCancel() { closeForm(); }
     private void closeForm() { ((Stage) fieldNom.getScene().getWindow()).close(); }
     private void setStatus(String m) { if (statusLabel != null) statusLabel.setText(m); }
-    private void showError(String m) { if (statusLabel != null) statusLabel.setText("❌ " + m); }
+    private void showError(String m) { if (statusLabel != null) statusLabel.setText(" " + m); }
     private void showAlert(String m) {
         Alert a = new Alert(Alert.AlertType.WARNING); a.setHeaderText(null); a.setContentText(m); a.showAndWait();
     }

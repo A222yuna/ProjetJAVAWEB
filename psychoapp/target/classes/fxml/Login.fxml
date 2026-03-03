@@ -17,7 +17,7 @@
         <padding><Insets top="40" right="36" bottom="36" left="36"/></padding>
 
         <!-- Logo / Title -->
-        <Label text="🧠" style="-fx-font-size: 44px;"/>
+        <Label text="" style="-fx-font-size: 44px;"/>
         <Label text="PsychoApp" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2d3748;"/>
         <Label text="Connectez-vous à votre compte"
                style="-fx-font-size: 13px; -fx-text-fill: #718096;"/>

@@ -27,9 +27,9 @@
         <TextField fx:id="fieldNom" promptText="Nom de famille"
                    GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-        <!-- Prénom -->
-        <Label text="Prénom *" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label"/>
-        <TextField fx:id="fieldPrenom" promptText="Prénom"
+        <!-- Prenom -->
+        <Label text="Prenom *" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label"/>
+        <TextField fx:id="fieldPrenom" promptText="Prenom"
                    GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
         <!-- Email -->
@@ -42,8 +42,8 @@
         <PasswordField fx:id="fieldPassword" promptText="Laisser vide pour ne pas changer"
                        GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-        <!-- Rôle -->
-        <Label text="Rôle *" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label"/>
+        <!-- Role -->
+        <Label text="Role *" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label"/>
         <ComboBox fx:id="comboRole" maxWidth="Infinity"
                   GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
@@ -63,6 +63,6 @@
     <!-- Buttons -->
     <HBox spacing="10" alignment="CENTER_RIGHT">
         <Button text="Annuler" onAction="#handleCancel" styleClass="btn-secondary"/>
-        <Button text="💾  Enregistrer" onAction="#handleSave" styleClass="btn-primary"/>
+        <Button text="  Enregistrer" onAction="#handleSave" styleClass="btn-primary"/>
     </HBox>
 </VBox>

@@ -15,7 +15,7 @@
                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 20, 0, 0, 4);">
         <padding><Insets top="32" right="36" bottom="32" left="36"/></padding>
 
-        <Label text="🧠" style="-fx-font-size: 36px;"/>
+        <Label text="" style="-fx-font-size: 36px;"/>
         <Label text="Créer un compte" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d3748;"/>
 
         <Separator/>
