@@ -2,6 +2,7 @@ package com.psychoapp.controller;
 
 import com.psychoapp.model.Utilisateur;
 import com.psychoapp.util.DatabaseConnection;
+import com.psychoapp.util.EmailService;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.PageSize;
@@ -111,6 +112,13 @@ public class ValidationController implements Initializable {
             ps.setString(1, statut);
             ps.setInt(2, u.getIdUser());
             ps.executeUpdate();
+            // If the admin just approved a psychologist, send a welcome email
+            if ("approuve".equals(statut)) {
+                String fullName = (u.getPrenom() != null ? u.getPrenom() : "") +
+                        " " +
+                        (u.getNom() != null ? u.getNom() : "");
+                EmailService.sendWelcomePsychologist(u.getEmail(), fullName.trim());
+            }
             loadUsers(filterCombo.getValue());
         } catch (SQLException e) { statusLabel.setText("Erreur : " + e.getMessage()); }
     }

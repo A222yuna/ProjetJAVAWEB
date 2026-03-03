@@ -1,3 +1,4 @@
+com\psychoapp\util\EmailService.class
 com\psychoapp\controller\RegisterController.class
 com\psychoapp\model\Utilisateur.class
 com\psychoapp\controller\LoginHistoryController.class
