@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.patient.PatientCreneauController"
+      style="-fx-background-color: #f4f2ee;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Réserver un créneau" styleClass="label-header" style="-fx-font-size: 20;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Mes créneaux" styleClass="btn-secondary" onAction="#showMyCreneaux"/>
+    </HBox>
+
+    <HBox spacing="20">
+        <!-- Booking Form -->
+        <VBox spacing="15" styleClass="stat-card" prefWidth="400">
+            <VBox spacing="5">
+                <Label text="DISPONIBILITÉ" styleClass="filter-label"/>
+                <ComboBox fx:id="disponibiliteComboBox" maxWidth="Infinity" prefHeight="35"/>
+            </VBox>
+            
+            <HBox spacing="10">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="DATE" styleClass="filter-label"/>
+                    <DatePicker fx:id="datePicker" maxWidth="Infinity" prefHeight="35"/>
+                </VBox>
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="HEURE" styleClass="filter-label"/>
+                    <TextField fx:id="heureField" promptText="HH:mm" prefHeight="35"/>
+                </VBox>
+            </HBox>
+
+            <Button text="Réserver" onAction="#handleBooking" maxWidth="Infinity" styleClass="btn-primary" prefHeight="40"/>
+        </VBox>
+
+        <!-- Availability Info -->
+        <VBox spacing="15" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <Label text="APERÇU DES DISPONIBILITÉS" styleClass="stat-label"/>
+            <TableView fx:id="dispoTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn"      text="ID"       prefWidth="40"/>
+                    <TableColumn fx:id="cabinetColumn" text="Cabinet"  prefWidth="200"/>
+                    <TableColumn fx:id="jourColumn"    text="Jour"     prefWidth="90"/>
+                    <TableColumn fx:id="fenetreColumn" text="Fenêtre"  prefWidth="120"/>
+                    <TableColumn fx:id="dureeColumn"   text="Durée (min)" prefWidth="90"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </HBox>
+
+</VBox>

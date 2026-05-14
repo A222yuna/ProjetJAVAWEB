@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.admin.AdminForumController"
+      style="-fx-background-color: #f4f2ee;">
+    
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Administration" styleClass="label-header" style="-fx-font-size: 18;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+ Nouveau Post" onAction="#handleNewPost" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 15; -fx-cursor: hand;"/>
+        <Label text="10 May 2026" styleClass="stat-label-admin"/>
+    </HBox>
+
+    <Label text="Gestion du Forum : Publications" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
+
+    <HBox spacing="15" styleClass="stat-card-admin" style="-fx-padding: 20;">
+        <TextField fx:id="searchField" promptText="Rechercher par titre ou contenu..." HBox.hgrow="ALWAYS" style="-fx-background-radius: 5; -fx-padding: 8;"/>
+        <ComboBox fx:id="sortCombo" prefWidth="200" style="-fx-background-radius: 5;"/>
+        <Button text="Filtrer" onAction="#applyFilters" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 20; -fx-cursor: hand;"/>
+    </HBox>
+
+    <VBox styleClass="stat-card-admin" VBox.vgrow="ALWAYS" style="-fx-padding: 0;">
+        <TableView fx:id="postTable" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+            <columns>
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="150"/>
+                <TableColumn fx:id="titreColumn" text="Titre" prefWidth="250"/>
+                <TableColumn fx:id="auteurColumn" text="Auteur" prefWidth="250"/>
+                <TableColumn fx:id="categorieColumn" text="Catégorie" prefWidth="250"/>
+                <TableColumn fx:id="statsColumn" text="Stats" prefWidth="120"/>
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</VBox>

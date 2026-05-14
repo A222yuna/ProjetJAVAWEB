@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.ProgramController"
+      style="-fx-background-color: #f8f9fa;">
+
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <VBox spacing="8">
+            <Label text="Mes programmes bien-être" styleClass="label-header"/>
+            <Label text="Gérez vos programmes de bien-être et les activités associées." styleClass="stat-label"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="newProgramBtn" text="+ Nouveau programme" styleClass="btn-primary" onAction="#handleNewProgram" visible="false" managed="false"/>
+    </HBox>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;">
+        <FlowPane fx:id="programsContainer" hgap="26" vgap="26" prefWrapLength="950">
+            <padding>
+                <Insets bottom="20"/>
+            </padding>
+        </FlowPane>
+    </ScrollPane>
+</VBox>

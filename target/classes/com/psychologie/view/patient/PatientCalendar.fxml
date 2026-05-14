@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.patient.PatientCalendarController"
+      spacing="0"
+      style="-fx-background-color: #f4f2ee;">
+
+    <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+
+    <!-- Title + legend -->
+    <HBox alignment="CENTER_LEFT" spacing="16" style="-fx-padding: 0 0 14 0;">
+        <Label text="Mon Calendrier de Soins"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <HBox spacing="12" alignment="CENTER">
+            <HBox spacing="4" alignment="CENTER">
+                <Label text="●" style="-fx-text-fill: #f5a623; -fx-font-size: 14px;"/>
+                <Label text="Prévu"     style="-fx-font-size: 11px; -fx-text-fill: #5a6560;"/>
+            </HBox>
+            <HBox spacing="4" alignment="CENTER">
+                <Label text="●" style="-fx-text-fill: #17a2b8; -fx-font-size: 14px;"/>
+                <Label text="Confirmé"  style="-fx-font-size: 11px; -fx-text-fill: #5a6560;"/>
+            </HBox>
+            <HBox spacing="4" alignment="CENTER">
+                <Label text="●" style="-fx-text-fill: #8e44ad; -fx-font-size: 14px;"/>
+                <Label text="Payé"      style="-fx-font-size: 11px; -fx-text-fill: #5a6560;"/>
+            </HBox>
+            <HBox spacing="4" alignment="CENTER">
+                <Label text="●" style="-fx-text-fill: #2a6f5b; -fx-font-size: 14px;"/>
+                <Label text="Terminé"   style="-fx-font-size: 11px; -fx-text-fill: #5a6560;"/>
+            </HBox>
+            <HBox spacing="4" alignment="CENTER">
+                <Label text="●" style="-fx-text-fill: #e74c3c; -fx-font-size: 14px;"/>
+                <Label text="Annulé"    style="-fx-font-size: 11px; -fx-text-fill: #5a6560;"/>
+            </HBox>
+        </HBox>
+    </HBox>
+
+    <!-- Nav bar -->
+    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 0 0 14 0;">
+        <Button text="‹" onAction="#handlePrev"
+                style="-fx-font-size:18px; -fx-background-color:#2a6f5b; -fx-text-fill:white;
+                       -fx-background-radius:6; -fx-cursor:hand; -fx-min-width:36; -fx-min-height:36;"/>
+        <Button text="›" onAction="#handleNext"
+                style="-fx-font-size:18px; -fx-background-color:#2a6f5b; -fx-text-fill:white;
+                       -fx-background-radius:6; -fx-cursor:hand; -fx-min-width:36; -fx-min-height:36;"/>
+        <Button text="Aujourd'hui" onAction="#handleToday"
+                style="-fx-background-color:white; -fx-border-color:#ced4da; -fx-border-radius:6;
+                       -fx-background-radius:6; -fx-cursor:hand; -fx-padding: 6 14;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="monthYearLabel"
+               style="-fx-font-size:20px; -fx-font-weight:bold; -fx-text-fill:#1c2824;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <!-- Calendar grid built in code -->
+    <VBox fx:id="calendarContainer" VBox.vgrow="ALWAYS"
+          style="-fx-background-color:white; -fx-background-radius:10;
+                 -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),10,0,0,4);"/>
+
+</VBox>

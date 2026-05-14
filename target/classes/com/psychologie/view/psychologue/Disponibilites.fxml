@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.psychologue.DisponibiliteController"
+      style="-fx-background-color: #f8f9fa;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Mes disponibilités" styleClass="label-header" style="-fx-font-size: 20;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Nouvelle disponibilité" styleClass="btn-primary" onAction="#handleNewDisponibilite"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Button text="Voir mes plans" styleClass="btn-secondary" onAction="#showPlans"/>
+        <Button text="Voir mes rendez-vous" styleClass="btn-secondary" onAction="#showAppointments"/>
+    </HBox>
+
+    <VBox VBox.vgrow="ALWAYS" styleClass="table-container">
+        <TableView fx:id="dispoTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="jourColumn" text="Jour" prefWidth="150"/>
+                <TableColumn fx:id="debutColumn" text="Heure début" prefWidth="120"/>
+                <TableColumn fx:id="finColumn" text="Heure fin" prefWidth="120"/>
+                <TableColumn fx:id="dureeColumn" text="Durée (min)" prefWidth="120"/>
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</VBox>

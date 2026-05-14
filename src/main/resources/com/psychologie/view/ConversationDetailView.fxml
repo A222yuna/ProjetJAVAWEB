@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="0" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.ConversationDetailController"
+      style="-fx-background-color: #f4f2ee;">
+    
+    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #dcd8d0; -fx-border-width: 0 0 1 0;">
+        <Button text="←" onAction="#handleBack" styleClass="btn-secondary" style="-fx-font-size: 18;"/>
+        <VBox>
+            <Label fx:id="chatTitleLabel" text="Conversation" style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+            <Label text="Crypté de bout en bout" styleClass="stat-label" style="-fx-text-fill: #1abc9c;"/>
+        </VBox>
+    </HBox>
+
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-background: transparent; -fx-padding: 20;">
+        <VBox fx:id="messagesContainer" spacing="10"/>
+    </ScrollPane>
+
+    <HBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #dcd8d0; -fx-border-width: 1 0 0 0;">
+        <TextField fx:id="messageInput" promptText="Écrivez votre message..." HBox.hgrow="ALWAYS" prefHeight="45" styleClass="search-field"/>
+        <Button text="Envoyer" onAction="#handleSendMessage" styleClass="btn-primary" prefHeight="45" prefWidth="100"/>
+    </HBox>
+
+</VBox>

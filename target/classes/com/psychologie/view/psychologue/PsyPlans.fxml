@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.psychologue.PsyPlansController"
+      style="-fx-background-color: #f8f9fa;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Mes plans (planning)" styleClass="label-header" style="-fx-font-size: 20;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Nouveau plan" styleClass="btn-primary" onAction="#handleNewPlan" 
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand;"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Button text="Disponibilités" styleClass="btn-secondary" onAction="#showDisponibilites"/>
+        <Button text="Appointments" styleClass="btn-secondary" onAction="#showAppointments"/>
+    </HBox>
+
+    <VBox VBox.vgrow="ALWAYS" styleClass="table-container">
+        <TableView fx:id="plansTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="jourColumn" text="Jour" prefWidth="150"/>
+                <TableColumn fx:id="periodeColumn" text="Période" prefWidth="120"/>
+                <TableColumn fx:id="maxRdvColumn" text="Max RDV" prefWidth="100"/>
+                <TableColumn fx:id="creeLeColumn" text="Créé le" prefWidth="150"/>
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</VBox>

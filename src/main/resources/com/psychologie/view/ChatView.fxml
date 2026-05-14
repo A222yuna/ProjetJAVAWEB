@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.ChatController"
+      style="-fx-background-color: #f4f2ee;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <VBox spacing="5">
+        <Label text="Messagerie" styleClass="label-header"/>
+        <Label text="Gérez vos conversations et messages sécurisés." styleClass="stat-label"/>
+    </VBox>
+
+    <HBox spacing="20">
+        <HBox spacing="10" alignment="BASELINE_CENTER">
+            <Label fx:id="totalConvLabel" text="0" styleClass="stat-value" style="-fx-font-size: 24;"/>
+            <Label text="TOTAL" styleClass="stat-label"/>
+        </HBox>
+        <HBox spacing="10" alignment="BASELINE_CENTER">
+            <Label fx:id="activeConvLabel" text="0" styleClass="stat-value" style="-fx-text-fill: #1b7a43; -fx-font-size: 24;"/>
+            <Label text="ACTIVES" styleClass="stat-label"/>
+        </HBox>
+    </HBox>
+
+    <VBox VBox.vgrow="ALWAYS" styleClass="table-container">
+        <ListView fx:id="conversationListView" VBox.vgrow="ALWAYS" styleClass="conversation-list"/>
+    </VBox>
+
+    <Button text="+ Nouvelle conversation" onAction="#handleNewChat" styleClass="btn-primary" prefHeight="40"/>
+
+</VBox>

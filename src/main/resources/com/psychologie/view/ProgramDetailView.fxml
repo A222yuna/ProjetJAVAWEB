@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.psychologie.controller.ProgramDetailController"
+            style="-fx-background-color: #f4f2ee; -fx-background: #f4f2ee;">
+
+    <VBox spacing="20">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <!-- Top bar: back + title + action buttons -->
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <Button text="← Retour" onAction="#handleBack" styleClass="btn-secondary"/>
+            <Label fx:id="programTitleLabel" styleClass="label-header" style="-fx-font-size: 22;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="⬇ Télécharger PDF" onAction="#handleDownloadPdf" styleClass="btn-secondary"/>
+            <Button text="★ Laisser un avis" onAction="#handleLeaveReview" styleClass="btn-primary"/>
+        </HBox>
+
+        <!-- Program info card -->
+        <VBox spacing="15" styleClass="stat-card">
+            <Label fx:id="programTitleCard" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+            <Label fx:id="psyNameLabel" style="-fx-text-fill: #5a6560; -fx-font-size: 13px;"/>
+            <Label fx:id="objectifLabel" style="-fx-text-fill: #1c2824; -fx-font-size: 13px;" wrapText="true"/>
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Label fx:id="dureeLabel" style="-fx-text-fill: #5a6560; -fx-font-size: 13px;"/>
+                <Label fx:id="difficulteLabel" style="-fx-text-fill: #5a6560; -fx-font-size: 13px;"/>
+                <Label fx:id="statutLabel" styleClass="badge-green"/>
+            </HBox>
+        </VBox>
+
+        <!-- Activities section -->
+        <VBox spacing="10" styleClass="stat-card">
+            <Label fx:id="activitiesHeader" text="Activités (0)" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+            <VBox fx:id="activitiesContainer" spacing="8"/>
+            <Label fx:id="noActivitiesLabel" text="Aucune activité pour ce programme."
+                   style="-fx-text-fill: #5a6560; -fx-font-size: 13px; -fx-padding: 10 0;" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Reviews section -->
+        <VBox spacing="10" styleClass="stat-card">
+            <Label fx:id="avisHeader" text="Avis (0)" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+            <VBox fx:id="avisContainer" spacing="8"/>
+            <Label fx:id="noAvisLabel" text="Aucun avis pour ce programme."
+                   style="-fx-text-fill: #5a6560; -fx-font-size: 13px; -fx-padding: 10 0;" visible="false" managed="false"/>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

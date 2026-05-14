@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.SavedPostsController"
+      style="-fx-background-color: #f4f2ee;">
+
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Mes publications enregistrées"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="countLabel" text=""
+               style="-fx-text-fill: #5a6560; -fx-font-size: 13px;"/>
+    </HBox>
+
+    <!-- Empty state -->
+    <VBox fx:id="emptyState" alignment="CENTER" spacing="12"
+          style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 60;"
+          visible="false" managed="false">
+        <Label text="📌" style="-fx-font-size: 40px;"/>
+        <Label text="Aucune publication enregistrée"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+        <Label text="Cliquez sur ☆ Enregistrer dans un post du forum pour le retrouver ici."
+               style="-fx-text-fill: #5a6560; -fx-font-size: 13px;" wrapText="true"/>
+        <Button text="Aller au Forum" onAction="#handleGoToForum"
+                style="-fx-background-color: #2a6f5b; -fx-text-fill: white;
+                       -fx-background-radius: 8; -fx-padding: 10 24; -fx-cursor: hand;
+                       -fx-font-weight: bold;"/>
+    </VBox>
+
+    <!-- Posts grid -->
+    <FlowPane fx:id="postsContainer" hgap="20" vgap="20" VBox.vgrow="ALWAYS"/>
+
+</VBox>

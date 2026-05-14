@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.psychologie.controller.psychologue.PsyStatsController"
+            style="-fx-background-color: #f8f9fa; -fx-background: #f8f9fa;">
+    <VBox spacing="24">
+        <padding>
+            <Insets top="20" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <!-- Title row -->
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Mes Statistiques" styleClass="label-header" style="-fx-font-size: 28;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Exporter Excel" onAction="#handleExportExcel" styleClass="btn-primary"/>
+        </HBox>
+
+        <!-- Stat counters: 6 cards (added SCHEDULED) -->
+        <HBox spacing="14">
+            <VBox styleClass="stat-strip-blue" HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="TOTAL RDV"   style="-fx-text-fill: #0d6efd; -fx-font-weight: bold; -fx-font-size: 11px;"/>
+                <Label fx:id="totalLabel" text="0" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #0d6efd;"/>
+            </VBox>
+            <VBox styleClass="stat-strip-cyan" HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="EN ATTENTE"     style="-fx-text-fill: #f5a623; -fx-font-weight: bold; -fx-font-size: 11px;"/>
+                <Label fx:id="scheduledLabel" text="0" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #f5a623;"/>
+            </VBox>
+            <VBox styleClass="stat-strip-green" HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="CONFIRMÉS"      style="-fx-text-fill: #17a2b8; -fx-font-weight: bold; -fx-font-size: 11px;"/>
+                <Label fx:id="confirmedLabel" text="0" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #17a2b8;"/>
+            </VBox>
+            <VBox styleClass="stat-strip-purple" HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="PAYÉS"      style="-fx-text-fill: #dc3545; -fx-font-weight: bold; -fx-font-size: 11px;"/>
+                <Label fx:id="paidLabel" text="0" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #dc3545;"/>
+            </VBox>
+            <VBox styleClass="stat-strip-cyan" HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="TERMINÉS"       style="-fx-text-fill: #2a6f5b; -fx-font-weight: bold; -fx-font-size: 11px;"/>
+                <Label fx:id="completedLabel" text="0" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #2a6f5b;"/>
+            </VBox>
+            <VBox styleClass="stat-strip-red" HBox.hgrow="ALWAYS" spacing="4">
+                <Label text="ANNULÉS"        style="-fx-text-fill: #6c757d; -fx-font-weight: bold; -fx-font-size: 11px;"/>
+                <Label fx:id="cancelledLabel" text="0" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #6c757d;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Charts row -->
+        <HBox spacing="24">
+            <!-- Line chart -->
+            <VBox spacing="12" styleClass="stat-card-admin" HBox.hgrow="ALWAYS">
+                <Label text="RDV par mois (12 derniers mois)"
+                       style="-fx-text-fill: #0d6efd; -fx-font-weight: bold;"/>
+                <LineChart fx:id="monthlyChart"
+                           legendVisible="true"
+                           createSymbols="true"
+                           animated="false"
+                           prefHeight="280">
+                    <xAxis>
+                        <CategoryAxis fx:id="monthAxis" tickLabelRotation="-45"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis forceZeroInRange="true" minorTickCount="1"/>
+                    </yAxis>
+                </LineChart>
+            </VBox>
+
+            <!-- Pie chart -->
+            <VBox spacing="12" styleClass="stat-card-admin" prefWidth="340">
+                <Label text="Répartition par statut"
+                       style="-fx-text-fill: #0d6efd; -fx-font-weight: bold;"/>
+                <PieChart fx:id="statusChart"
+                          legendSide="BOTTOM"
+                          labelsVisible="false"
+                          prefHeight="280"
+                          animated="false"/>
+            </VBox>
+        </HBox>
+
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.psychologie.controller.psychologue.PsyPlanningController"
+            style="-fx-background-color: #f8f9fa; -fx-background: #f8f9fa;">
+    <VBox spacing="20">
+        <padding>
+            <Insets top="20" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <Label text="Mon planning" styleClass="label-header" style="-fx-font-size: 24;"/>
+
+        <HBox spacing="18">
+            <VBox styleClass="mini-card" HBox.hgrow="ALWAYS">
+                <Label text="Plans" styleClass="stat-label-admin"/>
+                <Label fx:id="plansCountLabel" text="0" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+            </VBox>
+            <VBox styleClass="mini-card" HBox.hgrow="ALWAYS">
+                <Label text="Disponibilités" styleClass="stat-label-admin"/>
+                <Label fx:id="dispoCountLabel" text="0" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+            </VBox>
+            <VBox styleClass="mini-card" HBox.hgrow="ALWAYS">
+                <Label text="RDV" styleClass="stat-label-admin"/>
+                <Label fx:id="rdvCountLabel" text="0" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+            </VBox>
+            <VBox styleClass="mini-card" HBox.hgrow="ALWAYS">
+                <Label text="Page" styleClass="stat-label-admin"/>
+                <Label fx:id="pageLabel" text="1/1" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="10">
+            <Button text="Nouveau plan" onAction="#handleNewPlan" styleClass="btn-primary"/>
+            <Button text="Nouvelle disponibilité" onAction="#handleNewDisponibilite" styleClass="btn-outline-primary"/>
+        </HBox>
+
+        <VBox spacing="12" styleClass="table-container">
+            <Label text="Plans" styleClass="label-header" style="-fx-font-size: 18;"/>
+            <VBox fx:id="plansList" spacing="8"/>
+        </VBox>
+
+        <VBox spacing="12" styleClass="table-container">
+            <Label text="Disponibilités" styleClass="label-header" style="-fx-font-size: 18;"/>
+            <VBox fx:id="disposList" spacing="8"/>
+        </VBox>
+
+        <VBox spacing="12" styleClass="table-container">
+            <Label text="Rendez-vous patients" styleClass="label-header" style="-fx-font-size: 18;"/>
+            <VBox fx:id="appointmentsList" spacing="8"/>
+        </VBox>
+    </VBox>
+</ScrollPane>

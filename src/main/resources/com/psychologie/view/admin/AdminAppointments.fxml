@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.admin.AdminAppointmentController"
+      style="-fx-background-color: #f4f2ee;">
+    
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Administration" styleClass="label-header" style="-fx-font-size: 18;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="10 May 2026" styleClass="stat-label-admin"/>
+    </HBox>
+
+    <Label text="Vue globale des rendez-vous" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+
+    <HBox spacing="20">
+        <VBox styleClass="stat-card-admin" prefWidth="250">
+            <Label text="Elements page" styleClass="stat-label-admin"/>
+            <Label fx:id="totalLabel" text="6" styleClass="stat-value-admin" style="-fx-text-fill: #2c3e50;"/>
+        </VBox>
+        <VBox styleClass="stat-card-admin" prefWidth="250">
+            <Label text="Filtre statut" styleClass="stat-label-admin"/>
+            <Label text="Tous" styleClass="stat-value-admin" style="-fx-text-fill: #2c3e50;"/>
+        </VBox>
+        <VBox styleClass="stat-card-admin" prefWidth="250">
+            <Label text="Page" styleClass="stat-label-admin"/>
+            <Label text="1/1" styleClass="stat-value-admin" style="-fx-text-fill: #2c3e50;"/>
+        </VBox>
+        <VBox styleClass="stat-card-admin" prefWidth="250">
+            <Label text="Workflow" styleClass="stat-label-admin"/>
+            <Label text="SCHEDULED -&gt; CONFIRMED -&gt; COMPLETED" styleClass="stat-value-admin" style="-fx-text-fill: #2c3e50; -fx-font-size: 14;"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <VBox spacing="5">
+            <Label text="Statut" style="-fx-font-size: 11; -fx-text-fill: #7f8c8d;"/>
+            <ComboBox fx:id="statusFilter" prefWidth="120" onAction="#applyFilters"/>
+        </VBox>
+        <VBox spacing="5">
+            <Label text="Date" style="-fx-font-size: 11; -fx-text-fill: #7f8c8d;"/>
+            <DatePicker fx:id="datePicker" prefWidth="150" promptText="jj/mm/aaaa"/>
+        </VBox>
+        <Button text="Filtrer" onAction="#applyFilters" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-translate-y: 8; -fx-cursor: hand;"/>
+    </HBox>
+
+    <VBox styleClass="stat-card-admin" VBox.vgrow="ALWAYS" style="-fx-padding: 0;">
+        <TableView fx:id="appointmentTable" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="patientColumn" text="Patient" prefWidth="200"/>
+                <TableColumn fx:id="psyColumn" text="Psychologue" prefWidth="200"/>
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="150"/>
+                <TableColumn fx:id="statusColumn" text="Statut" prefWidth="120"/>
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="220"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</VBox>

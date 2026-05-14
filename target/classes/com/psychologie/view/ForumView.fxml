@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.ForumController"
+      style="-fx-background-color: #f4f2ee;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <VBox spacing="5">
+            <Label text="Forum de Discussion" styleClass="label-header"/>
+            <Label text="Partagez vos expériences et posez vos questions." styleClass="stat-label"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+ Nouveau Post" styleClass="btn-primary" onAction="#handleNewPost"/>
+    </HBox>
+
+    <HBox spacing="15" styleClass="filter-bar">
+        <TextField fx:id="searchField" promptText="Rechercher un sujet..." HBox.hgrow="ALWAYS" prefHeight="40"/>
+        <ComboBox fx:id="categoryComboBox" prefWidth="150" prefHeight="40"/>
+        <Button text="Filtrer" styleClass="btn-secondary" onAction="#handleFilter" prefHeight="40"/>
+    </HBox>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-background: transparent;">
+        <VBox fx:id="postsContainer" spacing="15"/>
+    </ScrollPane>
+
+</VBox>

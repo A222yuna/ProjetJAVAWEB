@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" spacing="30" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.SecurityController"
+      style="-fx-background-color: #f4f2ee;">
+    
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <VBox alignment="CENTER" spacing="10" styleClass="login-container" maxWidth="400">
+        <Label text="Connexion" styleClass="label-header" style="-fx-font-size: 28;"/>
+        <Label text="Accédez à votre espace personnel" styleClass="stat-label"/>
+
+        <VBox spacing="15" alignment="CENTER_LEFT">
+            <VBox spacing="5">
+                <Label text="Email" styleClass="filter-label"/>
+                <TextField fx:id="emailField" promptText="votre@email.com" prefHeight="40"/>
+            </VBox>
+            
+            <VBox spacing="5">
+                <Label text="Mot de passe" styleClass="filter-label"/>
+                <PasswordField fx:id="passwordField" promptText="••••••••" prefHeight="40"/>
+            </VBox>
+
+            <Button text="Se connecter" onAction="#handleLogin" maxWidth="Infinity" styleClass="btn-primary" prefHeight="45"/>
+            
+            <HBox alignment="CENTER" spacing="5">
+                <Label text="Pas encore de compte ?"/>
+                <Hyperlink text="Inscrivez-vous" onAction="#showRegister"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</VBox>

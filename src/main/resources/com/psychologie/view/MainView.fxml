@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.psychologie.controller.MainController"
+            prefHeight="600.0" prefWidth="800.0"
+            stylesheets="@../../../styles/app.css">
+
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="Logout" onAction="#handleLogout"/>
+                    <MenuItem text="Exit" onAction="#handleExit"/>
+                </Menu>
+                <Menu text="Help">
+                    <MenuItem text="About" onAction="#handleAbout"/>
+                </Menu>
+            </MenuBar>
+            <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #ffffff; -fx-padding: 10 20; -fx-border-color: #dcd8d0; -fx-border-width: 0 0 1 0;">
+                <Label fx:id="userGreetingLabel" text="Bonjour, Utilisateur" style="-fx-font-weight: bold; -fx-text-fill: #2a6f5b;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <left>
+        <VBox spacing="0" styleClass="sidebar">
+            <Label fx:id="sidebarTitle" text="ADMIN PANEL" styleClass="sidebar-title"/>
+
+            <VBox fx:id="adminMenu" spacing="0">
+                <Button text="Dashboard" maxWidth="Infinity" onAction="#showDashboard" styleClass="menu-button"/>
+                <Button text="Utilisateurs" maxWidth="Infinity" onAction="#showUsers" styleClass="menu-button"/>
+                <Button text="Rendez-vous" maxWidth="Infinity" onAction="#showAppointments" styleClass="menu-button"/>
+                <Button text="Cabinets" maxWidth="Infinity" onAction="#showCabinets" styleClass="menu-button"/>
+                <Button text="Statistiques" maxWidth="Infinity" onAction="#showStats" styleClass="menu-button"/>
+                <Button text="Forum" maxWidth="Infinity" onAction="#showForum" styleClass="menu-button"/>
+                <Button text="Enregistrements" maxWidth="Infinity" onAction="#showSavedPosts" styleClass="menu-button"/>
+                <Button text="Signalements" maxWidth="Infinity" onAction="#showReports" styleClass="menu-button"/>
+                <Button text="Bien-être" maxWidth="Infinity" onAction="#showPrograms" styleClass="menu-button"/>
+            </VBox>
+
+            <VBox fx:id="psychologueMenu" spacing="0">
+                <Button text="Dashboard" maxWidth="Infinity" onAction="#showDashboard" styleClass="menu-button"/>
+                <Button text="Planning" maxWidth="Infinity" onAction="#showPsyPlanning" styleClass="menu-button"/>
+                <Button text="Disponibilités" maxWidth="Infinity" onAction="#showAppointments" styleClass="menu-button"/>
+                <Button text="Plans" maxWidth="Infinity" onAction="#showPsyPlans" styleClass="menu-button"/>
+                <Button text="Mes Cabinets" maxWidth="Infinity" onAction="#showPsyCabinets" styleClass="menu-button"/>
+                <Button text="Programmes" maxWidth="Infinity" onAction="#showPrograms" styleClass="menu-button"/>
+                <Button text="Messages" maxWidth="Infinity" onAction="#showChat" styleClass="menu-button"/>
+                <Button text="Forum" maxWidth="Infinity" onAction="#showForum" styleClass="menu-button"/>
+                <Button text="Statistiques" maxWidth="Infinity" onAction="#showStats" styleClass="menu-button"/>
+                <Button text="Calendrier" maxWidth="Infinity" onAction="#showCalendrier" styleClass="menu-button"/>
+            </VBox>
+
+            <VBox fx:id="patientMenu" spacing="0">
+                <Button text="Dashboard" maxWidth="Infinity" onAction="#showDashboard" styleClass="menu-button"/>
+                <Button text="Prendre RDV" maxWidth="Infinity" onAction="#showAppointments" styleClass="menu-button"/>
+                <Button text="Messagerie" maxWidth="Infinity" onAction="#showChat" styleClass="menu-button"/>
+                <Button text="Programmes Bien-être" maxWidth="Infinity" onAction="#showPrograms" styleClass="menu-button"/>
+                <Button text="Forum" maxWidth="Infinity" onAction="#showForum" styleClass="menu-button"/>
+                <Button text="Enregistrements" maxWidth="Infinity" onAction="#showSavedPosts" styleClass="menu-button"/>
+                <Button text="Calendrier" maxWidth="Infinity" onAction="#showCalendrier" styleClass="menu-button"/>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="Déconnexion" maxWidth="Infinity" onAction="#handleLogout" styleClass="menu-button" style="-fx-text-fill: #e74c3c;"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <VBox alignment="CENTER" spacing="20">
+                <Label text="Welcome to Psychologie App" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+                <Label text="Select an option from the menu to get started."/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.SecurityController"
+      style="-fx-background-color: #f4f2ee;">
+    
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <VBox alignment="CENTER" spacing="15" styleClass="login-container" maxWidth="500">
+        <Label text="Inscription" styleClass="label-header" style="-fx-font-size: 24;"/>
+
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200" />
+            </columnConstraints>
+            
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="Prénom" styleClass="filter-label"/>
+                <TextField fx:id="regPrenomField" prefHeight="35"/>
+            </VBox>
+            
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="Nom" styleClass="filter-label"/>
+                <TextField fx:id="regNomField" prefHeight="35"/>
+            </VBox>
+            
+            <VBox spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                <Label text="Email" styleClass="filter-label"/>
+                <TextField fx:id="regEmailField" prefHeight="35"/>
+            </VBox>
+            
+            <VBox spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                <Label text="Téléphone" styleClass="filter-label"/>
+                <TextField fx:id="regTelField" prefHeight="35"/>
+            </VBox>
+            
+            <VBox spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                <Label text="Je suis un" styleClass="filter-label"/>
+                <ComboBox fx:id="roleComboBox" maxWidth="Infinity" prefHeight="35"/>
+            </VBox>
+            
+            <VBox spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="4">
+                <Label text="Mot de passe" styleClass="filter-label"/>
+                <PasswordField fx:id="regPasswordField" prefHeight="35"/>
+            </VBox>
+        </GridPane>
+
+        <Button text="Créer un compte" onAction="#handleRegister" maxWidth="Infinity" styleClass="btn-primary" prefHeight="40"/>
+        
+        <HBox alignment="CENTER" spacing="5">
+            <Label text="Déjà un compte ?"/>
+            <Hyperlink text="Connectez-vous" onAction="#showLogin"/>
+        </HBox>
+    </VBox>
+</VBox>

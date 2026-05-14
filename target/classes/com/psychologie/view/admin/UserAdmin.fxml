@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.admin.UserAdminController"
+      style="-fx-background-color: #f4f2ee;">
+
+    <HBox alignment="CENTER_LEFT" styleClass="admin-header-bg">
+        <Label text="Gestion des comptes" style="-fx-font-family: 'Georgia'; -fx-font-size: 20;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="dateLabel" text="10 May 2026" styleClass="stat-label-admin"/>
+    </HBox>
+
+    <VBox spacing="25">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="Gestion des comptes" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="📈 Statistiques" onAction="#handleStats" styleClass="btn-primary" style="-fx-background-color: #3498db; -fx-background-radius: 20; -fx-cursor: hand;"/>
+            <Button text="↺ Historique des connexions" onAction="#handleHistorique"
+                    styleClass="btn-secondary" style="-fx-border-color: #3498db; -fx-text-fill: #3498db; -fx-border-radius: 20; -fx-background-radius: 20;"/>
+        </HBox>
+
+        <!-- Filters Section -->
+        <HBox spacing="20" styleClass="stat-card-admin" style="-fx-min-height: 100; -fx-padding: 15 25;">
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="RECHERCHER" styleClass="stat-label-admin"/>
+                <HBox alignment="CENTER_LEFT" styleClass="search-field" style="-fx-padding: 0 10;">
+                    <Label text="🔍" style="-fx-opacity: 0.5;"/>
+                    <TextField fx:id="searchField" promptText="Nom, prénom ou email..." style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS"/>
+                </HBox>
+            </VBox>
+            <VBox spacing="8" prefWidth="200">
+                <Label text="ROLE" styleClass="stat-label-admin"/>
+                <ComboBox fx:id="roleComboBox" maxWidth="Infinity" promptText="Tous les rôles"/>
+            </VBox>
+            <VBox spacing="8" prefWidth="200">
+                <Label text="STATUT" styleClass="stat-label-admin"/>
+                <ComboBox fx:id="statusComboBox" maxWidth="Infinity" promptText="Tous les statuts"/>
+            </VBox>
+        </HBox>
+
+        <!-- Stats Cards Row -->
+        <HBox spacing="20">
+            <VBox styleClass="stat-card-admin" HBox.hgrow="ALWAYS">
+                <Label text="TOTAL COMPTES" styleClass="stat-label-admin"/>
+                <Label fx:id="totalUsersLabel" text="10" styleClass="stat-value-admin"/>
+            </VBox>
+            <VBox styleClass="stat-card-admin" HBox.hgrow="ALWAYS">
+                <Label text="FILTRE ROLE" styleClass="stat-label-admin"/>
+                <Label text="Tous" styleClass="stat-value-admin" style="-fx-text-fill: #2c3e50;"/>
+            </VBox>
+            <VBox styleClass="stat-card-admin" HBox.hgrow="ALWAYS">
+                <Label text="FILTRE STATUT" styleClass="stat-label-admin"/>
+                <Label text="Tous" styleClass="stat-value-admin" style="-fx-text-fill: #2c3e50;"/>
+            </VBox>
+            <VBox styleClass="stat-card-admin" HBox.hgrow="ALWAYS" alignment="CENTER">
+                <Label text="PAGE" styleClass="stat-label-admin"/>
+                <HBox alignment="CENTER" spacing="5">
+                    <Label text="1" styleClass="stat-value-admin" style="-fx-text-fill: #27ae60;"/>
+                    <Label text="/ 2" styleClass="stat-value-admin" style="-fx-text-fill: #2c3e50;"/>
+                </HBox>
+            </VBox>
+        </HBox>
+
+        <!-- Users Table -->
+        <VBox styleClass="stat-card-admin" VBox.vgrow="ALWAYS" style="-fx-padding: 0;">
+            <TableView fx:id="userTable" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+                <columns>
+                    <TableColumn fx:id="userColumn" text="Utilisateur" prefWidth="250"/>
+                    <TableColumn fx:id="roleColumn" text="Role" prefWidth="150"/>
+                    <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+                    <TableColumn fx:id="statusColumn"  text="Statut"   prefWidth="100"/>
+                    <TableColumn fx:id="verifiedColumn" text="Vérifié"  prefWidth="80"/>
+                    <TableColumn fx:id="pdfColumn"      text="PDF"      prefWidth="60"/>
+                    <TableColumn fx:id="actionsColumn"  text="Actions"  prefWidth="180"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </VBox>
+</VBox>

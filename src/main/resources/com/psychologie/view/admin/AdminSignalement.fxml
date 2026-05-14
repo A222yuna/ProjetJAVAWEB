@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.admin.AdminSignalementController"
+      style="-fx-background-color: #f4f7f6;">
+    
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="🚩 Signalements Forum" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="statusLabel" text="Modération active" style="-fx-text-fill: #7f8c8d;"/>
+    </HBox>
+
+    <TableView fx:id="reportTable" VBox.vgrow="ALWAYS" style="-fx-background-radius: 10; -fx-overflow-x: hidden;">
+        <columns>
+            <TableColumn fx:id="dateColumn" text="Date" prefWidth="120"/>
+            <TableColumn fx:id="reporterColumn" text="Signaleur" prefWidth="120"/>
+            <TableColumn fx:id="targetTypeColumn" text="Type Cible" prefWidth="100"/>
+            <TableColumn fx:id="reasonColumn" text="Raison" prefWidth="250"/>
+            <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="250"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucun signalement en attente" style="-fx-font-size: 14; -fx-text-fill: #bdc3c7;"/>
+        </placeholder>
+    </TableView>
+
+</VBox>

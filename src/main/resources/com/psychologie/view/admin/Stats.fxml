@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.admin.StatsController"
+      style="-fx-background-color: #f4f2ee;">
+    
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Statistiques &amp; Analyses" styleClass="label-header" style="-fx-font-size: 20;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="dateLabel" text="10 May 2026" styleClass="stat-label-admin"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Exporter vers Google Sheets" onAction="#handleExportSheets" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 8 20; -fx-cursor: hand;"/>
+        <Button text="Exporter en CSV (Excel)" onAction="#handleExportCSV" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 8 20; -fx-cursor: hand;"/>
+    </HBox>
+
+    <HBox spacing="30" VBox.vgrow="ALWAYS">
+        <VBox styleClass="stat-card-admin" HBox.hgrow="ALWAYS" spacing="15" style="-fx-padding: 20;">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="👥 Utilisateurs par Rôle" style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Voir tout" onAction="#handleBackToList" style="-fx-background-color: transparent; -fx-border-color: #dcd8d0; -fx-border-radius: 15; -fx-font-size: 11; -fx-cursor: hand;"/>
+            </HBox>
+            <PieChart fx:id="roleChart" legendSide="BOTTOM" labelsVisible="true" style="-fx-min-height: 350;"/>
+        </VBox>
+
+        <VBox styleClass="stat-card-admin" HBox.hgrow="ALWAYS" spacing="15" style="-fx-padding: 20;">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="👤 Statut des Comptes" style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Gérer" onAction="#handleBackToList" style="-fx-background-color: transparent; -fx-border-color: #dcd8d0; -fx-border-radius: 15; -fx-font-size: 11; -fx-cursor: hand;"/>
+            </HBox>
+            <PieChart fx:id="statusChart" legendSide="BOTTOM" labelsVisible="true" style="-fx-min-height: 350;"/>
+        </VBox>
+    </HBox>
+
+    <HBox alignment="CENTER">
+        <Button text="← Retour à la liste des utilisateurs" onAction="#handleBackToList" style="-fx-background-color: #f8f9fa; -fx-border-color: #dcd8d0; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 10 30; -fx-cursor: hand;"/>
+    </HBox>
+
+</VBox>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.psychologie.controller.psychologue.PsyDashboardController"
+            style="-fx-background-color: #f4f2ee; -fx-background: #f4f2ee;">
+    
+    <VBox spacing="25">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="Tableau de Bord Praticien" styleClass="label-header" style="-fx-font-size: 20;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="dateLabel" text="10 May 2026" styleClass="stat-label-admin"/>
+        </HBox>
+
+        <!-- Stat Cards Row -->
+        <HBox spacing="20">
+            <HBox styleClass="stat-card-admin" HBox.hgrow="ALWAYS" spacing="15" alignment="CENTER_LEFT">
+                <StackPane style="-fx-background-color: #ebf5fb; -fx-padding: 15; -fx-background-radius: 10;">
+                    <Label text="📅" style="-fx-font-size: 24;"/>
+                </StackPane>
+                <VBox spacing="5">
+                    <Label text="MES RENDEZ-VOUS" styleClass="stat-label-admin"/>
+                    <Label fx:id="appointmentCountLabel" text="0" styleClass="stat-value-admin" style="-fx-text-fill: #2c3e50;"/>
+                </VBox>
+            </HBox>
+
+            <HBox styleClass="stat-card-admin" HBox.hgrow="ALWAYS" spacing="15" alignment="CENTER_LEFT">
+                <StackPane style="-fx-background-color: #e8f8f5; -fx-padding: 15; -fx-background-radius: 10;">
+                    <Label text="🕒" style="-fx-font-size: 24;"/>
+                </StackPane>
+                <VBox spacing="5">
+                    <Label text="DISPONIBILITÉS" styleClass="stat-label-admin"/>
+                    <Label fx:id="dispoStatusLabel" text="Active" styleClass="stat-value-admin" style="-fx-text-fill: #2c3e50;"/>
+                </VBox>
+            </HBox>
+
+            <HBox styleClass="stat-card-admin" HBox.hgrow="ALWAYS" spacing="15" alignment="CENTER_LEFT">
+                <StackPane style="-fx-background-color: #f4f6f7; -fx-padding: 15; -fx-background-radius: 10;">
+                    <Label text="💬" style="-fx-font-size: 24;"/>
+                </StackPane>
+                <VBox spacing="5">
+                    <Label text="FORUM" styleClass="stat-label-admin"/>
+                    <Label text="Participer" styleClass="stat-value-admin" style="-fx-text-fill: #2c3e50;"/>
+                </VBox>
+            </HBox>
+        </HBox>
+
+        <HBox spacing="20">
+            <!-- Left Table -->
+            <VBox spacing="15" styleClass="stat-card-admin" HBox.hgrow="ALWAYS" style="-fx-padding: 20;">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="⁝≡ Dernières demandes de rendez-vous" style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                </HBox>
+                <TableView fx:id="requestTable" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+                    <columns>
+                        <TableColumn fx:id="patientColumn" text="Patient" prefWidth="250"/>
+                        <TableColumn fx:id="dateColumn" text="Date &amp; Heure" prefWidth="200"/>
+                        <TableColumn fx:id="statusColumn" text="Status" prefWidth="120"/>
+                        <TableColumn fx:id="actionColumn" text="Action" prefWidth="80"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Right Sidebar -->
+            <VBox spacing="20" prefWidth="300">
+                <VBox spacing="15" styleClass="stat-card-admin" style="-fx-padding: 20;">
+                    <Label text="Gestion rapide" style="-fx-font-weight: bold;"/>
+                    <Button text="+ Ajouter au planning" onAction="#handleAddPlanning" maxWidth="Infinity" styleClass="btn-primary" style="-fx-background-color: #3498db; -fx-background-radius: 20;"/>
+                    <Button text="🕒 Mes horaires" onAction="#handleShowHoraires" maxWidth="Infinity" styleClass="btn-secondary" style="-fx-border-color: #3498db; -fx-text-fill: #3498db; -fx-border-radius: 20; -fx-background-radius: 20;"/>
+                </VBox>
+
+                <VBox spacing="15" style="-fx-background-color: #2c3e50; -fx-background-radius: 15; -fx-padding: 20;">
+                    <Label text="Conseil du jour" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                    <Label text="&quot;Prendre soin de sa santé mentale est aussi important que prendre soin de sa santé physique.&quot;" 
+                           wrapText="true" style="-fx-text-fill: #bdc3c7; -fx-font-style: italic; -fx-font-size: 12;"/>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="💡" style="-fx-font-size: 14;"/>
+                        <Label text="N'oubliez pas de mettre à jour vos disponibilités régulièrement." 
+                               wrapText="true" style="-fx-text-fill: #f1c40f; -fx-font-size: 11;"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>

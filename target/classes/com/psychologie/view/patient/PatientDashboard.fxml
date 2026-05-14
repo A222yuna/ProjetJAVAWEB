@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.psychologie.controller.patient.PatientDashboardController"
+            style="-fx-background-color: #f4f2ee; -fx-background: #f4f2ee;">
+    <VBox spacing="20">
+        <padding><Insets top="20" right="24" bottom="24" left="24"/></padding>
+
+        <!-- Title row -->
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Mon Espace Santé"
+                   style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel"
+                   style="-fx-text-fill: #2a6f5b; -fx-font-weight: bold;"/>
+        </HBox>
+
+        <!-- 3 stat cards -->
+        <HBox spacing="16">
+            <!-- RDV card -->
+            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="6">
+                <HBox spacing="14" alignment="CENTER_LEFT">
+                    <Label text="📅" style="-fx-font-size: 28px;
+                                           -fx-background-color: #e6f0ec;
+                                           -fx-background-radius: 50;
+                                           -fx-padding: 10;"/>
+                    <VBox spacing="2">
+                        <Label text="MES RENDEZ-VOUS"
+                               style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #5a6560;"/>
+                        <Label fx:id="rdvCountLabel" text="0"
+                               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Bien-être card -->
+            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="6">
+                <HBox spacing="14" alignment="CENTER_LEFT">
+                    <Label text="💚" style="-fx-font-size: 28px;
+                                           -fx-background-color: #e6f0ec;
+                                           -fx-background-radius: 50;
+                                           -fx-padding: 10;"/>
+                    <VBox spacing="2">
+                        <Label text="BIEN-ÊTRE"
+                               style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #5a6560;"/>
+                        <Label fx:id="bienEtreLabel" text="Actif"
+                               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2a6f5b;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Forum card -->
+            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="6">
+                <HBox spacing="14" alignment="CENTER_LEFT">
+                    <Label text="💬" style="-fx-font-size: 28px;
+                                           -fx-background-color: #e6f0ec;
+                                           -fx-background-radius: 50;
+                                           -fx-padding: 10;"/>
+                    <VBox spacing="2">
+                        <Label text="FORUM"
+                               style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #5a6560;"/>
+                        <Label text="Échanger"
+                               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1c2824;
+                                      -fx-cursor: hand;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </HBox>
+
+        <!-- Main content row -->
+        <HBox spacing="20" VBox.vgrow="ALWAYS">
+
+            <!-- Left: appointments table -->
+            <VBox spacing="12" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="🔄" style="-fx-font-size: 14px;"/>
+                    <Label text="Mes prochains rendez-vous"
+                           style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+                </HBox>
+
+                <TableView fx:id="appointmentTable" prefHeight="320">
+                    <columns>
+                        <TableColumn fx:id="psyColumn"    text="Praticien"   prefWidth="180"/>
+                        <TableColumn fx:id="dateColumn"   text="Date &amp; Heure" prefWidth="140"/>
+                        <TableColumn fx:id="statusColumn" text="Status"      prefWidth="120"/>
+                        <TableColumn fx:id="actionColumn" text="Action"      prefWidth="70"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Aucun rendez-vous trouvé."
+                               style="-fx-text-fill: #5a6560;"/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+
+            <!-- Right: quick actions + wellness tip -->
+            <VBox spacing="14" prefWidth="260">
+
+                <!-- Quick actions -->
+                <VBox spacing="10" styleClass="stat-card">
+                    <Label text="Actions rapides"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+                    <Button text="📋  Nouvelle consultation" maxWidth="Infinity"
+                            onAction="#handleNewConsultation"
+                            style="-fx-background-color: #2a6f5b; -fx-text-fill: white;
+                                   -fx-background-radius: 8; -fx-padding: 10; -fx-cursor: hand;
+                                   -fx-font-weight: bold;"/>
+                    <Button text="💬  Forum d'entraide" maxWidth="Infinity"
+                            onAction="#handleForum"
+                            style="-fx-background-color: white; -fx-border-color: #2a6f5b;
+                                   -fx-text-fill: #2a6f5b; -fx-border-radius: 8;
+                                   -fx-background-radius: 8; -fx-padding: 10; -fx-cursor: hand;
+                                   -fx-font-weight: bold;"/>
+                </VBox>
+
+                <!-- Wellness tip -->
+                <VBox spacing="10" styleClass="stat-card"
+                      style="-fx-background-color: #2a6f5b; -fx-background-radius: 12;">
+                    <Label text="Votre bien-être"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="N'oubliez pas que chaque petit pas compte pour votre santé mentale."
+                           wrapText="true"
+                           style="-fx-text-fill: #c8e6dc; -fx-font-size: 12px;"/>
+                    <HBox spacing="6" alignment="CENTER_LEFT">
+                        <Label text="⭐" style="-fx-font-size: 12px;"/>
+                        <Label text="Consultez nos articles conseils."
+                               style="-fx-text-fill: #f5a623; -fx-font-size: 11px; -fx-cursor: hand;"/>
+                    </HBox>
+                </VBox>
+
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>

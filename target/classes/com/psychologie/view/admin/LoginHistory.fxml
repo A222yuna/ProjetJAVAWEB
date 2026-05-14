@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.psychologie.controller.admin.LoginHistoryController"
+      spacing="20"
+      style="-fx-background-color: #f4f2ee;">
+
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="14">
+        <Button text="← Retour" onAction="#handleBack" styleClass="btn-secondary"/>
+        <Label text="Historique des connexions"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1c2824;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="countLabel" text="" style="-fx-text-fill: #5a6560;"/>
+        <Button text="⬇ Exporter Excel" onAction="#handleExport" styleClass="btn-primary"/>
+    </HBox>
+
+    <!-- Filters -->
+    <HBox spacing="14" styleClass="stat-card-admin" style="-fx-padding: 14 20;">
+        <TextField fx:id="searchField" promptText="Rechercher par nom ou email..."
+                   HBox.hgrow="ALWAYS" prefHeight="36"/>
+        <ComboBox fx:id="roleFilter" prefWidth="160" prefHeight="36"/>
+        <Button text="Filtrer" onAction="#handleFilter" styleClass="btn-secondary" prefHeight="36"/>
+    </HBox>
+
+    <!-- Table -->
+    <VBox styleClass="stat-card-admin" VBox.vgrow="ALWAYS" style="-fx-padding: 0;">
+        <TableView fx:id="historyTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="userCol"    text="Utilisateur"        prefWidth="200"/>
+                <TableColumn fx:id="emailCol"   text="Email"              prefWidth="200"/>
+                <TableColumn fx:id="roleCol"    text="Rôle"               prefWidth="120"/>
+                <TableColumn fx:id="loginCol"   text="Dernière connexion" prefWidth="180"/>
+                <TableColumn fx:id="statusCol"  text="Statut"             prefWidth="100"/>
+            </columns>
+            <placeholder>
+                <Label text="Aucun historique disponible."
+                       style="-fx-text-fill: #5a6560; -fx-padding: 20;"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+</VBox>
